@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://e5si1uhdi5tv"]
+
+[ext_resource type="Script" uid="uid://b0p8xkarp2jqr" path="res://player_test.gd" id="1_mnirw"]
+[ext_resource type="Texture2D" uid="uid://camq16ifbcen7" path="res://Assets/char_idle.png" id="2_mnirw"]
+[ext_resource type="PackedScene" uid="uid://dw0p11nvbd1vu" path="res://hook_test.tscn" id="3_psp7o"]
+[ext_resource type="Script" uid="uid://dw8iif45yptk" path="res://pivot.gd" id="3_wln50"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0b2u"]
+size = Vector2(6, 14)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=399473781]
+script = ExtResource("1_mnirw")
+move_speed = 100.0
+jump_height = 30.0
+jump_time_to_peak = 0.3
+jump_time_to_descent = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=152419327]
+texture = ExtResource("2_mnirw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=23757872]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_e0b2u")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1664435445]
+script = ExtResource("3_wln50")
+
+[node name="Hook" parent="Pivot" unique_id=1247980810 instance=ExtResource("3_psp7o")]
+
+[connection signal="last_direction_pressed" from="." to="Pivot" method="_on_character_body_2d_last_direction_pressed"]
+[connection signal="hooked" from="Pivot/Hook" to="." method="_on_hook_hooked"]
+[connection signal="unhooked" from="Pivot/Hook" to="." method="_on_hook_unhooked"]
