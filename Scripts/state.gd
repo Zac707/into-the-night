@@ -1,6 +1,12 @@
 extends Node
 
-class_name StateMachine
+
+class_name State
+
+
+@export var player: CharacterBody2D
+
+signal transitioned_state
 
 
 func enter():
