@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bqe1mfvswyh1g" path="res://Scripts/Player States/player_idle.gd" id="6_lbtjm"]
 [ext_resource type="Script" uid="uid://b8k4gn6isjjby" path="res://Scripts/Player States/player_attack.gd" id="7_0asfq"]
 [ext_resource type="Script" uid="uid://byobpe4i76onj" path="res://Scripts/Player States/player_hook.gd" id="8_ve6vs"]
+[ext_resource type="Script" uid="uid://bqmaxubyurvv8" path="res://Scripts/Player States/player_fall.gd" id="9_0asfq"]
 [ext_resource type="Script" uid="uid://ja4we4tt0wp1" path="res://Scripts/Player States/player_jump.gd" id="9_8dx66"]
 [ext_resource type="Script" uid="uid://btganiwqggbic" path="res://Scripts/Player States/player_run.gd" id="10_qki6r"]
 
@@ -20,6 +21,7 @@ move_speed = 100.0
 jump_height = 30.0
 jump_time_to_peak = 0.3
 jump_time_to_descent = 0.2
+hook_spring_strength = 90.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=152419327]
 texture = ExtResource("2_mnirw")
@@ -33,13 +35,29 @@ script = ExtResource("3_wln50")
 
 [node name="Hook" parent="Pivot" unique_id=1247980810 instance=ExtResource("3_psp7o")]
 
-[node name="StateMachine" type="Node2D" parent="." unique_id=1686728303]
+[node name="StateMachine" type="Node2D" parent="." unique_id=1686728303 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_wln50")
+initial_state = NodePath("PlayerRun")
 
 [node name="PlayerIdle" type="Node" parent="StateMachine" unique_id=2084342776 node_paths=PackedStringArray("player")]
 script = ExtResource("6_lbtjm")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://bqe1mfvswyh1g"
+
+[node name="PlayerRun" type="Node" parent="StateMachine" unique_id=365648207 node_paths=PackedStringArray("player")]
+script = ExtResource("10_qki6r")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://btganiwqggbic"
+
+[node name="PlayerJump" type="Node" parent="StateMachine" unique_id=7488471 node_paths=PackedStringArray("player")]
+script = ExtResource("9_8dx66")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://ja4we4tt0wp1"
+
+[node name="PlayerFall" type="Node" parent="StateMachine" unique_id=631346077 node_paths=PackedStringArray("player")]
+script = ExtResource("9_0asfq")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://bqmaxubyurvv8"
 
 [node name="PlayerAttack" type="Node" parent="StateMachine" unique_id=984369387 node_paths=PackedStringArray("player")]
 script = ExtResource("7_0asfq")
@@ -51,16 +69,6 @@ script = ExtResource("8_ve6vs")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://byobpe4i76onj"
 
-[node name="PlayerJump" type="Node" parent="StateMachine" unique_id=7488471 node_paths=PackedStringArray("player")]
-script = ExtResource("9_8dx66")
-player = NodePath("../..")
-metadata/_custom_type_script = "uid://ja4we4tt0wp1"
-
-[node name="PlayerRun" type="Node" parent="StateMachine" unique_id=365648207 node_paths=PackedStringArray("player")]
-script = ExtResource("10_qki6r")
-player = NodePath("../..")
-metadata/_custom_type_script = "uid://btganiwqggbic"
-
 [connection signal="last_direction_pressed" from="." to="Pivot" method="_on_character_body_2d_last_direction_pressed"]
-[connection signal="hooked" from="Pivot/Hook" to="." method="_on_hook_hooked"]
-[connection signal="unhooked" from="Pivot/Hook" to="." method="_on_hook_unhooked"]
+[connection signal="hooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hooked"]
+[connection signal="unhooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_unhooked"]

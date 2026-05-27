@@ -40,6 +40,7 @@ func check_collision():
 			var collision_point = raycast.get_collision_point()
 			distance = global_position.distance_to(collision_point)
 			hooked.emit(collision_point)
+			print("hook-point found")
 			return distance
 		# Colliding, but not a valid hook target — treat as a miss.
 		else:

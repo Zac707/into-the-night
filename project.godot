@@ -14,6 +14,10 @@ config/name="Into the Night"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerMovement="*uid://iwldiwnu4cmt"
+
 [display]
 
 window/size/viewport_width=480
