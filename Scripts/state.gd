@@ -6,6 +6,8 @@ class_name State
 
 @export var player: CharacterBody2D
 
+var active: bool
+
 signal transitioned_state
 
 

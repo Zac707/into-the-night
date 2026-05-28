@@ -12,6 +12,10 @@
 [ext_resource type="Script" uid="uid://ja4we4tt0wp1" path="res://Scripts/Player States/player_jump.gd" id="9_8dx66"]
 [ext_resource type="Script" uid="uid://btganiwqggbic" path="res://Scripts/Player States/player_run.gd" id="10_qki6r"]
 
+[sub_resource type="Curve" id="Curve_0asfq"]
+_data = [Vector2(0, 0), 0.0, 2.2805116, 0, 0, Vector2(0.20183486, 0.6629214), 0.96227896, 0.96227896, 0, 0, Vector2(0.49541286, 0.92134833), 0.27993563, 0.27993563, 0, 0, Vector2(0.7568808, 0.9887641), 0.13607989, 0.13607989, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0b2u"]
 size = Vector2(6, 14)
 
@@ -21,7 +25,7 @@ move_speed = 100.0
 jump_height = 30.0
 jump_time_to_peak = 0.3
 jump_time_to_descent = 0.2
-hook_spring_strength = 90.0
+fling_decay_curve = SubResource("Curve_0asfq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=152419327]
 texture = ExtResource("2_mnirw")

@@ -10,13 +10,17 @@ extends CharacterBody2D
 @export var jump_time_to_descent: float
 @export var acceleration: float = 15.0  
 @export var friction: float = 30.0     
-@export var hook_spring_strength: float = 15.0
+@export var hook_spring_strength: float = 50.0
 @export var hook_damping: float = 0.05
+@export var fling_decay_duration: float = 3.0
+@export var fling_decay_curve: Curve
 
 var _horizontal: float = 0.0
 var last_direction_angle: int
 var directions_currently_pressed: Dictionary = {"right_held" : false, "left_held" : false}
 var _fling_speed: float
+var fling_velocity: Vector2 = Vector2.ZERO
+var fling_timer: float = 0.0
 
 signal last_direction_pressed
 
