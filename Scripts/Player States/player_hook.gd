@@ -52,7 +52,10 @@ func _release_hook() -> void:
 	_is_hooked = false
 	_hook_point = Vector2.ZERO
 	_approach_dir = Vector2.ZERO
-	transitioned_state.emit(self, "PlayerFall")
+	if player.is_on_floor():
+		transitioned_state.emit(self, "PlayerRun")
+	else:
+		transitioned_state.emit(self, "PlayerFall")
 
 
 func _on_hook_hooked(hooked_position: Variant) -> void:

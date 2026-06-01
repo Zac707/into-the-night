@@ -30,32 +30,40 @@ func apply_horizontal_movement(player: CharacterBody2D, delta: float) -> void:
 
 func apply_flung_horizontal_movement(player: CharacterBody2D, delta: float) -> void:
 	var input := get_horizontal_input(player)
- 
+
 	if player.fling_velocity == Vector2.ZERO:
-		# No active fling — behave normally
 		apply_horizontal_movement(player, delta)
 		return
- 
+
 	var fling_dir := signf(player.fling_velocity.x)
-	var move_dir := input if input != 0.0 else fling_dir
- 
-	# Cancel fling if player inputs against the fling direction
+
+	# Inputting against the fling direction cancels it immediately
 	if input != 0.0 and signf(input) != fling_dir:
 		player.fling_velocity = Vector2.ZERO
 		apply_horizontal_movement(player, delta)
 		return
- 
+
+	# fling_timer will progressively approach 3 seconds, returning a value between 1 and 0 from 0 to 3 seconds, afterwards 1
 	player.fling_timer += delta
 	var t: float = clamp(player.fling_timer / player.fling_decay_duration, 0.0, 1.0)
- 
-	# Sample the curve: 0 = full fling speed, 1 = normal move_speed
+
+	# Curve maps t → how far we've decayed toward normal move_speed
+	# curve_t=0 means still at full fling speed, curve_t=1 means back to move_speed
 	var curve_t: float = player.fling_decay_curve.sample(t)
 	var fling_speed := absf(player.fling_velocity.x)
-	var max_speed_this_frame := lerpf(fling_speed, player.move_speed, curve_t)
- 
-	# Apply acceleration as normal but clamp to the decaying ceiling
-	player.velocity.x += move_dir * player.move_speed * player.acceleration * delta
-	player.velocity.x = clamp(player.velocity.x, -max_speed_this_frame, max_speed_this_frame)
- 
+	var speed_ceiling := lerpf(fling_speed, player.move_speed, curve_t)
+
+	# Clamp current velocity down to the decaying ceiling — no re-acceleration.
+	# This is what actually produces the slowdown.
+	player.velocity.x = clamp(player.velocity.x, -speed_ceiling, speed_ceiling)
+
+	if input != 0.0: 
+		player.velocity.x = move_toward(player.velocity.x, player.move_speed if input == 1.0 else -player.move_speed, curve_t * player.move_speed * delta)
+		print(player.velocity.x," ", player.fling_timer)
+	else:
+		player.velocity.x = move_toward(player.velocity.x, 0.0, player.fling_friction * player.move_speed * delta)
+	# Then clamp to the decaying ceiling so velocity can never climb back up
+	player.velocity.x = clamp(player.velocity.x, -speed_ceiling, speed_ceiling)
+
 	if t >= 1.0:
 		player.fling_velocity = Vector2.ZERO
