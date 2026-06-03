@@ -18,8 +18,10 @@ func exit():
 func update(_delta: float):
 	if Input.is_action_pressed("hook_test"):
 		transitioned_state.emit(self, "PlayerHook")
-	if player.is_on_floor() and player.velocity.y >= 0:
+	elif player.is_on_floor() and player.velocity.y >= 0:
 		transitioned_state.emit(self, "PlayerIdle")
+	elif player.is_on_wall_only():
+		transitioned_state.emit(self, "PlayerWalljump")
 
 
 func physics_update(_delta: float):
