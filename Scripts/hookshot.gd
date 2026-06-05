@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @export var raycast: RayCast2D
+@export var pivot: Node2D
 
 var distance: float = 50.0
 var start_duration = 0.05
@@ -20,6 +21,8 @@ func interpolate(length, duration):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("hook_test") and not _hook_activated:
+		if Input.is_action_pressed("up"):
+			pivot.rotation = deg_to_rad(-90)
 		_hook_activated = true
 		var hook_distance = check_collision()
 		interpolate(hook_distance, start_duration)

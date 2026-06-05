@@ -525,7 +525,8 @@ sources/1 = SubResource("TileSetAtlasSource_coq8p")
 [node name="Node2D" type="Node2D" unique_id=1221631049]
 
 [node name="Area2D" parent="." unique_id=1589036698 instance=ExtResource("2_ia1lp")]
-position = Vector2(3, -15)
+position = Vector2(96, -32)
+scale = Vector2(3, 1)
 
 [node name="CharacterBody2D" parent="." unique_id=399473781 instance=ExtResource("2_sasra")]
 position = Vector2(100, 32)

@@ -13,11 +13,21 @@ func get_horizontal_input(player: CharacterBody2D) -> float:
 	var input := 0.0
 	if Input.is_action_pressed("right"):
 		input = 1.0
-		player.last_direction_pressed.emit(0)
+		player.new_direction.emit(0)
+		player.last_horizontal_direction_pressed = "right"
 	elif Input.is_action_pressed("left"):
 		input = -1.0
-		player.last_direction_pressed.emit(180)
+		player.new_direction.emit(180)
+		player.last_horizontal_direction_pressed = "left"
 	return input
+
+
+func get_vertical_input(player: CharacterBody2D) -> float:
+	var vertical_input := 0.0
+	if Input.is_action_pressed("up"):
+		vertical_input = -1.0
+		player.new_direction.emit(-90)
+	return vertical_input
 
 
 func apply_horizontal_movement(player: CharacterBody2D, delta: float) -> void:
@@ -28,25 +38,24 @@ func apply_horizontal_movement(player: CharacterBody2D, delta: float) -> void:
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * player.move_speed * delta)
 
 
-func apply_flung_horizontal_movement(player: CharacterBody2D, delta: float) -> void:
+func apply_flung_movement(player: CharacterBody2D, delta: float) -> void:
 	var input := get_horizontal_input(player)
-
+	var vertical_input := get_vertical_input(player)
 	if player.fling_velocity == Vector2.ZERO:
 		apply_horizontal_movement(player, delta)
 		return
-
+	
 	var fling_dir := signf(player.fling_velocity.x)
-
 	# Inputting against the fling direction cancels it immediately
 	if input != 0.0 and signf(input) != fling_dir:
 		player.fling_velocity = Vector2.ZERO
 		apply_horizontal_movement(player, delta)
 		return
-
+	
 	# fling_timer will progressively approach 3 seconds, returning a value between 1 and 0 from 0 to 3 seconds, afterwards 1
 	player.fling_timer += delta
 	var t: float = clamp(player.fling_timer / player.fling_decay_duration, 0.0, 1.0)
-
+	
 	# Curve maps t → how far we've decayed toward normal move_speed
 	# curve_t=0 means still at full fling speed, curve_t=1 means back to move_speed
 	var curve_t: float = player.fling_decay_curve.sample(t)

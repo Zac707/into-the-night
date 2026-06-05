@@ -44,7 +44,8 @@ shape = SubResource("RectangleShape2D_e0b2u")
 [node name="Pivot" type="Node2D" parent="." unique_id=1664435445]
 script = ExtResource("3_wln50")
 
-[node name="Hook" parent="Pivot" unique_id=1247980810 instance=ExtResource("3_psp7o")]
+[node name="Hook" parent="Pivot" unique_id=1247980810 node_paths=PackedStringArray("pivot") instance=ExtResource("3_psp7o")]
+pivot = NodePath("..")
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=1686728303 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_wln50")
@@ -88,6 +89,6 @@ metadata/_custom_type_script = "uid://b5jwjd6i3qpcn"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=821608359]
 
-[connection signal="last_direction_pressed" from="." to="Pivot" method="_on_character_body_2d_last_direction_pressed"]
+[connection signal="new_direction" from="." to="Pivot" method="_on_player_new_direction"]
 [connection signal="hooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hooked"]
 [connection signal="unhooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_unhooked"]

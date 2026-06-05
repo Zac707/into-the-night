@@ -27,4 +27,4 @@ func update(_delta: float):
 
 
 func physics_update(_delta: float):
-	PlayerMovement.apply_flung_horizontal_movement(player, _delta)
+	PlayerMovement.apply_flung_movement(player, _delta)
