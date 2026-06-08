@@ -23,12 +23,7 @@ func update(_delta: float):
 	elif player.is_on_wall_only():
 		transitioned_state.emit(self, "PlayerWalljump")
 	
-	if Input.is_action_pressed("up"):
-		var vertical_input = PlayerMovement.get_vertical_input(player)
-	elif player.last_horizontal_direction_pressed == "left":
-		player.new_direction.emit(180)
-	else:
-		player.new_direction.emit(0)
+	PlayerMovement.get_last_direction_pressed(player)
 
 
 func physics_update(_delta: float):

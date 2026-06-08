@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://ja4we4tt0wp1" path="res://Scripts/Player States/player_jump.gd" id="9_8dx66"]
 [ext_resource type="Script" uid="uid://btganiwqggbic" path="res://Scripts/Player States/player_run.gd" id="10_qki6r"]
 [ext_resource type="Script" uid="uid://b5jwjd6i3qpcn" path="res://Scripts/Player States/player_walljump.gd" id="12_ve6vs"]
+[ext_resource type="Script" uid="uid://c03ehs887slg6" path="res://Scripts/health_component_player.gd" id="14_qki6r"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
 _data = [Vector2(0, 0), 0.0, 0.2987119, 0, 0, Vector2(0.50000006, 0.21348321), 0.45570937, 0.45570937, 0, 0, Vector2(0.7477065, 0.3370787), 0.711127, 0.711127, 0, 0, Vector2(0.9266055, 0.52808994), 0.7204235, 0.7204235, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -23,10 +24,20 @@ point_count = 5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0b2u"]
 size = Vector2(6, 14)
 
-[node name="Player" type="CharacterBody2D" unique_id=399473781 groups=["Player"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dx66"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qki6r"]
+radius = 3.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component") groups=["Player"]]
 script = ExtResource("1_mnirw")
 fling_decay_curve = SubResource("Curve_0asfq")
 gravity_on_wall = 100.0
+attack_component = NodePath("AttackComponent")
+health_component = NodePath("HealthComponent")
 
 [node name="WalljumpIndicator" type="Sprite2D" parent="." unique_id=84592051]
 visible = false
@@ -34,10 +45,10 @@ material = SubResource("CanvasItemMaterial_qki6r")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_8dx66")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=152419327]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=152419327]
 texture = ExtResource("2_mnirw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=23757872]
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=23757872]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_e0b2u")
 
@@ -89,6 +100,25 @@ metadata/_custom_type_script = "uid://b5jwjd6i3qpcn"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=821608359]
 
+[node name="AttackComponent" type="Area2D" parent="." unique_id=1144845523]
+position = Vector2(10, 0)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=1799505131]
+shape = SubResource("CapsuleShape2D_8dx66")
+
+[node name="HealthComponent" type="Area2D" parent="." unique_id=388612483 node_paths=PackedStringArray("player", "invulnerability_timer")]
+script = ExtResource("14_qki6r")
+player = NodePath("..")
+invulnerability_timer = NodePath("InvulnerabilityTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1197943029]
+shape = SubResource("CapsuleShape2D_qki6r")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="HealthComponent" unique_id=1463742143]
+wait_time = 2.0
+
 [connection signal="new_direction" from="." to="Pivot" method="_on_player_new_direction"]
 [connection signal="hooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hooked"]
 [connection signal="unhooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_unhooked"]
+[connection signal="timeout" from="HealthComponent/InvulnerabilityTimer" to="HealthComponent" method="_on_invulnerability_timer_timeout"]

@@ -17,7 +17,6 @@ func enter():
 	walljump_indicator.visible = true
 	jump_executed = false
 	time_until_transition = 0.0
-
 	var wall_normal = player.get_wall_normal()
 	jump_direction = "right" if wall_normal.x > 0 else "left"
 

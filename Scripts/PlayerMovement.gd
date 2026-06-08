@@ -30,6 +30,15 @@ func get_vertical_input(player: CharacterBody2D) -> float:
 	return vertical_input
 
 
+func get_last_direction_pressed(player: CharacterBody2D) -> void:
+	if Input.is_action_pressed("up"):
+		var vertical_input = get_vertical_input(player)
+	elif player.last_horizontal_direction_pressed == "left":
+		player.new_direction.emit(180)
+	else:
+		player.new_direction.emit(0)
+
+
 func apply_horizontal_movement(player: CharacterBody2D, delta: float) -> void:
 	var input := get_horizontal_input(player)
 	player.velocity.x += input * player.move_speed * player.acceleration * delta
