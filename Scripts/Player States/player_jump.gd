@@ -22,6 +22,8 @@ func update(_delta: float):
 		transitioned_state.emit(self, "PlayerIdle")
 	elif player.is_on_wall_only():
 		transitioned_state.emit(self, "PlayerWalljump")
+	elif Input.is_action_pressed("attack"):
+		transitioned_state.emit(self, "PlayerAttack")
 	
 	PlayerMovement.get_last_direction_pressed(player)
 

@@ -22,6 +22,7 @@ extends CharacterBody2D
 @export var walljump_time_to_peak: float = 0.15
 @export var attack_component: Area2D
 @export var health_component: Area2D
+@export var animation_player: AnimationPlayer
 
 var _horizontal: float = 0.0
 var last_direction_angle: int
