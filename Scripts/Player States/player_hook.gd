@@ -29,14 +29,14 @@ func physics_update(_delta: float):
 		var to_hook: Vector2 = _hook_point - player.global_position
 		var dist: float = to_hook.length()
 		var current_dir: Vector2 = to_hook.normalized()
-
+	
 		# Arrived if: close enough, OR player has passed through the hook point
 		# (dot product negative means direction has flipped — player overshot)
 		var overshot: bool = _approach_dir != Vector2.ZERO and current_dir.dot(_approach_dir) < 0.0
 		if dist <= 5.0 or overshot:
 			_release_hook()
 			return
-
+	
 		var target_velocity: Vector2 = current_dir * dist * player.hook_spring_strength
 		player.velocity = player.velocity.lerp(target_velocity, player.hook_damping)
 		if player.velocity.y > 0:
@@ -46,8 +46,12 @@ func physics_update(_delta: float):
 
 
 func _release_hook() -> void:
-	# Store fling velocity on player so subsequent states can decay it
-	player.fling_velocity = player.velocity
+	 # Only preserve X fling if there's meaningful horizontal speed.
+	# Y is always kept so upward hook momentum carries through.
+	player.fling_velocity = Vector2(
+		player.velocity.x if abs(player.velocity.x) > player.move_speed else 0.0,
+		player.velocity.y
+	)
 	player.fling_timer = 0.0
 	_is_hooked = false
 	_hook_point = Vector2.ZERO
@@ -68,7 +72,12 @@ func _on_hook_hooked(hooked_position: Variant) -> void:
 
 
 func _on_hook_unhooked() -> void:
-	player.fling_velocity = player.velocity
+	# Only preserve X fling if there's meaningful horizontal speed.
+	# Y is always kept so upward hook momentum carries through.
+	player.fling_velocity = Vector2(
+		player.velocity.x if abs(player.velocity.x) > player.move_speed else 0.0,
+		player.velocity.y
+	)
 	player.fling_timer = 0.0
 	_is_hooked = false
 	_hook_point = Vector2.ZERO

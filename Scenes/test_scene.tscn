@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b12qphkprkc6k" path="res://Scenes/wall-test.tscn" id="2_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://e5si1uhdi5tv" path="res://Scenes/player_test.tscn" id="2_sasra"]
 [ext_resource type="Texture2D" uid="uid://h0kulcf6uu6a" path="res://icon.svg" id="3_sasra"]
+[ext_resource type="PackedScene" uid="uid://boqrgbpx4fbi2" path="res://Scenes/bounce_test.tscn" id="4_hb2xm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
 texture = ExtResource("3_sasra")
@@ -536,3 +537,6 @@ tile_map_data = PackedByteArray("AAAIAAUAAQABAAEAAAAJAAUAAQABAAEAAAAKAAUAAQABAAE
 tile_set = SubResource("TileSet_2nij2")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2086694122]
+
+[node name="Area2D2" parent="." unique_id=1655997416 instance=ExtResource("4_hb2xm")]
+position = Vector2(-56, 0)

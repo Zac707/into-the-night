@@ -5,39 +5,60 @@ class_name PlayerAttack
 
 
 var directional_input: Vector2
+var bounce_executed: bool = false
 
 
 func enter():
-	if player.is_on_floor():
-		player.velocity.x = 0
-	
 	directional_input = PlayerMovement.get_last_direction_pressed(player)
-	player.attack_component.position = directional_input * Vector2(10, 10)
+	
+	if player.is_on_floor():
+		if directional_input == Vector2(0, 1):
+			var new_direction = player.last_horizontal_direction_pressed
+			if new_direction == "right":
+				directional_input = Vector2(1, 0)
+			else:
+				directional_input = Vector2(-1, 0)
+	
+	player.attack_component.position = directional_input * Vector2(15, 15)
 	player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
 	player.animation_player.play("Attack")
 
 
-
 func exit():
-	pass
+	bounce_executed = false
+	player.attack_component.position = Vector2(0, 0)
+	player.attack_component.rotation = 0
 
 
 func update(_delta: float):
-	for areas in player.attack_component.get_overlapping_areas():
-		if areas.has_method("get_enemy_damage"):
+	if player.is_on_floor():
+		player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * player.move_speed * _delta)
+	else:
+		PlayerMovement.apply_flung_movement(player, _delta)
+		PlayerMovement.apply_gravity(player, _delta)
+	
+	for area in player.attack_component.get_overlapping_areas():
+		if area.has_method("get_enemy_damage"):
 			var attack = Attack.new()
 			attack.attack_damage = 2
 			attack.attack_direction = directional_input
 			attack.knockback_force = 30
-			areas.get_enemy_damage(attack)
-
+			area.get_enemy_damage(attack)
+		if area.is_in_group("bouncing_object") and directional_input == Vector2(0, 1) and not player.is_on_floor():
+			_bounce()
 
 func physics_update(_delta: float):
 	pass
 
 
 func attack_finished():
-	if player.velocity.x == 0:
-		transitioned_state.emit(self, "PlayerIdle")
-	elif not player.is_on_floor():
+	if not player.is_on_floor():
 		transitioned_state.emit(self, "PlayerFall")
+	else:
+		transitioned_state.emit(self, "PlayerIdle")
+
+
+func _bounce():
+	if bounce_executed == false:
+		player.velocity.y = player.jump_velocity
+		bounce_executed = true
