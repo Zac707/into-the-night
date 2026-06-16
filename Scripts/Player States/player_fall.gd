@@ -9,7 +9,7 @@ var transition_time: float = 0.05
 
 
 func enter():
-	pass
+	player.animation_player.play("Fall")
 
 
 func exit():

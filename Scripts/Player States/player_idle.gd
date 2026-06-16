@@ -5,7 +5,7 @@ class_name PlayerIdle
 
 
 func enter():
-	pass
+	player.animation_player.play("Idle")
 
 
 func exit():

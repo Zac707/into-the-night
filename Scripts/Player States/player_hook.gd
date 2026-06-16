@@ -10,8 +10,10 @@ var _approach_dir: Vector2 = Vector2.ZERO  # Direction when hook first latched
 
 
 func enter():
-	# Do NOT reset _is_hooked here — hooked signal may fire before transition completes
-	pass
+	if player.is_on_floor():
+		player.animation_player.play("Hookshot") 
+	else:
+		player.animation_player.play("AerialHookshot") 
 
 
 func exit():

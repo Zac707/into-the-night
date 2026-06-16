@@ -8,6 +8,7 @@ var last_direction_angle: int
 
 
 func enter():
+	player.animation_player.play("Jump")
 	_jump()
 
 

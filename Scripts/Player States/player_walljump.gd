@@ -13,8 +13,9 @@ var time_until_transition: float = 0.0  # Class-level so it persists across fram
 
 
 func enter():
+	player.animation_player.play("Walljump")
+	
 	player.velocity.y = max(-20.0, player.velocity.y)
-	walljump_indicator.visible = true
 	jump_executed = false
 	time_until_transition = 0.0
 	var wall_normal = player.get_wall_normal()

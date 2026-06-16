@@ -8,7 +8,7 @@ var last_direction_angle: int
 
 
 func enter():
-	pass
+	player.animation_player.play("Run")
 
 
 func exit():
