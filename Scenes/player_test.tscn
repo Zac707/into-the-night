@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0p8xkarp2jqr" path="res://Scripts/player_test.gd" id="1_mnirw"]
 [ext_resource type="Texture2D" uid="uid://h0kulcf6uu6a" path="res://icon.svg" id="2_8dx66"]
 [ext_resource type="PackedScene" uid="uid://dw0p11nvbd1vu" path="res://Scenes/hook_test.tscn" id="3_psp7o"]
-[ext_resource type="Texture2D" uid="uid://e7mjwon4by0j" path="res://Assets/Main_Char-Sheet.png" id="3_qki6r"]
+[ext_resource type="Texture2D" uid="uid://cckv1caebjxmp" path="res://Assets/Main_Char_both_sides-Sheet.png" id="3_qki6r"]
 [ext_resource type="Script" uid="uid://dw8iif45yptk" path="res://Scripts/pivot.gd" id="3_wln50"]
 [ext_resource type="Script" uid="uid://ccirysva1gbnx" path="res://Scripts/state_machine.gd" id="5_wln50"]
 [ext_resource type="Script" uid="uid://bqe1mfvswyh1g" path="res://Scripts/Player States/player_idle.gd" id="6_lbtjm"]
@@ -104,7 +104,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_67lvd"]
-resource_name = "Aerial_Attack_Right"
+resource_name = "Aerial_Attack_Side"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -164,8 +164,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_e0rbb"]
-resource_name = "Aerial_Hookshot"
-length = 0.3
+resource_name = "Aerial_Hook_Throw"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -173,14 +173,14 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [21, 22]
+"values": [21]
 }
 
 [sub_resource type="Animation" id="Animation_tvrp7"]
-resource_name = "Attack_Right"
+resource_name = "Attack_Side"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -256,9 +256,9 @@ tracks/0/keys = {
 "values": [18]
 }
 
-[sub_resource type="Animation" id="Animation_q526i"]
-resource_name = "Hookshot"
-length = 0.3
+[sub_resource type="Animation" id="Animation_qki6r"]
+resource_name = "Hook_Pull"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -266,10 +266,26 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [20, 22]
+"values": [22]
+}
+
+[sub_resource type="Animation" id="Animation_q526i"]
+resource_name = "Hook_Throw"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20]
 }
 
 [sub_resource type="Animation" id="Animation_g3wa8"]
@@ -305,6 +321,271 @@ tracks/0/keys = {
 "values": [16, 17, 18]
 }
 
+[sub_resource type="Animation" id="Animation_bumkv"]
+resource_name = "Left_Aerial_Attack_Down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [37, 38]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlayerAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rpqj3"]
+resource_name = "Left_Aerial_Attack_Side"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [35, 36]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlayerAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rtq0u"]
+resource_name = "Left_Aerial_Attack_Up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [33, 34]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlayerAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xq865"]
+resource_name = "Left_Aerial_Hook_Throw"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [44]
+}
+
+[sub_resource type="Animation" id="Animation_5ko5q"]
+resource_name = "Left_Attack_Side"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [29, 30]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlayerAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tj2xt"]
+resource_name = "Left_Attack_Up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [31, 32]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlayerAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ffx63"]
+resource_name = "Left_Fall"
+length = 0.15
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [41]
+}
+
+[sub_resource type="Animation" id="Animation_xefkc"]
+resource_name = "Left_Hook_Pull"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [45]
+}
+
+[sub_resource type="Animation" id="Animation_w1oaw"]
+resource_name = "Left_Hook_Throw"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [43]
+}
+
+[sub_resource type="Animation" id="Animation_yvp7w"]
+resource_name = "Left_Idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [23, 24]
+}
+
+[sub_resource type="Animation" id="Animation_r8mnf"]
+resource_name = "Left_Jump"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [39, 40, 41]
+}
+
+[sub_resource type="Animation" id="Animation_4f5ph"]
+resource_name = "Left_Run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [25, 26, 27, 28]
+}
+
 [sub_resource type="Animation" id="Animation_aeet5"]
 length = 0.001
 tracks/0/type = "value"
@@ -338,8 +619,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_sdx7n"]
-resource_name = "Walljump"
-length = 0.3
+resource_name = "Wall_Cling"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -347,27 +628,40 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [19, 18]
+"values": [19]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e0rbb"]
 _data = {
 &"Aerial_Attack_Down": SubResource("Animation_prfrf"),
-&"Aerial_Attack_Right": SubResource("Animation_67lvd"),
+&"Aerial_Attack_Side": SubResource("Animation_67lvd"),
 &"Aerial_Attack_Up": SubResource("Animation_sduab"),
-&"Aerial_Hookshot": SubResource("Animation_e0rbb"),
-&"Attack_Right": SubResource("Animation_tvrp7"),
+&"Aerial_Hook_Throw": SubResource("Animation_e0rbb"),
+&"Attack_Side": SubResource("Animation_tvrp7"),
 &"Attack_Up": SubResource("Animation_1klfb"),
 &"Fall": SubResource("Animation_oy2dr"),
-&"Hookshot": SubResource("Animation_q526i"),
+&"Hook_Pull": SubResource("Animation_qki6r"),
+&"Hook_Throw": SubResource("Animation_q526i"),
 &"Idle": SubResource("Animation_g3wa8"),
 &"Jump": SubResource("Animation_hlwpc"),
+&"Left_Aerial_Attack_Down": SubResource("Animation_bumkv"),
+&"Left_Aerial_Attack_Side": SubResource("Animation_rpqj3"),
+&"Left_Aerial_Attack_Up": SubResource("Animation_rtq0u"),
+&"Left_Aerial_Hook_Throw": SubResource("Animation_xq865"),
+&"Left_Attack_Side": SubResource("Animation_5ko5q"),
+&"Left_Attack_Up": SubResource("Animation_tj2xt"),
+&"Left_Fall": SubResource("Animation_ffx63"),
+&"Left_Hook_Pull": SubResource("Animation_xefkc"),
+&"Left_Hook_Throw": SubResource("Animation_w1oaw"),
+&"Left_Idle": SubResource("Animation_yvp7w"),
+&"Left_Jump": SubResource("Animation_r8mnf"),
+&"Left_Run": SubResource("Animation_4f5ph"),
 &"RESET": SubResource("Animation_aeet5"),
 &"Run": SubResource("Animation_d8csw"),
-&"Walljump": SubResource("Animation_sdx7n")
+&"Wall_Cling": SubResource("Animation_sdx7n")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component", "animation_player") groups=["Player"]]
@@ -385,9 +679,9 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_8dx66")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=152419327]
-position = Vector2(9, 0)
 texture = ExtResource("3_qki6r")
 hframes = 23
+vframes = 2
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=23757872]
 position = Vector2(0, 1)

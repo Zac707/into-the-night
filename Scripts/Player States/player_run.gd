@@ -8,7 +8,10 @@ var last_direction_angle: int
 
 
 func enter():
-	player.animation_player.play("Run")
+	if player.last_horizontal_direction_pressed == "right":
+		player.animation_player.play("Run")
+	else:
+		player.animation_player.play("Left_Run")
 
 
 func exit():

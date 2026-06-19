@@ -9,7 +9,10 @@ var transition_time: float = 0.05
 
 
 func enter():
-	player.animation_player.play("Fall")
+	if player.last_horizontal_direction_pressed == "right":
+		player.animation_player.play("Fall")
+	else:
+		player.animation_player.play("Left_Fall")
 
 
 func exit():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt1cbf3c1ol4h"
-path="res://.godot/imported/Main_cahr_sprite_sheet.png-8119bd63ce0bcb71fffc92d8206d5026.ctex"
+uid="uid://cckv1caebjxmp"
+path="res://.godot/imported/Main_Char_both_sides-Sheet.png-07a3ccc5fb9d8d7db793d3762b70ce0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Main_cahr_sprite_sheet.png"
-dest_files=["res://.godot/imported/Main_cahr_sprite_sheet.png-8119bd63ce0bcb71fffc92d8206d5026.ctex"]
+source_file="res://Assets/Main_Char_both_sides-Sheet.png"
+dest_files=["res://.godot/imported/Main_Char_both_sides-Sheet.png-07a3ccc5fb9d8d7db793d3762b70ce0d.ctex"]
 
 [params]
 

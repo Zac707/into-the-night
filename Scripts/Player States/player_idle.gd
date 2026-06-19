@@ -5,7 +5,10 @@ class_name PlayerIdle
 
 
 func enter():
-	player.animation_player.play("Idle")
+	if player.last_horizontal_direction_pressed == "right":
+		player.animation_player.play("Idle")
+	else:
+		player.animation_player.play("Left_Idle")
 
 
 func exit():

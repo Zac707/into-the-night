@@ -80,11 +80,11 @@ func apply_flung_movement(player: CharacterBody2D, delta: float) -> void:
 	var curve_t: float = player.fling_decay_curve.sample(t)
 	var fling_speed := absf(player.fling_velocity.x)
 	var speed_ceiling := lerpf(fling_speed, player.move_speed, curve_t)
-
+	
 	# Clamp current velocity down to the decaying ceiling — no re-acceleration.
 	# This is what actually produces the slowdown.
 	player.velocity.x = clamp(player.velocity.x, -speed_ceiling, speed_ceiling)
-
+	
 	if input != 0.0: 
 		player.velocity.x = move_toward(player.velocity.x, player.move_speed if input == 1.0 else -player.move_speed, curve_t * player.move_speed * delta)
 		print(player.velocity.x," ", player.fling_timer)
@@ -92,6 +92,37 @@ func apply_flung_movement(player: CharacterBody2D, delta: float) -> void:
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.fling_friction * player.move_speed * delta)
 	# Then clamp to the decaying ceiling so velocity can never climb back up
 	player.velocity.x = clamp(player.velocity.x, -speed_ceiling, speed_ceiling)
-
+	
 	if t >= 1.0:
 		player.fling_velocity = Vector2.ZERO
+
+
+# Function specifically for hookshot and attack. x and y value of animation_data return the direction of the move. z returns wether they are grounded.
+# The Scripts will contain dictionnaries with every Vector3 corresponding to eone animation.
+# Grounded downwards animation don't exist, which is why we can safely ignore them. However, aerial downwards attack are possible,
+# while aerial downwards hokshoting is not. A check is needed to see if aerial downwards aim should be returned, therefore the transmitted bool is necessary.
+func get_animation_direction(player: CharacterBody2D, aerial_down: bool) -> Vector3:
+	var animation_data: Vector3
+	var directional_input = PlayerMovement.get_last_direction_pressed(player)
+	var new_direction = player.last_horizontal_direction_pressed
+	
+	if player.is_on_floor():
+		if directional_input == Vector2(0, 1):
+			animation_data = Vector3(1, 0, 0) if new_direction == "right" else Vector3(-1, 0, 0) # grounded side
+		if directional_input == Vector2(0, -1):
+			animation_data = Vector3(1, -1, 0) if new_direction == "right" else Vector3(-1, -1, 0) # grounded up
+		else:
+			animation_data = Vector3(1, 0, 0) if new_direction == "right" else Vector3(-1, 0, 0) # grounded side
+	else:
+		if directional_input == Vector2(1, 0):
+			animation_data = Vector3(1, 0, 1) # aerial right
+		elif directional_input == Vector2(-1, 0):
+			animation_data = Vector3(-1, 0, 1) # aerial left
+		elif directional_input == Vector2(0, 1):
+			if aerial_down == true:
+				animation_data = Vector3(1, 1, 1) if new_direction == "right" else Vector3(-1, 1, 1) # aerial down
+			else:
+				animation_data = Vector3(1, 0, 1) if new_direction == "right" else Vector3(-1, 0, 1) # aerial side
+		elif directional_input == Vector2(0, -1):
+			animation_data = Vector3(1, -1, 1) if new_direction == "right" else Vector3(-1, -1, 1) # aerial up
+	return animation_data

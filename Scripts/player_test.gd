@@ -30,7 +30,7 @@ var directions_currently_pressed: Dictionary = {"right_held" : false, "left_held
 var _fling_speed: float
 var fling_velocity: Vector2 = Vector2.ZERO
 var fling_timer: float = 0.0
-var last_horizontal_direction_pressed: String
+var last_horizontal_direction_pressed: String = "right"
 
 signal new_direction
 

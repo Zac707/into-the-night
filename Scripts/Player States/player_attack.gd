@@ -6,41 +6,22 @@ class_name PlayerAttack
 
 var directional_input: Vector2
 var bounce_executed: bool = false
+var animation_dict: Dictionary = {Vector3(1, 0, 0): "Attack_Side", Vector3(-1, 0, 0): "Left_Attack_Side", Vector3(1, -1, 0): "Attack_Up", 
+Vector3(1, 0, 1): "Aerial_Attack_Side", Vector3(-1, 0, 1): "Left_Aerial_Attack_Side", 
+Vector3(-1, -1, 0): "Left_Attack_Up", Vector3(1, 1, 1): "Aerial_Attack_Down", Vector3(1, -1, 1): "Aerial_Attack_Up", Vector3(-1, 1, 1): "Left_Aerial_Attack_Down", 
+Vector3(-1, -1, 1): "Left_Aerial_Attack_Up"}
+var aerial_down_granted: bool = true
 
 
 func enter():
 	directional_input = PlayerMovement.get_last_direction_pressed(player)
-	
-	# downward attack should not be possible on floor, change to whicheve side was pressed last
-	if player.is_on_floor():
-		if directional_input == Vector2(0, 1):
-			var new_direction = player.last_horizontal_direction_pressed
-			if new_direction == "right":
-				directional_input = Vector2(1, 0)
-			else:
-				directional_input = Vector2(-1, 0)
-		# play the correct animation on the floor
-		if directional_input == Vector2(0, -1):
-			player.animation_player.play("Attack_Up")
-		else:
-			var new_direction = player.last_horizontal_direction_pressed
-			print (new_direction)
-			if new_direction == "right":
-				player.animation_player.play("Attack_Right") 
-			else :
-				player.animation_player.play("Attack_Left")
-	else:
-		if directional_input == Vector2(1, 0):
-			player.animation_player.play("Aerial_Attack_Right") 
-		elif directional_input == Vector2(-1, 0):
-			player.animation_player.play("Aerial_Attack_Left") 
-		elif directional_input == Vector2(0, 1):
-			player.animation_player.play("Aerial_Attack_Down") 
-		elif directional_input == Vector2(0, -1):
-			player.animation_player.play("Aerial_Attack_Up") 
-	
 	player.attack_component.position = directional_input * Vector2(15, 15)
 	player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
+	
+	var direction_data = PlayerMovement.get_animation_direction(player, aerial_down_granted)
+	for anim in animation_dict:
+		if anim == direction_data:
+			player.animation_player.play(animation_dict[anim])
 
 
 func exit():
