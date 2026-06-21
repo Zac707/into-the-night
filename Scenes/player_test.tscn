@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://ja4we4tt0wp1" path="res://Scripts/Player States/player_jump.gd" id="9_8dx66"]
 [ext_resource type="Script" uid="uid://btganiwqggbic" path="res://Scripts/Player States/player_run.gd" id="10_qki6r"]
 [ext_resource type="Script" uid="uid://b5jwjd6i3qpcn" path="res://Scripts/Player States/player_walljump.gd" id="12_ve6vs"]
+[ext_resource type="Script" uid="uid://jivtbd0w0txt" path="res://Scripts/Player States/player_wallcling.gd" id="14_prfrf"]
 [ext_resource type="Script" uid="uid://c03ehs887slg6" path="res://Scripts/health_component_player.gd" id="14_qki6r"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
@@ -334,7 +335,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [37, 38]
+"values": [39, 40]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -364,7 +365,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [35, 36]
+"values": [37, 38]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -394,7 +395,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [33, 34]
+"values": [35, 36]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -424,7 +425,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [44]
+"values": [46]
 }
 
 [sub_resource type="Animation" id="Animation_5ko5q"]
@@ -440,7 +441,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [29, 30]
+"values": [31, 32]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -470,7 +471,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [31, 32]
+"values": [33, 34]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -501,7 +502,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [41]
+"values": [43]
 }
 
 [sub_resource type="Animation" id="Animation_xefkc"]
@@ -517,7 +518,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [45]
+"values": [47]
 }
 
 [sub_resource type="Animation" id="Animation_w1oaw"]
@@ -533,7 +534,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [43]
+"values": [45]
 }
 
 [sub_resource type="Animation" id="Animation_yvp7w"]
@@ -547,10 +548,10 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.16666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [23, 24]
+"values": [25, 26]
 }
 
 [sub_resource type="Animation" id="Animation_r8mnf"]
@@ -566,7 +567,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [39, 40, 41]
+"values": [41, 42, 43]
 }
 
 [sub_resource type="Animation" id="Animation_4f5ph"]
@@ -583,7 +584,23 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [25, 26, 27, 28]
+"values": [27, 28, 29, 30]
+}
+
+[sub_resource type="Animation" id="Animation_sfs3u"]
+resource_name = "Left_Wall_Cling"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [44]
 }
 
 [sub_resource type="Animation" id="Animation_aeet5"]
@@ -659,18 +676,21 @@ _data = {
 &"Left_Idle": SubResource("Animation_yvp7w"),
 &"Left_Jump": SubResource("Animation_r8mnf"),
 &"Left_Run": SubResource("Animation_4f5ph"),
+&"Left_Wall_Cling": SubResource("Animation_sfs3u"),
 &"RESET": SubResource("Animation_aeet5"),
 &"Run": SubResource("Animation_d8csw"),
 &"Wall_Cling": SubResource("Animation_sdx7n")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component", "animation_player") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component", "animation_player", "wall_check_right", "wall_check_left") groups=["Player"]]
 script = ExtResource("1_mnirw")
 fling_decay_curve = SubResource("Curve_0asfq")
 gravity_on_wall = 100.0
 attack_component = NodePath("AttackComponent")
 health_component = NodePath("HealthComponent")
 animation_player = NodePath("AnimationPlayer")
+wall_check_right = NodePath("WallcheckRight")
+wall_check_left = NodePath("WallcheckLeft")
 
 [node name="WalljumpIndicator" type="Sprite2D" parent="." unique_id=84592051]
 visible = false
@@ -680,7 +700,7 @@ texture = ExtResource("2_8dx66")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=152419327]
 texture = ExtResource("3_qki6r")
-hframes = 23
+hframes = 25
 vframes = 2
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=23757872]
@@ -727,11 +747,15 @@ script = ExtResource("8_ve6vs")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://byobpe4i76onj"
 
-[node name="PlayerWalljump" type="Node" parent="StateMachine" unique_id=959995529 node_paths=PackedStringArray("walljump_indicator", "player")]
+[node name="PlayerWalljump" type="Node" parent="StateMachine" unique_id=959995529 node_paths=PackedStringArray("player")]
 script = ExtResource("12_ve6vs")
-walljump_indicator = NodePath("../../WalljumpIndicator")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://b5jwjd6i3qpcn"
+
+[node name="PlayerWallcling" type="Node" parent="StateMachine" unique_id=391526432 node_paths=PackedStringArray("player")]
+script = ExtResource("14_prfrf")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://jivtbd0w0txt"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=821608359]
 
@@ -762,6 +786,12 @@ parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=6165253]
 libraries/ = SubResource("AnimationLibrary_e0rbb")
+
+[node name="WallcheckRight" type="RayCast2D" parent="." unique_id=92261985]
+target_position = Vector2(3, 0)
+
+[node name="WallcheckLeft" type="RayCast2D" parent="." unique_id=785821559]
+target_position = Vector2(-3, 0)
 
 [connection signal="new_direction" from="." to="Pivot" method="_on_player_new_direction"]
 [connection signal="hooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hooked"]

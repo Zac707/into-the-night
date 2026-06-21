@@ -23,6 +23,8 @@ extends CharacterBody2D
 @export var attack_component: Area2D
 @export var health_component: Area2D
 @export var animation_player: AnimationPlayer
+@export var wall_check_right: RayCast2D
+@export var wall_check_left: RayCast2D
 
 var _horizontal: float = 0.0
 var last_direction_angle: int
@@ -30,7 +32,8 @@ var directions_currently_pressed: Dictionary = {"right_held" : false, "left_held
 var _fling_speed: float
 var fling_velocity: Vector2 = Vector2.ZERO
 var fling_timer: float = 0.0
-var last_horizontal_direction_pressed: String = "right"
+var last_horizontal_direction_pressed: String = "left"
+var wall_direction: String
 
 signal new_direction
 

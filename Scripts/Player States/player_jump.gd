@@ -25,7 +25,7 @@ func update(_delta: float):
 	elif Input.is_action_pressed("hook_test"):
 		transitioned_state.emit(self, "PlayerHook")
 	elif player.is_on_wall_only():
-		transitioned_state.emit(self, "PlayerWalljump")
+		transitioned_state.emit(self, "PlayerWallcling")
 	elif Input.is_action_pressed("attack"):
 		transitioned_state.emit(self, "PlayerAttack")
 	

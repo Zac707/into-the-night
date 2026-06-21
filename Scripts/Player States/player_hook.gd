@@ -7,13 +7,21 @@ class_name PlayerHook
 var _is_hooked: bool = false
 var _hook_point: Vector2 = Vector2.ZERO
 var _approach_dir: Vector2 = Vector2.ZERO  # Direction when hook first latched
+var animation_dict_throw: Dictionary = {Vector3(1, 0, 0): "Hook_Throw", Vector3(-1, 0, 0): "Left_Hook_Throw", Vector3(1, -1, 0): "Hook_Throw_Up", 
+Vector3(-1, -1, 0): "Left_Hook_Throw_Up", Vector3(1, 0, 1): "Aerial_Hook_Throw", Vector3(-1, 0, 1): "Left_Aerial_Hook_Throw", 
+Vector3(1, -1, 1): "Aerial_Hook_Throw_Up", Vector3(-1, -1, 1): "Left_Aerial_Hook_Throw_Up"}
+var animation_dict_pull: Dictionary = {Vector3(1, 0, 0): "Hook_Pull", Vector3(-1, 0, 0): "Left_Hook_Pull", Vector3(1, -1, 0): "Hook_Pull_Up", 
+Vector3(-1, -1, 0): "Left_Hook_Pull_Up", Vector3(1, 0, 1): "Aerial_Hook_Pull", Vector3(-1, 0, 1): "Left_Aerial_Hook_Pull", 
+Vector3(1, -1, 1): "Aerial_Hook_Pull_Up", Vector3(-1, -1, 1): "Left_Aerial_Hook_Pull_Up"}
+var aerial_down_granted: bool = false
+var direction_data
 
 
 func enter():
-	if player.is_on_floor():
-		player.animation_player.play("Hookshot") 
-	else:
-		player.animation_player.play("AerialHookshot") 
+	direction_data = PlayerMovement.get_animation_direction(player, aerial_down_granted)
+	for anim in animation_dict_throw:
+		if anim == direction_data:
+			player.animation_player.play(animation_dict_throw[anim])
 
 
 func exit():
@@ -59,6 +67,7 @@ func _release_hook() -> void:
 	_hook_point = Vector2.ZERO
 	_approach_dir = Vector2.ZERO
 	if player.is_on_floor():
+		PlayerMovement.get_horizontal_input(player)
 		transitioned_state.emit(self, "PlayerRun")
 	else:
 		transitioned_state.emit(self, "PlayerFall")
@@ -71,6 +80,11 @@ func _on_hook_hooked(hooked_position: Variant) -> void:
 		player.velocity.y = 0
 	# Record the initial approach direction to detect overshoot later
 	_approach_dir = (_hook_point - player.global_position).normalized()
+	
+	for anim in animation_dict_throw:
+		if anim == direction_data:
+			player.animation_player.play(animation_dict_pull[anim])
+
 
 
 func _on_hook_unhooked() -> void:

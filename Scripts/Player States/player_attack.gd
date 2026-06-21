@@ -7,8 +7,8 @@ class_name PlayerAttack
 var directional_input: Vector2
 var bounce_executed: bool = false
 var animation_dict: Dictionary = {Vector3(1, 0, 0): "Attack_Side", Vector3(-1, 0, 0): "Left_Attack_Side", Vector3(1, -1, 0): "Attack_Up", 
-Vector3(1, 0, 1): "Aerial_Attack_Side", Vector3(-1, 0, 1): "Left_Aerial_Attack_Side", 
-Vector3(-1, -1, 0): "Left_Attack_Up", Vector3(1, 1, 1): "Aerial_Attack_Down", Vector3(1, -1, 1): "Aerial_Attack_Up", Vector3(-1, 1, 1): "Left_Aerial_Attack_Down", 
+Vector3(-1, -1, 0): "Left_Attack_Up", Vector3(1, 0, 1): "Aerial_Attack_Side", Vector3(-1, 0, 1): "Left_Aerial_Attack_Side", 
+Vector3(1, 1, 1): "Aerial_Attack_Down", Vector3(1, -1, 1): "Aerial_Attack_Up", Vector3(-1, 1, 1): "Left_Aerial_Attack_Down", 
 Vector3(-1, -1, 1): "Left_Aerial_Attack_Up"}
 var aerial_down_granted: bool = true
 
