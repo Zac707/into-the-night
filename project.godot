@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerMovement="*uid://iwldiwnu4cmt"
+GlobalEventManager="*uid://duhorp4vs2qs3"
 
 [display]
 

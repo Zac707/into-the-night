@@ -20,8 +20,10 @@ func exit():
 
 
 func update(_delta: float):
-	if player.is_on_floor() and player.velocity.y >= 0:
+	if player.is_on_floor() and player.velocity.y >= 0 and player.velocity.x == 0:
 		transitioned_state.emit(self, "PlayerIdle")
+	elif player.is_on_floor() and player.velocity.y >= 0:
+		transitioned_state.emit(self, "PlayerRun")
 	elif Input.is_action_pressed("hook_test"):
 		transitioned_state.emit(self, "PlayerHook")
 	elif player.is_on_wall_only():

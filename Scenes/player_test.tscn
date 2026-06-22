@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://b5jwjd6i3qpcn" path="res://Scripts/Player States/player_walljump.gd" id="12_ve6vs"]
 [ext_resource type="Script" uid="uid://jivtbd0w0txt" path="res://Scripts/Player States/player_wallcling.gd" id="14_prfrf"]
 [ext_resource type="Script" uid="uid://c03ehs887slg6" path="res://Scripts/health_component_player.gd" id="14_qki6r"]
+[ext_resource type="Script" uid="uid://daqn3macfc6cg" path="res://Scripts/camera.gd" id="15_67lvd"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
 _data = [Vector2(0, 0), 0.0, 0.2987119, 0, 0, Vector2(0.50000006, 0.21348321), 0.45570937, 0.45570937, 0, 0, Vector2(0.7477065, 0.3370787), 0.711127, 0.711127, 0, 0, Vector2(0.9266055, 0.52808994), 0.7204235, 0.7204235, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -758,6 +759,7 @@ player = NodePath("../..")
 metadata/_custom_type_script = "uid://jivtbd0w0txt"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=821608359]
+script = ExtResource("15_67lvd")
 
 [node name="AttackComponent" type="Area2D" parent="." unique_id=1144845523]
 position = Vector2(10, 0)
