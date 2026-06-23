@@ -19,9 +19,7 @@ func exit():
 
 
 func update(_delta: float):
-	if player.velocity.x == 0:
-		transitioned_state.emit(self, "PlayerIdle")
-	elif Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 		transitioned_state.emit(self, "PlayerJump")
 	elif not player.is_on_floor():
 		transitioned_state.emit(self, "PlayerFall")
@@ -29,6 +27,8 @@ func update(_delta: float):
 		transitioned_state.emit(self, "PlayerHook")
 	elif Input.is_action_pressed("attack"):
 		transitioned_state.emit(self, "PlayerAttack")
+	elif player.velocity.x == 0:
+		transitioned_state.emit(self, "PlayerIdle")
 
 
 func physics_update(_delta: float):

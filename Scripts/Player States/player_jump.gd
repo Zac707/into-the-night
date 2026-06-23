@@ -26,7 +26,7 @@ func update(_delta: float):
 		transitioned_state.emit(self, "PlayerRun")
 	elif Input.is_action_pressed("hook_test"):
 		transitioned_state.emit(self, "PlayerHook")
-	elif player.is_on_wall_only():
+	elif player.is_on_wall_only() and player.velocity.y > -10:
 		transitioned_state.emit(self, "PlayerWallcling")
 	elif Input.is_action_pressed("attack"):
 		transitioned_state.emit(self, "PlayerAttack")
