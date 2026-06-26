@@ -6,6 +6,7 @@ class_name PlayerWallcling
 
 var jump_executed: bool = false
 var max_fall_speed: float = 100.0
+var still_on_wall
 
 
 func enter():
@@ -25,8 +26,21 @@ func exit():
 
 
 func update(_delta: float):
-	var still_on_wall = player.wall_check_left.is_colliding() or player.wall_check_right.is_colliding()
-	
+	still_on_wall = player.wall_check_left.is_colliding() or player.wall_check_right.is_colliding()
+	evaluate_transitions()
+
+
+func physics_update(_delta: float):
+	player.velocity.y += player.gravity_on_wall * _delta
+	player.velocity.y = clamp(player.velocity.y, -max_fall_speed, max_fall_speed)
+
+
+func _jump():
+	if not jump_executed:
+		jump_executed = true
+
+
+func evaluate_transitions():
 	if player.is_on_floor():
 		transitioned_state.emit(self, "PlayerIdle")
 	elif not jump_executed:
@@ -45,14 +59,3 @@ func update(_delta: float):
 				_jump()
 	elif jump_executed:
 		transitioned_state.emit(self, "PlayerWalljump")
-
-
-
-func physics_update(_delta: float):
-	player.velocity.y += player.gravity_on_wall * _delta
-	player.velocity.y = clamp(player.velocity.y, -max_fall_speed, max_fall_speed)
-
-
-func _jump():
-	if not jump_executed:
-		jump_executed = true

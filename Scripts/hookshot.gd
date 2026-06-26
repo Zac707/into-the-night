@@ -5,7 +5,7 @@ extends Sprite2D
 
 var distance: float = 50.0
 var start_duration = 0.05
-var return_duration = 0.2
+var return_duration = 0.5
 var _hook_activated = false
 
 signal hooked(hooked_position)

@@ -23,15 +23,7 @@ func exit():
 
 func update(_delta: float):
 	time_until_transition += _delta
-	
-	if player.is_on_floor():
-		transitioned_state.emit(self, "PlayerIdle")
-	elif player.is_on_wall_only() and time_until_transition >= 0.15:
-		transitioned_state.emit(self, "PlayerWallcling")
-	elif time_until_transition >= 0.2:
-		# Apex reached — hand off to PlayerFall which uses normal fall_gravity
-		transitioned_state.emit(self, "PlayerFall")
-
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):
@@ -51,3 +43,13 @@ func _jump():
 		player.velocity.x = -player.move_speed
 	elif player.wall_direction == "right":
 		player.velocity.x = player.move_speed
+
+
+func evaluate_transitions():
+	if player.is_on_floor():
+		transitioned_state.emit(self, "PlayerIdle")
+	elif player.is_on_wall_only() and time_until_transition >= 0.15:
+		transitioned_state.emit(self, "PlayerWallcling")
+	elif time_until_transition >= 0.2:
+		# Apex reached — hand off to PlayerFall which uses normal fall_gravity
+		transitioned_state.emit(self, "PlayerFall")

@@ -748,15 +748,15 @@ script = ExtResource("8_ve6vs")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://byobpe4i76onj"
 
-[node name="PlayerWalljump" type="Node" parent="StateMachine" unique_id=959995529 node_paths=PackedStringArray("player")]
-script = ExtResource("12_ve6vs")
-player = NodePath("../..")
-metadata/_custom_type_script = "uid://b5jwjd6i3qpcn"
-
 [node name="PlayerWallcling" type="Node" parent="StateMachine" unique_id=391526432 node_paths=PackedStringArray("player")]
 script = ExtResource("14_prfrf")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://jivtbd0w0txt"
+
+[node name="PlayerWalljump" type="Node" parent="StateMachine" unique_id=959995529 node_paths=PackedStringArray("player")]
+script = ExtResource("12_ve6vs")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://b5jwjd6i3qpcn"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=821608359]
 script = ExtResource("15_67lvd")

@@ -25,3 +25,7 @@ func update(_delta: float):
 
 func physics_update(_delta: float):
 	pass
+
+
+func evaluate_transitions():
+	pass

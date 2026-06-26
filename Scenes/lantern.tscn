@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ellb3hits3lk"]
+
+[ext_resource type="Texture2D" uid="uid://cgokhea3y3upk" path="res://Assets/lantern.png" id="1_q5ajm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rm8es"]
+radius = 6.0
+height = 18.0
+
+[node name="Lantern" type="Node2D" unique_id=1930999839 groups=["bouncing_object", "hook_area"]]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1602706610]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1791531224]
+shape = SubResource("CapsuleShape2D_rm8es")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=66755671]
+texture = ExtResource("1_q5ajm")
