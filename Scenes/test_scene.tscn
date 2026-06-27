@@ -535,7 +535,7 @@ size = Vector2(310, 129)
 [node name="Node2D" type="Node2D" unique_id=1221631049]
 
 [node name="Area2D" parent="." unique_id=1589036698 instance=ExtResource("2_ia1lp")]
-position = Vector2(96, -32)
+position = Vector2(85, -25)
 scale = Vector2(3, 1)
 
 [node name="CharacterBody2D" parent="." unique_id=399473781 instance=ExtResource("2_sasra")]
@@ -557,6 +557,7 @@ script = ExtResource("7_oho3u")
 camera_bounds = NodePath("CameraBounds1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraBox1" unique_id=901111431]
+position = Vector2(288, 302)
 shape = SubResource("RectangleShape2D_rdbpf")
 
 [node name="CameraBounds1" type="Node2D" parent="CameraManager/CameraBox1" unique_id=1625460627 node_paths=PackedStringArray("camera_manager")]

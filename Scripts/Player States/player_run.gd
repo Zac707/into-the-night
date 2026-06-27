@@ -42,9 +42,9 @@ func evaluate_transitions():
 		coyote_time_activated = true
 		if coyote_time <= 0.0:
 			transitioned_state.emit(self, "PlayerFall")
-	elif Input.is_action_pressed("hook_test"):
+	elif Input.is_action_just_pressed("hook_test"):
 		transitioned_state.emit(self, "PlayerHook")
-	elif Input.is_action_pressed("attack"):
+	elif Input.is_action_just_pressed("attack"):
 		transitioned_state.emit(self, "PlayerAttack")
 	elif player.velocity.x == 0:
 		transitioned_state.emit(self, "PlayerIdle")

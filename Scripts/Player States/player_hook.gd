@@ -39,38 +39,27 @@ func physics_update(_delta: float):
 		var to_hook: Vector2 = _hook_point - player.global_position
 		var dist: float = to_hook.length()
 		var current_dir: Vector2 = to_hook.normalized()
-	
 		# Arrived if: close enough, OR player has passed through the hook point
 		# (dot product negative means direction has flipped — player overshot)
 		var overshot: bool = _approach_dir != Vector2.ZERO and current_dir.dot(_approach_dir) < 0.0
 		if dist <= 5.0 or overshot:
-			_release_hook()
+			_on_hook_unhooked()
 			return
 	
 		var target_velocity: Vector2 = current_dir * dist * player.hook_spring_strength
 		player.velocity = player.velocity.lerp(target_velocity, player.hook_damping)
+		player.velocity.x = clamp(player.velocity.x, -player.max_move_speed, player.max_move_speed)
 		if player.velocity.y > 0:
 			player.velocity.y = 0
+	
+	# If the player has nott hooked unto anything, he needs to have gravity applied in case he's in the air 
+	# and have som friction to slow down his horizontal velocity
 	else:
 		PlayerMovement.apply_gravity(player, _delta)
-
-
-func _release_hook() -> void:
-	 # Only preserve X fling if there's meaningful horizontal speed.
-	# Y is always kept so upward hook momentum carries through.
-	player.fling_velocity = Vector2(
-		player.velocity.x if abs(player.velocity.x) > player.move_speed else 0.0,
-		player.velocity.y
-	)
-	player.fling_timer = 0.0
-	_is_hooked = false
-	_hook_point = Vector2.ZERO
-	_approach_dir = Vector2.ZERO
-	if player.is_on_floor():
-		PlayerMovement.get_horizontal_input(player)
-		transitioned_state.emit(self, "PlayerRun")
-	else:
-		transitioned_state.emit(self, "PlayerFall")
+		if player.is_on_floor():
+			player.velocity.x = move_toward(player.velocity.x, 0.0, player.fling_friction * player.move_speed * _delta)
+		else:
+			player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * _delta)
 
 
 func _on_hook_hooked(hooked_position: Variant) -> void:
@@ -86,7 +75,6 @@ func _on_hook_hooked(hooked_position: Variant) -> void:
 			player.animation_player.play(animation_dict_pull[anim])
 
 
-
 func _on_hook_unhooked() -> void:
 	# Only preserve X fling if there's meaningful horizontal speed.
 	# Y is always kept so upward hook momentum carries through.
@@ -99,6 +87,7 @@ func _on_hook_unhooked() -> void:
 	_hook_point = Vector2.ZERO
 	_approach_dir = Vector2.ZERO
 	if player.is_on_floor():
+		PlayerMovement.get_horizontal_input(player)
 		transitioned_state.emit(self, "PlayerRun")
 	else:
 		transitioned_state.emit(self, "PlayerFall")

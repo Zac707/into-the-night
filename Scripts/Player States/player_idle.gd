@@ -29,9 +29,9 @@ func evaluate_transitions():
 	if player.is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			transitioned_state.emit(self, "PlayerJump")
-		elif Input.is_action_pressed("hook_test"):
+		elif Input.is_action_just_pressed("hook_test"):
 			transitioned_state.emit(self, "PlayerHook")
-		elif Input.is_action_pressed("attack"):
+		elif Input.is_action_just_pressed("attack"):
 			transitioned_state.emit(self, "PlayerAttack")
 		elif Input.is_action_pressed("right") or Input.is_action_pressed("left"):
 			PlayerMovement.get_horizontal_input(player)
