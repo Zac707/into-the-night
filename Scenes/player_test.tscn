@@ -181,6 +181,22 @@ tracks/0/keys = {
 "values": [21]
 }
 
+[sub_resource type="Animation" id="Animation_oy8dj"]
+resource_name = "Aerial_Hook_Throw_Up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [24]
+}
+
 [sub_resource type="Animation" id="Animation_tvrp7"]
 resource_name = "Attack_Side"
 length = 0.3
@@ -274,6 +290,22 @@ tracks/0/keys = {
 "values": [22]
 }
 
+[sub_resource type="Animation" id="Animation_wopwy"]
+resource_name = "Hook_Pull_Up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [25]
+}
+
 [sub_resource type="Animation" id="Animation_q526i"]
 resource_name = "Hook_Throw"
 length = 0.2
@@ -288,6 +320,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [20]
+}
+
+[sub_resource type="Animation" id="Animation_7k1nf"]
+resource_name = "Hook_Throw_Up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [23]
 }
 
 [sub_resource type="Animation" id="Animation_g3wa8"]
@@ -336,7 +384,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [39, 40]
+"values": [40, 41]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -366,7 +414,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [37, 38]
+"values": [38, 39]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -396,7 +444,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [35, 36]
+"values": [36, 37]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -426,7 +474,23 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [46]
+"values": [47]
+}
+
+[sub_resource type="Animation" id="Animation_bxqeh"]
+resource_name = "Left_Aerial_Hook_Throw_Up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50]
 }
 
 [sub_resource type="Animation" id="Animation_5ko5q"]
@@ -442,7 +506,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [31, 32]
+"values": [32, 33]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -472,7 +536,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [33, 34]
+"values": [34, 35]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -503,7 +567,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [43]
+"values": [44]
 }
 
 [sub_resource type="Animation" id="Animation_xefkc"]
@@ -519,7 +583,23 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [47]
+"values": [48]
+}
+
+[sub_resource type="Animation" id="Animation_055ib"]
+resource_name = "Left_Hook_Pull_Up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [51]
 }
 
 [sub_resource type="Animation" id="Animation_w1oaw"]
@@ -535,7 +615,23 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [45]
+"values": [46]
+}
+
+[sub_resource type="Animation" id="Animation_wtoax"]
+resource_name = "Left_Hook_Throw_Up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [49]
 }
 
 [sub_resource type="Animation" id="Animation_yvp7w"]
@@ -552,7 +648,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.16666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [25, 26]
+"values": [26, 27]
 }
 
 [sub_resource type="Animation" id="Animation_r8mnf"]
@@ -568,7 +664,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [41, 42, 43]
+"values": [42, 43, 44]
 }
 
 [sub_resource type="Animation" id="Animation_4f5ph"]
@@ -585,7 +681,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [27, 28, 29, 30]
+"values": [28, 29, 30, 31]
 }
 
 [sub_resource type="Animation" id="Animation_sfs3u"]
@@ -601,7 +697,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [44]
+"values": [45]
 }
 
 [sub_resource type="Animation" id="Animation_aeet5"]
@@ -658,22 +754,28 @@ _data = {
 &"Aerial_Attack_Side": SubResource("Animation_67lvd"),
 &"Aerial_Attack_Up": SubResource("Animation_sduab"),
 &"Aerial_Hook_Throw": SubResource("Animation_e0rbb"),
+&"Aerial_Hook_Throw_Up": SubResource("Animation_oy8dj"),
 &"Attack_Side": SubResource("Animation_tvrp7"),
 &"Attack_Up": SubResource("Animation_1klfb"),
 &"Fall": SubResource("Animation_oy2dr"),
 &"Hook_Pull": SubResource("Animation_qki6r"),
+&"Hook_Pull_Up": SubResource("Animation_wopwy"),
 &"Hook_Throw": SubResource("Animation_q526i"),
+&"Hook_Throw_Up": SubResource("Animation_7k1nf"),
 &"Idle": SubResource("Animation_g3wa8"),
 &"Jump": SubResource("Animation_hlwpc"),
 &"Left_Aerial_Attack_Down": SubResource("Animation_bumkv"),
 &"Left_Aerial_Attack_Side": SubResource("Animation_rpqj3"),
 &"Left_Aerial_Attack_Up": SubResource("Animation_rtq0u"),
 &"Left_Aerial_Hook_Throw": SubResource("Animation_xq865"),
+&"Left_Aerial_Hook_Throw_Up": SubResource("Animation_bxqeh"),
 &"Left_Attack_Side": SubResource("Animation_5ko5q"),
 &"Left_Attack_Up": SubResource("Animation_tj2xt"),
 &"Left_Fall": SubResource("Animation_ffx63"),
 &"Left_Hook_Pull": SubResource("Animation_xefkc"),
+&"Left_Hook_Pull_Up": SubResource("Animation_055ib"),
 &"Left_Hook_Throw": SubResource("Animation_w1oaw"),
+&"Left_Hook_Throw_Up": SubResource("Animation_wtoax"),
 &"Left_Idle": SubResource("Animation_yvp7w"),
 &"Left_Jump": SubResource("Animation_r8mnf"),
 &"Left_Run": SubResource("Animation_4f5ph"),
@@ -701,7 +803,7 @@ texture = ExtResource("2_8dx66")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=152419327]
 texture = ExtResource("3_qki6r")
-hframes = 25
+hframes = 26
 vframes = 2
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=23757872]

@@ -11,8 +11,8 @@ var animation_dict_throw: Dictionary = {Vector3(1, 0, 0): "Hook_Throw", Vector3(
 Vector3(-1, -1, 0): "Left_Hook_Throw_Up", Vector3(1, 0, 1): "Aerial_Hook_Throw", Vector3(-1, 0, 1): "Left_Aerial_Hook_Throw", 
 Vector3(1, -1, 1): "Aerial_Hook_Throw_Up", Vector3(-1, -1, 1): "Left_Aerial_Hook_Throw_Up"}
 var animation_dict_pull: Dictionary = {Vector3(1, 0, 0): "Hook_Pull", Vector3(-1, 0, 0): "Left_Hook_Pull", Vector3(1, -1, 0): "Hook_Pull_Up", 
-Vector3(-1, -1, 0): "Left_Hook_Pull_Up", Vector3(1, 0, 1): "Aerial_Hook_Pull", Vector3(-1, 0, 1): "Left_Aerial_Hook_Pull", 
-Vector3(1, -1, 1): "Aerial_Hook_Pull_Up", Vector3(-1, -1, 1): "Left_Aerial_Hook_Pull_Up"}
+Vector3(-1, -1, 0): "Left_Hook_Pull_Up", Vector3(1, 0, 1): "Hook_Pull", Vector3(-1, 0, 1): "Left_Hook_Pull", 
+Vector3(1, -1, 1): "Hook_Pull_Up", Vector3(-1, -1, 1): "Left_Hook_Pull_Up"}
 var aerial_down_granted: bool = false
 var direction_data
 
