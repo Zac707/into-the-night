@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://e5si1uhdi5tv"]
 
-[ext_resource type="Script" uid="uid://b0p8xkarp2jqr" path="res://Scripts/player_test.gd" id="1_mnirw"]
+[ext_resource type="Script" uid="uid://b0p8xkarp2jqr" path="res://Scripts/Player Scripts/player_test.gd" id="1_mnirw"]
 [ext_resource type="Texture2D" uid="uid://h0kulcf6uu6a" path="res://icon.svg" id="2_8dx66"]
 [ext_resource type="PackedScene" uid="uid://dw0p11nvbd1vu" path="res://Scenes/hook_test.tscn" id="3_psp7o"]
 [ext_resource type="Texture2D" uid="uid://cckv1caebjxmp" path="res://Assets/Main_Char_both_sides-Sheet.png" id="3_qki6r"]
-[ext_resource type="Script" uid="uid://dw8iif45yptk" path="res://Scripts/pivot.gd" id="3_wln50"]
-[ext_resource type="Script" uid="uid://ccirysva1gbnx" path="res://Scripts/state_machine.gd" id="5_wln50"]
-[ext_resource type="Script" uid="uid://bqe1mfvswyh1g" path="res://Scripts/Player States/player_idle.gd" id="6_lbtjm"]
-[ext_resource type="Script" uid="uid://b8k4gn6isjjby" path="res://Scripts/Player States/player_attack.gd" id="7_0asfq"]
-[ext_resource type="Script" uid="uid://byobpe4i76onj" path="res://Scripts/Player States/player_hook.gd" id="8_ve6vs"]
-[ext_resource type="Script" uid="uid://bqmaxubyurvv8" path="res://Scripts/Player States/player_fall.gd" id="9_0asfq"]
-[ext_resource type="Script" uid="uid://ja4we4tt0wp1" path="res://Scripts/Player States/player_jump.gd" id="9_8dx66"]
-[ext_resource type="Script" uid="uid://btganiwqggbic" path="res://Scripts/Player States/player_run.gd" id="10_qki6r"]
-[ext_resource type="Script" uid="uid://b5jwjd6i3qpcn" path="res://Scripts/Player States/player_walljump.gd" id="12_ve6vs"]
-[ext_resource type="Script" uid="uid://jivtbd0w0txt" path="res://Scripts/Player States/player_wallcling.gd" id="14_prfrf"]
-[ext_resource type="Script" uid="uid://c03ehs887slg6" path="res://Scripts/health_component_player.gd" id="14_qki6r"]
-[ext_resource type="Script" uid="uid://daqn3macfc6cg" path="res://Scripts/camera.gd" id="15_67lvd"]
+[ext_resource type="Script" uid="uid://dw8iif45yptk" path="res://Scripts/Player Scripts/pivot.gd" id="3_wln50"]
+[ext_resource type="Script" uid="uid://ccirysva1gbnx" path="res://Scripts/Player Scripts/state_machine.gd" id="5_wln50"]
+[ext_resource type="Script" uid="uid://bqe1mfvswyh1g" path="res://Scripts/Player Scripts/Player States/player_idle.gd" id="6_lbtjm"]
+[ext_resource type="Script" uid="uid://b8k4gn6isjjby" path="res://Scripts/Player Scripts/Player States/player_attack.gd" id="7_0asfq"]
+[ext_resource type="Script" uid="uid://byobpe4i76onj" path="res://Scripts/Player Scripts/Player States/player_hook.gd" id="8_ve6vs"]
+[ext_resource type="Script" uid="uid://bqmaxubyurvv8" path="res://Scripts/Player Scripts/Player States/player_fall.gd" id="9_0asfq"]
+[ext_resource type="Script" uid="uid://ja4we4tt0wp1" path="res://Scripts/Player Scripts/Player States/player_jump.gd" id="9_8dx66"]
+[ext_resource type="Script" uid="uid://btganiwqggbic" path="res://Scripts/Player Scripts/Player States/player_run.gd" id="10_qki6r"]
+[ext_resource type="Script" uid="uid://b5jwjd6i3qpcn" path="res://Scripts/Player Scripts/Player States/player_walljump.gd" id="12_ve6vs"]
+[ext_resource type="Script" uid="uid://jivtbd0w0txt" path="res://Scripts/Player Scripts/Player States/player_wallcling.gd" id="14_prfrf"]
+[ext_resource type="Script" uid="uid://c03ehs887slg6" path="res://Scripts/Player Scripts/health_component_player.gd" id="14_qki6r"]
+[ext_resource type="Script" uid="uid://daqn3macfc6cg" path="res://Scripts/Player Scripts/camera.gd" id="15_67lvd"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
 _data = [Vector2(0, 0), 0.0, 0.2987119, 0, 0, Vector2(0.4495413, 0.23595512), 0.6531833, 0.6531833, 0, 0, Vector2(0.7385322, 0.42696637), 0.8164792, 0.8164792, 0, 0, Vector2(0.8990826, 0.6966293), 2.8754272, 2.8754272, 0, 0, Vector2(1, 1), 3.0061288, 0.0, 0, 0]
@@ -823,42 +823,34 @@ initial_state = NodePath("PlayerRun")
 [node name="PlayerIdle" type="Node" parent="StateMachine" unique_id=2084342776 node_paths=PackedStringArray("player")]
 script = ExtResource("6_lbtjm")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://bqe1mfvswyh1g"
 
 [node name="PlayerRun" type="Node" parent="StateMachine" unique_id=365648207 node_paths=PackedStringArray("player")]
 script = ExtResource("10_qki6r")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://btganiwqggbic"
 
 [node name="PlayerJump" type="Node" parent="StateMachine" unique_id=7488471 node_paths=PackedStringArray("player")]
 script = ExtResource("9_8dx66")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://ja4we4tt0wp1"
 
 [node name="PlayerFall" type="Node" parent="StateMachine" unique_id=631346077 node_paths=PackedStringArray("player")]
 script = ExtResource("9_0asfq")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://bqmaxubyurvv8"
 
 [node name="PlayerAttack" type="Node" parent="StateMachine" unique_id=984369387 node_paths=PackedStringArray("player")]
 script = ExtResource("7_0asfq")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://b8k4gn6isjjby"
 
 [node name="PlayerHook" type="Node" parent="StateMachine" unique_id=1327739009 node_paths=PackedStringArray("player")]
 script = ExtResource("8_ve6vs")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://byobpe4i76onj"
 
 [node name="PlayerWallcling" type="Node" parent="StateMachine" unique_id=391526432 node_paths=PackedStringArray("player")]
 script = ExtResource("14_prfrf")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://jivtbd0w0txt"
 
 [node name="PlayerWalljump" type="Node" parent="StateMachine" unique_id=959995529 node_paths=PackedStringArray("player")]
 script = ExtResource("12_ve6vs")
 player = NodePath("../..")
-metadata/_custom_type_script = "uid://b5jwjd6i3qpcn"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=821608359]
 script = ExtResource("15_67lvd")

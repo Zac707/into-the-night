@@ -31,24 +31,23 @@ func exit():
 
 
 func update(_delta: float):
-	if player.is_on_floor():
-		player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * player.move_speed * _delta)
-	else:
-		PlayerMovement.apply_flung_movement(player, _delta)
-		PlayerMovement.apply_gravity(player, _delta)
-	
 	for area in player.attack_component.get_overlapping_areas():
 		if area.has_method("get_enemy_damage"):
 			var attack = Attack.new()
-			attack.attack_damage = 2
+			attack.attack_damage = 1
 			attack.attack_direction = directional_input
 			attack.knockback_force = 30
 			area.get_enemy_damage(attack)
 		if area.is_in_group("bouncing_object") and directional_input == Vector2(0, 1) and not player.is_on_floor():
 			_bounce()
 
+
 func physics_update(_delta: float):
-	pass
+	if player.is_on_floor():
+		player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * player.move_speed * _delta)
+	else:
+		PlayerMovement.apply_flung_movement(player, _delta)
+		PlayerMovement.apply_gravity(player, _delta)
 
 
 func attack_finished():

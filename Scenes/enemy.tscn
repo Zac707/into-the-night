@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://bd4n38raood3"]
+
+[ext_resource type="Texture2D" uid="uid://b6ag3oghyfcqf" path="res://Assets/enemy.png" id="1_1f0kj"]
+[ext_resource type="Script" uid="uid://p4ql0qbapufk" path="res://Scripts/Enemy Scripts/enemy.gd" id="1_ghaa6"]
+[ext_resource type="Script" uid="uid://do6c7nnosa6hf" path="res://Scripts/Enemy Scripts/state_machine_enemy.gd" id="2_afpow"]
+[ext_resource type="Script" uid="uid://ce0a6dwpwrb2l" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_idle.gd" id="4_1dp5w"]
+[ext_resource type="Script" uid="uid://dg1adjvfgqlf2" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_confused.gd" id="4_8uf12"]
+[ext_resource type="Script" uid="uid://4d2e3otwpsww" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_chase.gd" id="5_auwsv"]
+[ext_resource type="Script" uid="uid://okcoomu8akp4" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_attack.gd" id="6_8uf12"]
+[ext_resource type="Script" uid="uid://bstsy1brek164" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_fall.gd" id="7_po0sg"]
+[ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="9_haro7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
+size = Vector2(8, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_po0sg"]
+radius = 113.35784
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_haro7"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_56vhr"]
+radius = 8.062258
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta2yt"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_m4x7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vt4ob"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.283185307179586]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgeoe"]
+_data = {
+&"RESET": SubResource("Animation_m4x7e"),
+&"attack": SubResource("Animation_vt4ob")
+}
+
+[node name="Enemy" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component")]
+script = ExtResource("1_ghaa6")
+attack_component = NodePath("AttackComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=352463735]
+texture = ExtResource("1_1f0kj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=470450003]
+shape = SubResource("RectangleShape2D_287tu")
+
+[node name="StateMachine" type="Node2D" parent="." unique_id=1252143428 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_afpow")
+initial_state = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="StateMachine" unique_id=2037398045 node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_8uf12")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://dg1adjvfgqlf2"
+
+[node name="EnemyChase" type="Node" parent="StateMachine" unique_id=856208285 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_auwsv")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://4d2e3otwpsww"
+
+[node name="EnemyAttack" type="Node" parent="StateMachine" unique_id=315235704 node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_8uf12")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://okcoomu8akp4"
+
+[node name="EnemyFall" type="Node" parent="StateMachine" unique_id=518269200 node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_po0sg")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://bstsy1brek164"
+
+[node name="EnemyConfused" type="Node" parent="StateMachine" unique_id=1892316149 node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_1dp5w")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://ce0a6dwpwrb2l"
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1875406738]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1834143995]
+shape = SubResource("CircleShape2D_po0sg")
+
+[node name="AttackActivationArea" type="Area2D" parent="." unique_id=1958429704]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackActivationArea" unique_id=689433898]
+shape = SubResource("CircleShape2D_haro7")
+
+[node name="AttackComponent" type="Area2D" parent="." unique_id=824397792]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=1683346055]
+shape = SubResource("CircleShape2D_56vhr")
+
+[node name="HealthComponent" type="Area2D" parent="." unique_id=1528575296 node_paths=PackedStringArray("enemy")]
+script = ExtResource("9_haro7")
+enemy = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=441078037]
+shape = SubResource("CapsuleShape2D_ta2yt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2053604642]
+libraries/ = SubResource("AnimationLibrary_hgeoe")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
+[connection signal="body_entered" from="AttackActivationArea" to="StateMachine/EnemyChase" method="_on_attack_activation_area_body_entered"]
+[connection signal="body_exited" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_exited"]

@@ -15,7 +15,7 @@ func _ready():
 	health = max_health
 
 
-func get_damage_player(attack : Attack):
+func get_player_damage(attack : Attack):
 	if invulnerable == false :
 		health -= attack.attack_damage
 		var knockback_direction = attack.attack_direction.direction_to(player.global_position)
@@ -24,8 +24,8 @@ func get_damage_player(attack : Attack):
 		player.move_and_slide() 
 		invulnerable = true
 		invulnerability_timer.start()
-		#if health <= 0:
-			#player.queue_free()
+		if health <= 0:
+			player.queue_free()
 
 
 func _on_invulnerability_timer_timeout() -> void:

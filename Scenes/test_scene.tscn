@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://couknjkkg81o5" path="res://Scripts/camera_manager.gd" id="5_rdbpf"]
 [ext_resource type="Script" uid="uid://drb20mh2p308q" path="res://Scripts/camera_bounds.gd" id="6_x033f"]
 [ext_resource type="Script" uid="uid://p0cjno0rknc6" path="res://Scripts/camera_box.gd" id="7_oho3u"]
+[ext_resource type="PackedScene" uid="uid://bd4n38raood3" path="res://Scenes/enemy.tscn" id="8_oho3u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
 texture = ExtResource("3_sasra")
@@ -602,6 +603,9 @@ position = Vector2(0, 200)
 
 [node name="yMax" type="Marker2D" parent="CameraManager/CameraBox2/CameraBounds2" unique_id=253938721]
 position = Vector2(0, -200)
+
+[node name="Enemy" parent="." unique_id=598764581 instance=ExtResource("8_oho3u")]
+position = Vector2(-232, 16)
 
 [connection signal="body_entered" from="CameraManager/CameraBox1" to="CameraManager/CameraBox1" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox2" to="CameraManager/CameraBox2" method="_on_body_entered"]
