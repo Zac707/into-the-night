@@ -35,6 +35,7 @@ var fling_velocity: Vector2 = Vector2.ZERO
 var fling_timer: float = 0.0
 var last_horizontal_direction_pressed: String = "left"
 var wall_direction: String
+var hurt: bool = false
 
 signal new_direction
 

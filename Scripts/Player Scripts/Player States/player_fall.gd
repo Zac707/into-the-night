@@ -17,6 +17,7 @@ func enter():
 	else:
 		player.animation_player.play("Left_Fall")
 	jump_buffer_timer = 0.0
+	
 	evaluate_transitions()
 
 
@@ -43,7 +44,9 @@ func physics_update(_delta: float):
 
 
 func evaluate_transitions():
-	if player.is_on_floor() and jump_buffer_timer > 0.0:
+	if player.hurt == true:
+		transitioned_state.emit(self, "PlayerHurt")
+	elif player.is_on_floor() and jump_buffer_timer > 0.0:
 		transitioned_state.emit(self, "PlayerJump")
 	elif player.is_on_floor() and player.velocity.x == 0:
 		transitioned_state.emit(self, "PlayerIdle")

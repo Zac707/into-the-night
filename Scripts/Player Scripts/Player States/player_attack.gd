@@ -22,6 +22,8 @@ func enter():
 	for anim in animation_dict:
 		if anim == direction_data:
 			player.animation_player.play(animation_dict[anim])
+	
+	evaluate_transitions()
 
 
 func exit():
@@ -40,6 +42,8 @@ func update(_delta: float):
 			area.get_enemy_damage(attack)
 		if area.is_in_group("bouncing_object") and directional_input == Vector2(0, 1) and not player.is_on_floor():
 			_bounce()
+	
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):
@@ -61,3 +65,8 @@ func _bounce():
 	if bounce_executed == false:
 		player.velocity.y = player.jump_velocity
 		bounce_executed = true
+
+
+func evaluate_transitions():
+	if player.hurt == true:
+		transitioned_state.emit(self, "PlayerHurt")

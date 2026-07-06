@@ -11,6 +11,8 @@ var direction: float
 
 func enter():
 	original_direction = signf(enemy.player.global_position.x - enemy.global_position.x)
+	enemy.last_horizontal_direction = original_direction
+	
 	evaluate_transitions()
 
 

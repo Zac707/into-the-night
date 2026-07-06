@@ -19,6 +19,8 @@ func enter():
 	jump_executed = false
 	var wall_normal = player.get_wall_normal()
 	player.wall_direction = "right" if wall_normal.x > 0 else "left"
+	
+	evaluate_transitions()
 
 
 func exit():
@@ -27,6 +29,7 @@ func exit():
 
 func update(_delta: float):
 	still_on_wall = player.wall_check_left.is_colliding() or player.wall_check_right.is_colliding()
+	
 	evaluate_transitions()
 
 
@@ -41,7 +44,9 @@ func _jump():
 
 
 func evaluate_transitions():
-	if player.is_on_floor():
+	if player.hurt == true:
+		transitioned_state.emit(self, "PlayerHurt")
+	elif player.is_on_floor():
 		transitioned_state.emit(self, "PlayerIdle")
 	elif not jump_executed:
 		if not still_on_wall:

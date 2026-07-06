@@ -8,7 +8,9 @@ var attack_complete: bool = false
 
 
 func enter():
-	pass
+	enemy.animation_player.play("attack")
+	
+	evaluate_transitions()
 
 
 func exit():

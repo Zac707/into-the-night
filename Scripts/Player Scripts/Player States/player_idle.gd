@@ -9,6 +9,7 @@ func enter():
 		player.animation_player.play("Idle")
 	else:
 		player.animation_player.play("Left_Idle")
+	
 	evaluate_transitions()
 
 
@@ -18,6 +19,7 @@ func exit():
 
 func update(_delta: float):
 	PlayerMovement.get_last_direction_pressed(player)
+	
 	evaluate_transitions()
 
 
@@ -27,7 +29,9 @@ func physics_update(_delta: float):
 
 func evaluate_transitions():
 	if player.is_on_floor():
-		if Input.is_action_just_pressed("jump"):
+		if player.hurt == true:
+			transitioned_state.emit(self, "PlayerHurt")
+		elif Input.is_action_just_pressed("jump"):
 			transitioned_state.emit(self, "PlayerJump")
 		elif Input.is_action_just_pressed("hook_test"):
 			transitioned_state.emit(self, "PlayerHook")

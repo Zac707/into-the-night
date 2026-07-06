@@ -7,6 +7,7 @@ extends Area2D
 
 var health : float
 var invulnerable = false
+var knockback
 
 signal health_changed(player_hearts)
 
@@ -18,10 +19,9 @@ func _ready():
 func get_player_damage(attack : Attack):
 	if invulnerable == false :
 		health -= attack.attack_damage
-		var knockback_direction = attack.attack_direction.direction_to(player.global_position)
-		var knockback = attack.knockback_force * knockback_direction
-		player.global_position += knockback
-		player.move_and_slide() 
+		knockback = attack.knockback_force * attack.attack_direction
+		
+		player.hurt = true
 		invulnerable = true
 		invulnerability_timer.start()
 		if health <= 0:

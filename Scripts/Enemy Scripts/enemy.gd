@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var air_speed: float = 50.0
 @export var gravity: float = 90.0
 @export var attack_component: Area2D
+@export var animation_player: AnimationPlayer
 
 var player: CharacterBody2D
 var last_horizontal_direction: float

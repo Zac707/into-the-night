@@ -15,6 +15,7 @@ func enter():
 		player.animation_player.play("Left_Fall")
 	
 	_jump()
+	evaluate_transitions()
 
 
 func exit():
@@ -23,6 +24,7 @@ func exit():
 
 func update(_delta: float):
 	time_until_transition += _delta
+	
 	evaluate_transitions()
 
 
@@ -46,7 +48,9 @@ func _jump():
 
 
 func evaluate_transitions():
-	if player.is_on_floor():
+	if player.hurt == true:
+		transitioned_state.emit(self, "PlayerHurt")
+	elif player.is_on_floor():
 		transitioned_state.emit(self, "PlayerIdle")
 	elif player.is_on_wall_only() and time_until_transition >= 0.15:
 		transitioned_state.emit(self, "PlayerWallcling")

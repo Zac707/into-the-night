@@ -22,6 +22,8 @@ func enter():
 	for anim in animation_dict_throw:
 		if anim == direction_data:
 			player.animation_player.play(animation_dict_throw[anim])
+	
+	evaluate_transitions()
 
 
 func exit():
@@ -31,7 +33,7 @@ func exit():
 
 
 func update(_delta: float):
-	pass
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):
@@ -91,3 +93,8 @@ func _on_hook_unhooked() -> void:
 		transitioned_state.emit(self, "PlayerRun")
 	else:
 		transitioned_state.emit(self, "PlayerFall")
+
+
+func evaluate_transitions():
+	if player.hurt == true:
+		transitioned_state.emit(self, "PlayerHurt")

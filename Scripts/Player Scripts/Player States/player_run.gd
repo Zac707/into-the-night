@@ -15,6 +15,7 @@ func enter():
 		player.animation_player.play("Run")
 	else:
 		player.animation_player.play("Left_Run")
+	
 	evaluate_transitions()
 
 
@@ -26,6 +27,7 @@ func exit():
 func update(_delta: float):
 	if coyote_time_activated == true:
 		coyote_time -= _delta
+	
 	evaluate_transitions()
 
 
@@ -36,7 +38,9 @@ func physics_update(_delta: float):
 
 
 func evaluate_transitions():
-	if Input.is_action_just_pressed("jump"):
+	if player.hurt == true:
+		transitioned_state.emit(self, "PlayerHurt")
+	elif Input.is_action_just_pressed("jump"):
 		transitioned_state.emit(self, "PlayerJump")
 	elif not player.is_on_floor():
 		coyote_time_activated = true
