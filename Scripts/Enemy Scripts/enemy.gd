@@ -4,15 +4,17 @@ extends CharacterBody2D
 @export var move_speed: float = 80
 @export var acceleration: float = 15.0  
 @export var friction: float = 30.0     
-@export var attack_speed: float = 100.0
+@export var attack_speed: float = 30.0
 @export var air_speed: float = 50.0
-@export var gravity: float = 90.0
+@export var gravity: float = 500.0
 @export var attack_component: Area2D
 @export var animation_player: AnimationPlayer
+@export var health_component: Area2D
 
 var player: CharacterBody2D
 var last_horizontal_direction: float
 var player_in_range: bool
+var hurt: bool = false
 
 
 func _physics_process(delta: float) -> void:

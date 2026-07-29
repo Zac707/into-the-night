@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://drb20mh2p308q" path="res://Scripts/camera_bounds.gd" id="6_x033f"]
 [ext_resource type="Script" uid="uid://p0cjno0rknc6" path="res://Scripts/camera_box.gd" id="7_oho3u"]
 [ext_resource type="PackedScene" uid="uid://bd4n38raood3" path="res://Scenes/enemy.tscn" id="8_oho3u"]
+[ext_resource type="PackedScene" uid="uid://b0pjtht0m6o06" path="res://Scenes/health_bar.tscn" id="9_d3awe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
 texture = ExtResource("3_sasra")
@@ -606,6 +607,20 @@ position = Vector2(0, -200)
 
 [node name="Enemy" parent="." unique_id=598764581 instance=ExtResource("8_oho3u")]
 position = Vector2(-232, 16)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=997396956]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=26221985]
+layout_mode = 3
+anchor_left = 0.03
+anchor_top = 0.04
+anchor_right = 0.03
+anchor_bottom = 0.04
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" parent="CanvasLayer/Control" unique_id=1036248228 instance=ExtResource("9_d3awe")]
+layout_mode = 0
 
 [connection signal="body_entered" from="CameraManager/CameraBox1" to="CameraManager/CameraBox1" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox2" to="CameraManager/CameraBox2" method="_on_body_entered"]

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://okcoomu8akp4" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_attack.gd" id="6_8uf12"]
 [ext_resource type="Script" uid="uid://bstsy1brek164" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_fall.gd" id="7_po0sg"]
 [ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="9_haro7"]
+[ext_resource type="Script" uid="uid://cslkvmx6gbemy" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_hurt.gd" id="9_po0sg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
 size = Vector2(8, 16)
@@ -17,7 +18,7 @@ size = Vector2(8, 16)
 radius = 113.35784
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_haro7"]
-radius = 24.0
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56vhr"]
 radius = 8.062258
@@ -25,6 +26,36 @@ radius = 8.062258
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta2yt"]
 radius = 4.0
 height = 18.0
+
+[sub_resource type="Animation" id="Animation_haro7"]
+resource_name = "Hurt"
+length = 0.6
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StateMachine/EnemyHurt")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.8, 1.5), Vector2(1.5, 0.7), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_m4x7e"]
 length = 0.001
@@ -39,6 +70,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vt4ob"]
@@ -73,14 +116,16 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hgeoe"]
 _data = {
+&"Hurt": SubResource("Animation_haro7"),
 &"RESET": SubResource("Animation_m4x7e"),
 &"attack": SubResource("Animation_vt4ob")
 }
 
-[node name="Enemy" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component", "animation_player")]
+[node name="Enemy" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component", "animation_player", "health_component")]
 script = ExtResource("1_ghaa6")
 attack_component = NodePath("AttackComponent")
 animation_player = NodePath("AnimationPlayer")
+health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=352463735]
 texture = ExtResource("1_1f0kj")
@@ -117,6 +162,11 @@ script = ExtResource("4_1dp5w")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://ce0a6dwpwrb2l"
 
+[node name="EnemyHurt" type="Node" parent="StateMachine" unique_id=1972113564 node_paths=PackedStringArray("enemy")]
+script = ExtResource("9_po0sg")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://cslkvmx6gbemy"
+
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1875406738]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1834143995]
@@ -132,12 +182,15 @@ shape = SubResource("CircleShape2D_haro7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=1683346055]
 shape = SubResource("CircleShape2D_56vhr")
 
-[node name="HealthComponent" type="Area2D" parent="." unique_id=1528575296 node_paths=PackedStringArray("enemy")]
+[node name="HealthComponent" type="Area2D" parent="." unique_id=1528575296 node_paths=PackedStringArray("enemy", "invulnerability_timer")]
 script = ExtResource("9_haro7")
 enemy = NodePath("..")
+invulnerability_timer = NodePath("InvulnerabilityTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=441078037]
 shape = SubResource("CapsuleShape2D_ta2yt")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="HealthComponent" unique_id=1006819332]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2053604642]
 libraries/ = SubResource("AnimationLibrary_hgeoe")
@@ -147,3 +200,4 @@ libraries/ = SubResource("AnimationLibrary_hgeoe")
 [connection signal="body_entered" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
 [connection signal="body_entered" from="AttackActivationArea" to="StateMachine/EnemyChase" method="_on_attack_activation_area_body_entered"]
 [connection signal="body_exited" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_exited"]
+[connection signal="timeout" from="HealthComponent/InvulnerabilityTimer" to="HealthComponent" method="_on_invulnerability_timer_timeout"]

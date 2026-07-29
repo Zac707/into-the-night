@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dljg6tbp8p5f7"]
+
+[ext_resource type="Texture2D" uid="uid://dkd73lkuueca8" path="res://Assets/health_point-Sheet.png" id="1_hmjl1"]
+[ext_resource type="Script" uid="uid://b8dvp1hpuxr55" path="res://Scripts/Player Scripts/health_point.gd" id="1_vv1ah"]
+
+[sub_resource type="Animation" id="Animation_vv1ah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HealthSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vq4qx"]
+resource_name = "heart_gained"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HealthSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 0]
+}
+
+[sub_resource type="Animation" id="Animation_qr4gy"]
+resource_name = "heart_lost"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HealthSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.15, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pkckb"]
+_data = {
+&"RESET": SubResource("Animation_vv1ah"),
+&"heart_gained": SubResource("Animation_vq4qx"),
+&"heart_lost": SubResource("Animation_qr4gy")
+}
+
+[node name="Control" type="Control" unique_id=115801135 node_paths=PackedStringArray("animation_player")]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 5.0
+script = ExtResource("1_vv1ah")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="HealthSprite" type="Sprite2D" parent="." unique_id=880674567]
+texture = ExtResource("1_hmjl1")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=75863684]
+root_node = NodePath("")
+libraries/ = SubResource("AnimationLibrary_pkckb")

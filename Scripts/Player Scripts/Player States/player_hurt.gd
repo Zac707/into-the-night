@@ -8,6 +8,8 @@ var actionable: bool = false
 
 
 func enter():
+	player.velocity = player.health_component.knockback
+	player.velocity.y = -80
 	if player.health_component.knockback.normalized() == Vector2(1.0, 0.0):
 		player.animation_player.play("Left_Hurt")
 	else:
@@ -20,8 +22,7 @@ func exit():
 
 
 func update(_delta: float):
-	player.velocity = player.health_component.knockback
-	player.health_component.knockback = player.health_component.knockback.lerp(Vector2.ZERO, 10 * _delta)
+	PlayerMovement.apply_gravity(player, _delta)
 	
 	evaluate_transitions()
 
@@ -39,5 +40,5 @@ func evaluate_transitions():
 
 
 func on_animation_finished():
+	player.velocity = Vector2.ZERO
 	actionable = true
-	print("actionable again")

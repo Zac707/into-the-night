@@ -23,7 +23,7 @@ func update(_delta: float):
 			var attack = Attack.new()
 			attack.attack_damage = 1
 			attack.attack_direction = Vector2(enemy.last_horizontal_direction, 0.0)
-			attack.knockback_force = 30
+			attack.knockback_force = 100
 			area.get_player_damage(attack)
 	
 	evaluate_transitions()
@@ -36,7 +36,9 @@ func physics_update(_delta: float):
 
 
 func evaluate_transitions():
-	if attack_complete and enemy.is_on_floor():
+	if enemy.hurt == true:
+		transitioned_state.emit(self, "EnemyHurt")
+	elif attack_complete and enemy.is_on_floor():
 		transitioned_state.emit(self, "EnemyConfused")
 	elif attack_complete:
 		transitioned_state.emit(self, "EnemyFall")

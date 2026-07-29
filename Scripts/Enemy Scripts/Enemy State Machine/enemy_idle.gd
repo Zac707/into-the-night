@@ -12,7 +12,7 @@ func enter():
 
 
 func exit():
-	pass
+	confused_time = 1.5
 
 
 func update(_delta: float):
@@ -26,7 +26,9 @@ func physics_update(_delta: float):
 
 
 func evaluate_transitions():
-	if not enemy.is_on_floor():
+	if enemy.hurt == true:
+		transitioned_state.emit(self, "EnemyHurt")
+	elif not enemy.is_on_floor():
 		transitioned_state.emit(self, "EnemyFall")
 	elif enemy.player != null and enemy.player_in_range and confused_time <= 0.0:
 		transitioned_state.emit(self, "EnemyAttack")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://buphs68w24m4d"]
+
+[ext_resource type="Texture2D" uid="uid://bjg78j5dldshg" path="res://Assets/collectable.png" id="1_rd2yi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8orai"]
+radius = 4.0
+height = 10.0
+
+[node name="Collectible" type="Node2D" unique_id=2012063957]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=560353031]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1490581836]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_8orai")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1160899050]
+texture = ExtResource("1_rd2yi")

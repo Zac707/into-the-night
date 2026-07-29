@@ -30,7 +30,7 @@ func update_limits(bounds: Array[Vector2]) -> void:
 	# If a previous transition is running, kill it to prevent conflicts
 	if limit_tween and limit_tween.is_valid():
 		limit_tween.kill()
-		
+	
 	# Create a new parallel tween so all limits animate at the exact same time
 	limit_tween = create_tween().set_parallel(true).set_trans(trans_type).set_ease(ease_type)
 	

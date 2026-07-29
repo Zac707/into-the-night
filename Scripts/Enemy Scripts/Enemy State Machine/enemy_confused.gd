@@ -21,5 +21,7 @@ func physics_update(_delta: float):
 
 
 func evaluate_transitions():
-	if enemy.player != null:
+	if enemy.hurt == true:
+		transitioned_state.emit(self, "EnemyHurt")
+	elif enemy.player != null:
 		transitioned_state.emit(self, "EnemyChase")
