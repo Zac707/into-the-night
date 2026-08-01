@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dsqi36gxomcbu"]
+
+[ext_resource type="Script" uid="uid://c255upj1u78vm" path="res://Scripts/lican_score.gd" id="1_pwfgg"]
+[ext_resource type="Texture2D" uid="uid://bjg78j5dldshg" path="res://Assets/collectable.png" id="2_ihspk"]
+[ext_resource type="FontFile" uid="uid://bqwuooijs7kkr" path="res://Assets/alagard.ttf" id="3_ihspk"]
+
+[node name="LicanScore" type="Control" unique_id=665192234 node_paths=PackedStringArray("score_label")]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 30.0
+offset_bottom = 14.0
+script = ExtResource("1_pwfgg")
+score_label = NodePath("Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=722372162]
+texture = ExtResource("2_ihspk")
+
+[node name="Label" type="Label" parent="." unique_id=1673848852]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -4.0
+offset_right = 30.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("3_ihspk")
+theme_override_font_sizes/font_size = 12
+text = "0000"

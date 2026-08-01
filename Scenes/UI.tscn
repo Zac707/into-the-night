@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://br6g7nsnagpqo"]
+
+[ext_resource type="PackedScene" uid="uid://dsqi36gxomcbu" path="res://Scenes/lican_score.tscn" id="1_nxvpl"]
+[ext_resource type="PackedScene" uid="uid://b0pjtht0m6o06" path="res://Scenes/health_bar.tscn" id="2_dewlx"]
+
+[node name="Control" type="Control" unique_id=1460692423]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1640468608]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.04
+anchor_right = 1.0
+anchor_bottom = 0.04
+grow_horizontal = 2
+rotation = -0.0016465585
+
+[node name="Control2" parent="HBoxContainer" unique_id=1647070137 instance=ExtResource("2_dewlx")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1567200303]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LicanScore" parent="HBoxContainer" unique_id=665192234 instance=ExtResource("1_nxvpl")]
+layout_mode = 2
+size_flags_vertical = 4

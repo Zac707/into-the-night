@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bpywgmqlvm3f0"]
+
+[ext_resource type="Script" uid="uid://d3un80pug1wql" path="res://Scripts/lican.gd" id="1_l6emy"]
+[ext_resource type="Texture2D" uid="uid://bjg78j5dldshg" path="res://Assets/collectable.png" id="2_71unu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrhyb"]
+radius = 5.0990195
+
+[node name="Lican" type="Area2D" unique_id=1465055370]
+script = ExtResource("1_l6emy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=481885658]
+shape = SubResource("CircleShape2D_vrhyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=957221997]
+texture = ExtResource("2_71unu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -7,6 +7,7 @@ var is_filled: bool = true
 
 
 func set_fill(value: bool):
+	print("animation activated")
 	if value == is_filled:
 		return
 	else:
