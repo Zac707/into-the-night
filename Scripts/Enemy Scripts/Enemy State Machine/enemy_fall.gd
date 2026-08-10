@@ -5,6 +5,11 @@ class_name EnemyFall
 
 
 func enter():
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Fall")
+	else:
+		enemy.animation_player.play("Left_Fall")
+	
 	evaluate_transitions()
 
 

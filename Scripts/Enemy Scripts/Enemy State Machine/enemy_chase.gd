@@ -13,6 +13,11 @@ func enter():
 	original_direction = signf(enemy.player.global_position.x - enemy.global_position.x)
 	enemy.last_horizontal_direction = original_direction
 	
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Chase")
+	else:
+		enemy.animation_player.play("Left_Chase")
+	
 	evaluate_transitions()
 
 

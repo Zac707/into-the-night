@@ -5,19 +5,27 @@ class_name EnemyAttack
 
 
 var attack_complete: bool = false
+var attack_started: bool = false
 
 
 func enter():
-	enemy.animation_player.play("attack")
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Attack")
+	else:
+		enemy.animation_player.play("Left_Attack")
 	
 	evaluate_transitions()
 
 
 func exit():
 	attack_complete = false
+	attack_started = false
 
 
 func update(_delta: float):
+	if attack_started == false:
+		return
+	
 	for area in enemy.attack_component.get_overlapping_areas():
 		if area.has_method("get_player_damage"):
 			var attack = Attack.new()
@@ -44,5 +52,9 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "EnemyFall")
 
 
-func on_attack_finished():
+func start_attack() -> void:
+	attack_started = true
+
+
+func on_attack_finished() -> void:
 	attack_complete = true

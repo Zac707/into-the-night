@@ -4,15 +4,20 @@ extends StateEnemy
 class_name EnemyConfused
 
 
-var confused_time: float = 1.5
+var confused_time: float = 1.2
 
 
 func enter():
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Confused")
+	else:
+		enemy.animation_player.play("Left_Confused")
+	
 	evaluate_transitions()
 
 
 func exit():
-	confused_time = 1.5
+	confused_time = 1.2
 
 
 func update(_delta: float):

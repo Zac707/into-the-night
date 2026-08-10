@@ -11,6 +11,7 @@ Vector3(-1, -1, 0): "Left_Attack_Up", Vector3(1, 0, 1): "Aerial_Attack_Side", Ve
 Vector3(1, 1, 1): "Aerial_Attack_Down", Vector3(1, -1, 1): "Aerial_Attack_Up", Vector3(-1, 1, 1): "Left_Aerial_Attack_Down", 
 Vector3(-1, -1, 1): "Left_Aerial_Attack_Up"}
 var aerial_down_granted: bool = true
+var is_airborne: bool = false
 
 
 func enter():
@@ -23,6 +24,9 @@ func enter():
 		if anim == direction_data:
 			player.animation_player.play(animation_dict[anim])
 	
+	if player.is_on_floor() == false:
+		is_airborne = true
+	
 	evaluate_transitions()
 
 
@@ -30,6 +34,7 @@ func exit():
 	bounce_executed = false
 	player.attack_component.position = Vector2(0, 0)
 	player.attack_component.rotation = 0
+	is_airborne = false
 
 
 func update(_delta: float):
@@ -70,3 +75,6 @@ func _bounce():
 func evaluate_transitions():
 	if player.hurt == true:
 		transitioned_state.emit(self, "PlayerHurt")
+	elif is_airborne:
+		if player.is_on_floor():
+			transitioned_state.emit(self, "PlayerLand")

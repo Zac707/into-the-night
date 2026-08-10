@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://p0cjno0rknc6" path="res://Scripts/camera_box.gd" id="7_oho3u"]
 [ext_resource type="PackedScene" uid="uid://bd4n38raood3" path="res://Scenes/enemy.tscn" id="8_oho3u"]
 [ext_resource type="PackedScene" uid="uid://br6g7nsnagpqo" path="res://Scenes/UI.tscn" id="9_yglu3"]
+[ext_resource type="PackedScene" uid="uid://cn8qusvp0tmi2" path="res://Scenes/parallax_background.tscn" id="11_bwjpn"]
 [ext_resource type="PackedScene" uid="uid://bpywgmqlvm3f0" path="res://Scenes/lican.tscn" id="11_ibmi3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
@@ -560,7 +561,7 @@ script = ExtResource("7_oho3u")
 camera_bounds = NodePath("CameraBounds1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraBox1" unique_id=901111431]
-position = Vector2(288, 302)
+position = Vector2(-112, -4)
 shape = SubResource("RectangleShape2D_rdbpf")
 
 [node name="CameraBounds1" type="Node2D" parent="CameraManager/CameraBox1" unique_id=1625460627 node_paths=PackedStringArray("camera_manager")]
@@ -618,6 +619,13 @@ position = Vector2(79, 12)
 
 [node name="Lican2" parent="." unique_id=1503856472 instance=ExtResource("11_ibmi3")]
 position = Vector2(40, 11)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1208353625]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="Parallax2D" parent="CanvasLayer2" unique_id=70360345 instance=ExtResource("11_bwjpn")]
+position = Vector2(92, 96)
 
 [connection signal="body_entered" from="CameraManager/CameraBox1" to="CameraManager/CameraBox1" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox2" to="CameraManager/CameraBox2" method="_on_body_entered"]

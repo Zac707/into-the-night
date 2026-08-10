@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://h0kulcf6uu6a" path="res://icon.svg" id="2_8dx66"]
 [ext_resource type="PackedScene" uid="uid://dw0p11nvbd1vu" path="res://Scenes/hook_test.tscn" id="3_psp7o"]
 [ext_resource type="Texture2D" uid="uid://cckv1caebjxmp" path="res://Assets/Main_Char_both_sides-Sheet.png" id="3_qki6r"]
+[ext_resource type="Shader" uid="uid://einyn882iqaa" path="res://Scripts/hurt.gdshader" id="3_tvrp7"]
 [ext_resource type="Script" uid="uid://dw8iif45yptk" path="res://Scripts/Player Scripts/pivot.gd" id="3_wln50"]
 [ext_resource type="Script" uid="uid://ccirysva1gbnx" path="res://Scripts/Player Scripts/state_machine.gd" id="5_wln50"]
 [ext_resource type="Script" uid="uid://bqe1mfvswyh1g" path="res://Scripts/Player Scripts/Player States/player_idle.gd" id="6_lbtjm"]
@@ -17,12 +18,19 @@
 [ext_resource type="Script" uid="uid://c03ehs887slg6" path="res://Scripts/Player Scripts/health_component_player.gd" id="14_qki6r"]
 [ext_resource type="Script" uid="uid://daqn3macfc6cg" path="res://Scripts/Player Scripts/camera.gd" id="15_67lvd"]
 [ext_resource type="Script" uid="uid://qadhtqk2ty8k" path="res://Scripts/Player Scripts/Player States/player_hurt.gd" id="15_sduab"]
+[ext_resource type="Script" uid="uid://c10i25wc10dfo" path="res://Scripts/Player Scripts/Player States/player_land.gd" id="17_1klfb"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
 _data = [Vector2(0, 0), 0.0, 0.2987119, 0, 0, Vector2(0.4495413, 0.23595512), 0.6531833, 0.6531833, 0, 0, Vector2(0.7385322, 0.42696637), 0.8164792, 0.8164792, 0, 0, Vector2(0.8990826, 0.6966293), 2.8754272, 2.8754272, 0, 0, Vector2(1, 1), 3.0061288, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qki6r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1klfb"]
+shader = ExtResource("3_tvrp7")
+shader_parameter/flash_active = false
+shader_parameter/flash_frequency = 0.6
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0b2u"]
 size = Vector2(5, 14)
@@ -396,10 +404,40 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [16, 17, 18]
+"values": [17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_v0cgw"]
+resource_name = "Land"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlayerLand")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_bumkv"]
@@ -722,10 +760,40 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [42, 43, 44]
+"values": [43, 44]
+}
+
+[sub_resource type="Animation" id="Animation_ax1f4"]
+resource_name = "Left_Land"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [42]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/PlayerLand")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_4f5ph"]
@@ -826,6 +894,7 @@ _data = {
 &"Hurt": SubResource("Animation_5ue5x"),
 &"Idle": SubResource("Animation_g3wa8"),
 &"Jump": SubResource("Animation_hlwpc"),
+&"Land": SubResource("Animation_v0cgw"),
 &"Left_Aerial_Attack_Down": SubResource("Animation_bumkv"),
 &"Left_Aerial_Attack_Side": SubResource("Animation_rpqj3"),
 &"Left_Aerial_Attack_Up": SubResource("Animation_rtq0u"),
@@ -841,6 +910,7 @@ _data = {
 &"Left_Hurt": SubResource("Animation_qqmpk"),
 &"Left_Idle": SubResource("Animation_yvp7w"),
 &"Left_Jump": SubResource("Animation_r8mnf"),
+&"Left_Land": SubResource("Animation_ax1f4"),
 &"Left_Run": SubResource("Animation_4f5ph"),
 &"Left_Wall_Cling": SubResource("Animation_sfs3u"),
 &"RESET": SubResource("Animation_aeet5"),
@@ -865,6 +935,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_8dx66")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=152419327]
+material = SubResource("ShaderMaterial_1klfb")
 texture = ExtResource("3_qki6r")
 hframes = 26
 vframes = 4
@@ -920,6 +991,11 @@ script = ExtResource("15_sduab")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://qadhtqk2ty8k"
 
+[node name="PlayerLand" type="Node" parent="StateMachine" unique_id=898030862 node_paths=PackedStringArray("player")]
+script = ExtResource("17_1klfb")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://c10i25wc10dfo"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=821608359]
 script = ExtResource("15_67lvd")
 
@@ -929,9 +1005,10 @@ position = Vector2(10, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=1799505131]
 shape = SubResource("CapsuleShape2D_8dx66")
 
-[node name="HealthComponent" type="Area2D" parent="." unique_id=388612483 node_paths=PackedStringArray("player", "invulnerability_timer")]
+[node name="HealthComponent" type="Area2D" parent="." unique_id=388612483 node_paths=PackedStringArray("player", "sprite", "invulnerability_timer")]
 script = ExtResource("14_qki6r")
 player = NodePath("..")
+sprite = NodePath("../PlayerSprite")
 invulnerability_timer = NodePath("InvulnerabilityTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1197943029]

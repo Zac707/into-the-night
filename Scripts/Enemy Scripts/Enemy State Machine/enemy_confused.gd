@@ -5,6 +5,11 @@ class_name EnemyIdle
 
 
 func enter():
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Idle")
+	else:
+		enemy.animation_player.play("Left_Idle")
+	
 	evaluate_transitions()
 
 

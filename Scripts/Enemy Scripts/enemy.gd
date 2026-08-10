@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var move_speed: float = 80
+@export var move_speed: float = 60
 @export var acceleration: float = 15.0  
 @export var friction: float = 30.0     
 @export var attack_speed: float = 30.0
@@ -12,7 +12,7 @@ extends CharacterBody2D
 @export var health_component: Area2D
 
 var player: CharacterBody2D
-var last_horizontal_direction: float
+var last_horizontal_direction: float = -1.0
 var player_in_range: bool
 var hurt: bool = false
 
@@ -24,7 +24,6 @@ func _physics_process(delta: float) -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = body
-		print("player found")
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
