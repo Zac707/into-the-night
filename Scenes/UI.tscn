@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dsqi36gxomcbu" path="res://Scenes/lican_score.tscn" id="1_nxvpl"]
 [ext_resource type="PackedScene" uid="uid://b0pjtht0m6o06" path="res://Scenes/health_bar.tscn" id="2_dewlx"]
 
-[node name="Control" type="Control" unique_id=1460692423]
+[node name="GUI" type="Control" unique_id=1460692423]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +24,6 @@ rotation = -0.0016465585
 
 [node name="Control2" parent="HBoxContainer" unique_id=1647070137 instance=ExtResource("2_dewlx")]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="Control" type="Control" parent="HBoxContainer" unique_id=1567200303]

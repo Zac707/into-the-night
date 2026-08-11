@@ -6,7 +6,8 @@
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=70360345]
 scroll_scale = Vector2(0.2, 0.2)
-repeat_size = Vector2(480, 270)
+repeat_size = Vector2(480, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=612125413]
 texture = ExtResource("1_0fo66")
+centered = false

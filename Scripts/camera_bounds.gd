@@ -5,7 +5,7 @@ extends Node2D
 @export var camera_manager: Node2D
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	if camera_manager.camera_setting == boundary_order:
 		GlobalEventManager.change_tilemaps_bounds(get_tile_bounds())
 
