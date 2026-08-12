@@ -16,8 +16,20 @@ var is_airborne: bool = false
 
 func enter():
 	directional_input = PlayerMovement.get_last_direction_pressed(player)
-	player.attack_component.position = directional_input * Vector2(15, 15)
-	player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
+	# if player is grounded, a downwards attack should not be possible. Default instead to the last direction pressed horizontally
+	if not player.is_on_floor() or directional_input != Vector2(0, 1):
+		player.attack_component.position = directional_input * Vector2(10, 10)
+		player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
+	else:
+		if player.last_horizontal_direction_pressed == "left":
+			directional_input = Vector2(-1, 0)
+			player.attack_component.position = directional_input * Vector2(10, 10)
+			player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
+		else:
+			directional_input = Vector2(1, 0)
+			player.attack_component.position = directional_input * Vector2(10, 10)
+			player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
+		
 	
 	var direction_data = PlayerMovement.get_animation_direction(player, aerial_down_granted)
 	for anim in animation_dict:

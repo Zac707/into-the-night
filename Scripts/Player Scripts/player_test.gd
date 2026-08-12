@@ -15,7 +15,7 @@ extends CharacterBody2D
 @export var friction: float = 30.0     
 @export var hook_spring_strength: float = 50.0
 @export var hook_damping: float = 0.05
-@export var fling_decay_duration: float = 0.5
+@export var fling_decay_duration: float = 1.0
 @export var fling_decay_curve: Curve
 @export var fling_friction: float = 5.0
 @export var gravity_on_wall: float = 10

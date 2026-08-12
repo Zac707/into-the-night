@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgl1rx6mph1ew"
-path="res://.godot/imported/Background_rotated.png-89a8f638db27a052d87d79637b1a5af5.ctex"
+uid="uid://0m3yeirdah6l"
+path="res://.godot/imported/Grapple_point.png-bca23938de7c375a878ecbe4efb7b0e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Background_rotated.png"
-dest_files=["res://.godot/imported/Background_rotated.png-89a8f638db27a052d87d79637b1a5af5.ctex"]
+source_file="res://Assets/Level Elements/Grapple_point.png"
+dest_files=["res://.godot/imported/Grapple_point.png-bca23938de7c375a878ecbe4efb7b0e6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgokhea3y3upk"
-path="res://.godot/imported/lantern.png-2e4fcf00f0429244abecc6026d1d44b3.ctex"
+uid="uid://dixrg1cwx1a7u"
+path="res://.godot/imported/base_platform.png-5a7f1e37aa5d30b5773ff81cd155b1ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/lantern.png"
-dest_files=["res://.godot/imported/lantern.png-2e4fcf00f0429244abecc6026d1d44b3.ctex"]
+source_file="res://Assets/Level Elements/base_platform.png"
+dest_files=["res://.godot/imported/base_platform.png-5a7f1e37aa5d30b5773ff81cd155b1ad.ctex"]
 
 [params]
 

@@ -29,7 +29,7 @@ func update(_delta: float):
 
 func physics_update(_delta: float):
 	PlayerMovement.apply_gravity(player, _delta)
-	PlayerMovement.apply_horizontal_movement(player, _delta)
+	PlayerMovement.apply_flung_movement(player, _delta)
 	if Input.is_action_just_released("jump") and PlayerMovement.get_gravity(player) == player.jump_gravity:
 		player.velocity.y *= 0.3
 

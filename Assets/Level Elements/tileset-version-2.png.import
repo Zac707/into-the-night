@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx1vapgbmhujc"
-path="res://.godot/imported/lantern_2.png-5e2cbf826eb3a2b09ea6a359bc11a63f.ctex"
+uid="uid://b3c58kbsaa2md"
+path="res://.godot/imported/tileset-version-2.png-2df071c4114aff735d2cc091fb551724.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/lantern_2.png"
-dest_files=["res://.godot/imported/lantern_2.png-5e2cbf826eb3a2b09ea6a359bc11a63f.ctex"]
+source_file="res://Assets/Level Elements/tileset-version-2.png"
+dest_files=["res://.godot/imported/tileset-version-2.png-2df071c4114aff735d2cc091fb551724.ctex"]
 
 [params]
 

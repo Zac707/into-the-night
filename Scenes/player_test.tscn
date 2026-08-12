@@ -917,6 +917,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component", "animation_player", "wall_check_right", "wall_check_left") groups=["Player"]]
 script = ExtResource("1_mnirw")
+jump_height = 35.0
 fling_decay_curve = SubResource("Curve_0asfq")
 gravity_on_wall = 100.0
 attack_component = NodePath("AttackComponent")
@@ -988,7 +989,6 @@ player = NodePath("../..")
 metadata/_custom_type_script = "uid://c10i25wc10dfo"
 
 [node name="AttackComponent" type="Area2D" parent="." unique_id=1144845523]
-position = Vector2(10, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=1799505131]
 shape = SubResource("CapsuleShape2D_8dx66")

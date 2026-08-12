@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b70nlcdx8kj36"
-path="res://.godot/imported/lantern_3-Sheet-export.png-26c9836a3ef256979781931da053d2ca.ctex"
+uid="uid://bgl1rx6mph1ew"
+path="res://.godot/imported/Background_rotated.png-2cc9bf4dc929436629689545f4f19bc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/lantern_3-Sheet-export.png"
-dest_files=["res://.godot/imported/lantern_3-Sheet-export.png-26c9836a3ef256979781931da053d2ca.ctex"]
+source_file="res://Assets/Level Elements/Background_rotated.png"
+dest_files=["res://.godot/imported/Background_rotated.png-2cc9bf4dc929436629689545f4f19bc0.ctex"]
 
 [params]
 

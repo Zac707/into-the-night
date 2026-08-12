@@ -62,7 +62,6 @@ func check_collision():
 		if collider.is_in_group("hook_area"):
 			var collision_point = raycast.get_collision_point()
 			distance = global_position.distance_to(collision_point)
-			print(region_rect.size, distance)
 			if region_rect.size.y >= distance:
 				hooked.emit(collision_point)
 				print("hook-point found")
