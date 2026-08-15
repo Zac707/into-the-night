@@ -1,7 +1,7 @@
-extends StateEnemy
+extends StateSwordHead
 
 
-class_name EnemyFall
+class_name SwordHeadFall
 
 
 func enter():
@@ -32,6 +32,6 @@ func physics_update(_delta: float):
 
 func evaluate_transitions():
 	if enemy.hurt == true:
-		transitioned_state.emit(self, "EnemyHurt")
+		transitioned_state.emit(self, "SwordHeadHurt")
 	elif enemy.is_on_floor():
-		transitioned_state.emit(self, "EnemyConfused")
+		transitioned_state.emit(self, "SwordHeadConfused")

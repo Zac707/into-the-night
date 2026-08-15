@@ -1,15 +1,15 @@
 extends Node2D
 
 
-@export var initial_state: StateEnemy
+@export var initial_state: StateSwordHead
 
 var states: Dictionary = {}
-var current_state: StateEnemy
+var current_state: StateSwordHead
 
 
 func _ready() -> void:
 	for child in get_children():
-		if child is StateEnemy:
+		if child is StateSwordHead:
 			states[child.name.to_lower()] = child
 			child.transitioned_state.connect(on_state_transitioned)
 	

@@ -1,7 +1,7 @@
-extends StateEnemy
+extends StateSwordHead
 
 
-class_name EnemyConfused
+class_name SwordHeadConfused
 
 
 var confused_time: float = 1.2
@@ -32,12 +32,12 @@ func physics_update(_delta: float):
 
 func evaluate_transitions():
 	if enemy.hurt == true:
-		transitioned_state.emit(self, "EnemyHurt")
+		transitioned_state.emit(self, "SwordHeadHurt")
 	elif not enemy.is_on_floor():
-		transitioned_state.emit(self, "EnemyFall")
+		transitioned_state.emit(self, "SwordHeadFall")
 	elif enemy.player != null and enemy.player_in_range and confused_time <= 0.0:
-		transitioned_state.emit(self, "EnemyAttack")
+		transitioned_state.emit(self, "SwordHeadAttack")
 	elif enemy.player != null and confused_time <= 0.0:
-		transitioned_state.emit(self, "EnemyChase")
+		transitioned_state.emit(self, "SwordHeadChase")
 	elif enemy.player == null and confused_time <= 0.0:
-		transitioned_state.emit(self, "EnemyIdle")
+		transitioned_state.emit(self, "SwordHeadIdle")

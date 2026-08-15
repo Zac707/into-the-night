@@ -42,13 +42,13 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "PlayerHurt")
 	elif Input.is_action_just_pressed("jump"):
 		transitioned_state.emit(self, "PlayerJump")
-	elif not player.is_on_floor():
-		coyote_time_activated = true
-		if coyote_time <= 0.0:
-			transitioned_state.emit(self, "PlayerFall")
 	elif Input.is_action_just_pressed("hook_test"):
 		transitioned_state.emit(self, "PlayerHook")
 	elif Input.is_action_just_pressed("attack"):
 		transitioned_state.emit(self, "PlayerAttack")
+	elif not player.is_on_floor():
+		coyote_time_activated = true
+		if coyote_time <= 0.0:
+			transitioned_state.emit(self, "PlayerFall")
 	elif player.velocity.x == 0:
 		transitioned_state.emit(self, "PlayerIdle")

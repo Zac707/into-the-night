@@ -1,7 +1,7 @@
-extends StateEnemy
+extends StateSwordHead
 
 
-class_name EnemyChase
+class_name SwordHeadChase
 
 
 var direction_switched: bool = false
@@ -45,12 +45,12 @@ func physics_update(_delta: float):
 
 func evaluate_transitions():
 	if enemy.hurt == true:
-		transitioned_state.emit(self, "EnemyHurt")
+		transitioned_state.emit(self, "SwordHeadHurt")
 	elif enemy.velocity.x == 0 and enemy.is_on_floor():
-		transitioned_state.emit(self, "EnemyIdle")
+		transitioned_state.emit(self, "SwordHeadIdle")
 	elif not enemy.is_on_floor():
-		transitioned_state.emit(self, "EnemyFall")
+		transitioned_state.emit(self, "SwordHeadFall")
 	elif enemy.player_in_range == true and enemy.is_on_floor():
-		transitioned_state.emit(self, "EnemyAttack")
+		transitioned_state.emit(self, "SwordHeadAttack")
 	elif direction_switched:
-		transitioned_state.emit(self, "EnemyConfused")
+		transitioned_state.emit(self, "SwordHeadConfused")

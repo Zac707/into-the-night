@@ -4,6 +4,8 @@ extends State
 class_name PlayerHook
 
 
+@export var hookshot: Hookshot
+
 var _is_hooked: bool = false
 var _hook_point: Vector2 = Vector2.ZERO
 var _approach_dir: Vector2 = Vector2.ZERO  # Direction when hook first latched
@@ -15,6 +17,9 @@ Vector3(-1, -1, 0): "Left_Hook_Pull_Up", Vector3(1, 0, 1): "Hook_Pull", Vector3(
 Vector3(1, -1, 1): "Hook_Pull_Up", Vector3(-1, -1, 1): "Left_Hook_Pull_Up"}
 var aerial_down_granted: bool = false
 var direction_data
+var hover_duration: float = 0.0
+#here to not have unhooked called twice. It can happen when locking onto an object, as hook.gd and this script both call it.
+var already_unhooked: bool = false
 
 
 func enter():
@@ -23,6 +28,9 @@ func enter():
 		if anim == direction_data:
 			player.animation_player.play(animation_dict_throw[anim])
 	
+	hookshot.fire()
+	already_unhooked = false
+	
 	evaluate_transitions()
 
 
@@ -30,9 +38,12 @@ func exit():
 	_is_hooked = false
 	_hook_point = Vector2.ZERO
 	_approach_dir = Vector2.ZERO
+	hover_duration = 0.0
 
 
 func update(_delta: float):
+	hover_duration -= _delta
+	
 	evaluate_transitions()
 
 
@@ -54,14 +65,19 @@ func physics_update(_delta: float):
 		if player.velocity.y > 0:
 			player.velocity.y = 0
 	
-	# If the player has nott hooked unto anything, he needs to have gravity applied in case he's in the air 
-	# and have som friction to slow down his horizontal velocity
+	# If the player has nott hooked unto anything, he needs to have gravity applied in case he's in the air, but only when a certain time has passed so as to allow for a slight hover.
+	# Also slow down his horizontal velocity, no matter how much time has passed.
 	else:
-		PlayerMovement.apply_gravity(player, _delta)
-		if player.is_on_floor():
-			player.velocity.x = move_toward(player.velocity.x, 0.0, player.fling_friction * player.move_speed * _delta)
+		if hover_duration >= 0.0:
+			player.velocity.y = move_toward(player.velocity.y, 0.0, 50)
 		else:
-			player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * _delta)
+			PlayerMovement.apply_gravity(player, _delta)
+		if player.is_on_floor():
+			#player.velocity.x = move_toward(player.velocity.x, 0.0, player.fling_friction * player.move_speed * _delta)
+			player.velocity.x = 0.0
+		else:
+			#player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * _delta)
+			player.velocity.x = move_toward(player.velocity.x, 0.0, 5)
 
 
 func _on_hook_hooked(hooked_position: Variant) -> void:
@@ -80,6 +96,9 @@ func _on_hook_hooked(hooked_position: Variant) -> void:
 func _on_hook_unhooked() -> void:
 	# Only preserve X fling if there's meaningful horizontal speed.
 	# Y is always kept so upward hook momentum carries through.
+	if already_unhooked == true:
+		return
+	
 	player.fling_velocity = Vector2(
 		player.velocity.x if abs(player.velocity.x) > player.move_speed else 0.0,
 		player.velocity.y
@@ -88,6 +107,7 @@ func _on_hook_unhooked() -> void:
 	_is_hooked = false
 	_hook_point = Vector2.ZERO
 	_approach_dir = Vector2.ZERO
+	already_unhooked = true
 	if player.is_on_floor():
 		PlayerMovement.get_horizontal_input(player)
 		transitioned_state.emit(self, "PlayerRun")
@@ -98,3 +118,7 @@ func _on_hook_unhooked() -> void:
 func evaluate_transitions():
 	if player.hurt == true:
 		transitioned_state.emit(self, "PlayerHurt")
+
+
+func _on_hook_hook_sent(start_duration: Variant, return_duration: Variant) -> void:
+	hover_duration = start_duration + return_duration/2

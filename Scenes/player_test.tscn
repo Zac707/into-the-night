@@ -966,8 +966,9 @@ player = NodePath("../..")
 script = ExtResource("7_0asfq")
 player = NodePath("../..")
 
-[node name="PlayerHook" type="Node" parent="StateMachine" unique_id=1327739009 node_paths=PackedStringArray("player")]
+[node name="PlayerHook" type="Node" parent="StateMachine" unique_id=1327739009 node_paths=PackedStringArray("hookshot", "player")]
 script = ExtResource("8_ve6vs")
+hookshot = NodePath("../../Pivot/Hook")
 player = NodePath("../..")
 
 [node name="PlayerWallcling" type="Node" parent="StateMachine" unique_id=391526432 node_paths=PackedStringArray("player")]
@@ -1027,6 +1028,7 @@ script = ExtResource("15_67lvd")
 metadata/_custom_type_script = "uid://daqn3macfc6cg"
 
 [connection signal="new_direction" from="." to="Pivot" method="_on_player_new_direction"]
+[connection signal="hook_sent" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hook_sent"]
 [connection signal="hooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hooked"]
 [connection signal="unhooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_unhooked"]
 [connection signal="timeout" from="HealthComponent/InvulnerabilityTimer" to="HealthComponent" method="_on_invulnerability_timer_timeout"]

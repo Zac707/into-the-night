@@ -1,7 +1,7 @@
 extends Node
 
 
-class_name StateEnemy
+class_name StateSwordHead
 
 
 @export var enemy: CharacterBody2D

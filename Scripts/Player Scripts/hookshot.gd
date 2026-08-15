@@ -1,4 +1,4 @@
-extends Sprite2D
+class_name Hookshot extends Sprite2D
 
 @export var raycast: RayCast2D
 @export var pivot: Node2D
@@ -13,6 +13,7 @@ var _extending_hookshot: bool = false
 
 signal hooked(hooked_position)
 signal unhooked()
+signal hook_sent(start_duration, return_duration)
 
 
 func interpolate(length, duration):
@@ -22,21 +23,23 @@ func interpolate(length, duration):
 	tween_rect_h.tween_property(self, "region_rect", Rect2(0, 0, 8, length), duration)
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("hook_test") and not _hook_activated:
-		_hook_activated = true
-		_extending_hookshot = true
-		pivot.rotation_permitted = false
-		
-		await get_tree().create_timer(start_duration).timeout
-		_extending_hookshot = false
-		reverse_interpolate()
-		await get_tree().create_timer(return_duration).timeout
-		
-		_hook_activated = false
-		_collision_found = false
-		pivot.rotation_permitted = true
-		unhooked.emit()
+func fire() -> void:
+	if _hook_activated:
+		return
+	hook_sent.emit(start_duration, return_duration)
+	_hook_activated = true
+	_extending_hookshot = true
+	pivot.rotation_permitted = false
+	
+	await get_tree().create_timer(start_duration).timeout
+	_extending_hookshot = false
+	reverse_interpolate()
+	await get_tree().create_timer(return_duration).timeout
+	
+	_hook_activated = false
+	_collision_found = false
+	pivot.rotation_permitted = true
+	unhooked.emit()
 
 
 func _process(delta: float) -> void:

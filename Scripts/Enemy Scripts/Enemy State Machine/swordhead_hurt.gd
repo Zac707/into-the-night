@@ -1,7 +1,7 @@
-extends StateEnemy
+extends StateSwordHead
 
 
-class_name EnemyHurt
+class_name SwordHeadHurt
 
 
 var actionable: bool = false
@@ -35,9 +35,9 @@ func physics_update(_delta: float):
 func evaluate_transitions():
 	if actionable == true:
 		if enemy.is_on_floor():
-			transitioned_state.emit(self, "EnemyIdle")
+			transitioned_state.emit(self, "SwordHeadIdle")
 		else:
-			transitioned_state.emit(self, "EnemyFall")
+			transitioned_state.emit(self, "SwordHeadFall")
 
 
 func on_animation_finished():

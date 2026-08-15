@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://bd4n38raood3"]
 
-[ext_resource type="Script" uid="uid://p4ql0qbapufk" path="res://Scripts/Enemy Scripts/enemy.gd" id="1_ghaa6"]
+[ext_resource type="Script" uid="uid://p4ql0qbapufk" path="res://Scripts/Enemy Scripts/swordhead.gd" id="1_ghaa6"]
 [ext_resource type="Shader" uid="uid://einyn882iqaa" path="res://Scripts/hurt.gdshader" id="2_56vhr"]
-[ext_resource type="Script" uid="uid://do6c7nnosa6hf" path="res://Scripts/Enemy Scripts/state_machine_enemy.gd" id="2_afpow"]
-[ext_resource type="Texture2D" uid="uid://xkaskc1rqmau" path="res://Assets/attacking_enemy_size_adjusted-Sheet.png" id="2_haro7"]
-[ext_resource type="Script" uid="uid://ce0a6dwpwrb2l" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_idle.gd" id="4_1dp5w"]
-[ext_resource type="Script" uid="uid://dg1adjvfgqlf2" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_confused.gd" id="4_8uf12"]
-[ext_resource type="Script" uid="uid://4d2e3otwpsww" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_chase.gd" id="5_auwsv"]
-[ext_resource type="Script" uid="uid://okcoomu8akp4" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_attack.gd" id="6_8uf12"]
-[ext_resource type="Script" uid="uid://bstsy1brek164" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_fall.gd" id="7_po0sg"]
+[ext_resource type="Script" uid="uid://do6c7nnosa6hf" path="res://Scripts/Enemy Scripts/state_machine_swordhead.gd" id="2_afpow"]
+[ext_resource type="Texture2D" uid="uid://xkaskc1rqmau" path="res://Assets/Swordhead-Sheet.png" id="2_haro7"]
+[ext_resource type="Script" uid="uid://ce0a6dwpwrb2l" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_idle.gd" id="4_1dp5w"]
+[ext_resource type="Script" uid="uid://dg1adjvfgqlf2" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_confused.gd" id="4_8uf12"]
+[ext_resource type="Script" uid="uid://4d2e3otwpsww" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_chase.gd" id="5_auwsv"]
+[ext_resource type="Script" uid="uid://okcoomu8akp4" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_attack.gd" id="6_8uf12"]
+[ext_resource type="Script" uid="uid://bstsy1brek164" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_fall.gd" id="7_po0sg"]
 [ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="9_haro7"]
-[ext_resource type="Script" uid="uid://cslkvmx6gbemy" path="res://Scripts/Enemy Scripts/Enemy State Machine/enemy_hurt.gd" id="9_po0sg"]
+[ext_resource type="Script" uid="uid://cslkvmx6gbemy" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_hurt.gd" id="9_po0sg"]
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="11_haro7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ta2yt"]
@@ -42,7 +42,7 @@ length = 0.4
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StateMachine/EnemyAttack")
+tracks/0/path = NodePath("StateMachine/SwordHeadAttack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -125,7 +125,7 @@ length = 0.6
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StateMachine/EnemyHurt")
+tracks/0/path = NodePath("StateMachine/SwordHeadHurt")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -172,7 +172,7 @@ length = 0.4
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StateMachine/EnemyAttack")
+tracks/0/path = NodePath("StateMachine/SwordHeadAttack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -255,7 +255,7 @@ length = 0.6
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StateMachine/EnemyHurt")
+tracks/0/path = NodePath("StateMachine/SwordHeadHurt")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -350,34 +350,34 @@ shape = SubResource("RectangleShape2D_287tu")
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=1252143428 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_afpow")
-initial_state = NodePath("EnemyIdle")
+initial_state = NodePath("SwordHeadIdle")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine" unique_id=2037398045 node_paths=PackedStringArray("enemy")]
+[node name="SwordHeadIdle" type="Node" parent="StateMachine" unique_id=2037398045 node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_8uf12")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://dg1adjvfgqlf2"
 
-[node name="EnemyChase" type="Node" parent="StateMachine" unique_id=856208285 node_paths=PackedStringArray("enemy")]
+[node name="SwordHeadChase" type="Node" parent="StateMachine" unique_id=856208285 node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_auwsv")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://4d2e3otwpsww"
 
-[node name="EnemyAttack" type="Node" parent="StateMachine" unique_id=315235704 node_paths=PackedStringArray("enemy")]
+[node name="SwordHeadAttack" type="Node" parent="StateMachine" unique_id=315235704 node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_8uf12")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://okcoomu8akp4"
 
-[node name="EnemyFall" type="Node" parent="StateMachine" unique_id=518269200 node_paths=PackedStringArray("enemy")]
+[node name="SwordHeadFall" type="Node" parent="StateMachine" unique_id=518269200 node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_po0sg")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://bstsy1brek164"
 
-[node name="EnemyConfused" type="Node" parent="StateMachine" unique_id=1892316149 node_paths=PackedStringArray("enemy")]
+[node name="SwordHeadConfused" type="Node" parent="StateMachine" unique_id=1892316149 node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_1dp5w")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://ce0a6dwpwrb2l"
 
-[node name="EnemyHurt" type="Node" parent="StateMachine" unique_id=1972113564 node_paths=PackedStringArray("enemy")]
+[node name="SwordHeadHurt" type="Node" parent="StateMachine" unique_id=1972113564 node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_po0sg")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://cslkvmx6gbemy"
@@ -424,7 +424,7 @@ shape = SubResource("CapsuleShape2D_56vhr")
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
-[connection signal="body_entered" from="AttackActivationArea" to="StateMachine/EnemyChase" method="_on_attack_activation_area_body_entered"]
+[connection signal="body_entered" from="AttackActivationArea" to="StateMachine/SwordHeadChase" method="_on_attack_activation_area_body_entered"]
 [connection signal="body_exited" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_exited"]
 [connection signal="timeout" from="HealthComponent/InvulnerabilityTimer" to="HealthComponent" method="_on_invulnerability_timer_timeout"]
 [connection signal="area_entered" from="ContactHitbox" to="ContactHitbox" method="_on_area_entered"]
