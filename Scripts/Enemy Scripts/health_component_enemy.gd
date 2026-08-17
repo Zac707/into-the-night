@@ -3,12 +3,10 @@ extends Area2D
 
 @export var max_health:= 2.0
 @export var enemy: CharacterBody2D
-@export var invulnerability_timer: Timer
 @export var sprite: Sprite2D
-
+@export var flash_timer: Timer
 
 var health: float
-var invulnerable: bool = false
 var knockback: Vector2
 var mat 
 
@@ -19,19 +17,16 @@ func _ready():
 
 
 func get_enemy_damage(attack : Attack):
-	if invulnerable == false:
-		health -= attack.attack_damage
-		knockback = attack.knockback_force * attack.attack_direction
-		
-		invulnerable = true
-		enemy.hurt = true
-		invulnerability_timer.start()
-		mat.set_shader_parameter("flash_active", true)
-		
-		if health <= 0:
-			enemy.queue_free()
+	health -= attack.attack_damage
+	knockback = attack.knockback_force * attack.attack_direction
+	
+	enemy.hurt = true
+	flash_timer.start()
+	mat.set_shader_parameter("flash_amount", 1.0)
+	
+	if health <= 0:
+		enemy.queue_free()
 
 
-func _on_invulnerability_timer_timeout() -> void:
-	mat.set_shader_parameter("flash_active", false)
-	invulnerable = false
+func _on_flash_timer_timeout() -> void:
+	mat.set_shader_parameter("flash_amount", 0.0)

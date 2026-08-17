@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://br6g7nsnagpqo"]
 
-[ext_resource type="PackedScene" uid="uid://dsqi36gxomcbu" path="res://Scenes/lican_score.tscn" id="1_nxvpl"]
-[ext_resource type="PackedScene" uid="uid://b0pjtht0m6o06" path="res://Scenes/health_bar.tscn" id="2_dewlx"]
+[ext_resource type="PackedScene" uid="uid://dsqi36gxomcbu" path="res://Scenes/GUI/lican_score.tscn" id="1_nxvpl"]
+[ext_resource type="PackedScene" uid="uid://b0pjtht0m6o06" path="res://Scenes/GUI/health_bar.tscn" id="2_dewlx"]
 
 [node name="GUI" type="Control" unique_id=1460692423]
 layout_mode = 3

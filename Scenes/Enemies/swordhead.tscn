@@ -1,22 +1,21 @@
 [gd_scene format=3 uid="uid://bd4n38raood3"]
 
-[ext_resource type="Script" uid="uid://p4ql0qbapufk" path="res://Scripts/Enemy Scripts/swordhead.gd" id="1_ghaa6"]
-[ext_resource type="Shader" uid="uid://einyn882iqaa" path="res://Scripts/hurt.gdshader" id="2_56vhr"]
-[ext_resource type="Script" uid="uid://do6c7nnosa6hf" path="res://Scripts/Enemy Scripts/state_machine_swordhead.gd" id="2_afpow"]
+[ext_resource type="Script" uid="uid://p4ql0qbapufk" path="res://Scripts/Enemy Scripts/Swordhead/swordhead.gd" id="1_ghaa6"]
+[ext_resource type="Script" uid="uid://do6c7nnosa6hf" path="res://Scripts/Enemy Scripts/Swordhead/state_machine_swordhead.gd" id="2_afpow"]
 [ext_resource type="Texture2D" uid="uid://xkaskc1rqmau" path="res://Assets/Swordhead-Sheet.png" id="2_haro7"]
-[ext_resource type="Script" uid="uid://ce0a6dwpwrb2l" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_idle.gd" id="4_1dp5w"]
-[ext_resource type="Script" uid="uid://dg1adjvfgqlf2" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_confused.gd" id="4_8uf12"]
-[ext_resource type="Script" uid="uid://4d2e3otwpsww" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_chase.gd" id="5_auwsv"]
-[ext_resource type="Script" uid="uid://okcoomu8akp4" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_attack.gd" id="6_8uf12"]
-[ext_resource type="Script" uid="uid://bstsy1brek164" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_fall.gd" id="7_po0sg"]
+[ext_resource type="Shader" uid="uid://uj5pru8gaaa1" path="res://Scripts/no_invincibility_hurt.gdshader" id="2_qk5qr"]
+[ext_resource type="Script" uid="uid://ce0a6dwpwrb2l" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_idle.gd" id="4_1dp5w"]
+[ext_resource type="Script" uid="uid://dg1adjvfgqlf2" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_confused.gd" id="4_8uf12"]
+[ext_resource type="Script" uid="uid://4d2e3otwpsww" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_chase.gd" id="5_auwsv"]
+[ext_resource type="Script" uid="uid://okcoomu8akp4" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_attack.gd" id="6_8uf12"]
+[ext_resource type="Script" uid="uid://bstsy1brek164" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_fall.gd" id="7_po0sg"]
 [ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="9_haro7"]
-[ext_resource type="Script" uid="uid://cslkvmx6gbemy" path="res://Scripts/Enemy Scripts/Enemy State Machine/swordhead_hurt.gd" id="9_po0sg"]
+[ext_resource type="Script" uid="uid://cslkvmx6gbemy" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_hurt.gd" id="9_po0sg"]
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="11_haro7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ta2yt"]
-shader = ExtResource("2_56vhr")
-shader_parameter/flash_active = false
-shader_parameter/flash_frequency = 0.6
+shader = ExtResource("2_qk5qr")
+shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
@@ -33,6 +32,10 @@ radius = 8.0
 height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta2yt"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56vhr"]
 radius = 5.0
 height = 18.0
 
@@ -328,11 +331,7 @@ _data = {
 &"RESET": SubResource("Animation_m4x7e")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56vhr"]
-radius = 5.0
-height = 18.0
-
-[node name="Enemy" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component", "animation_player", "health_component")]
+[node name="Swordhead" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component", "animation_player", "health_component")]
 script = ExtResource("1_ghaa6")
 attack_component = NodePath("AttackComponent")
 animation_player = NodePath("AnimationPlayer")
@@ -398,20 +397,19 @@ shape = SubResource("CircleShape2D_haro7")
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_m4x7e")
 
-[node name="HealthComponent" type="Area2D" parent="." unique_id=1528575296 node_paths=PackedStringArray("enemy", "invulnerability_timer", "sprite") groups=["bouncing_object"]]
+[node name="HealthComponent" type="Area2D" parent="." unique_id=1528575296 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
 script = ExtResource("9_haro7")
 enemy = NodePath("..")
-invulnerability_timer = NodePath("InvulnerabilityTimer")
 sprite = NodePath("../Sprite2D")
+flash_timer = NodePath("FlashTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=441078037]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_ta2yt")
 
-[node name="InvulnerabilityTimer" type="Timer" parent="HealthComponent" unique_id=1006819332]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2053604642]
-libraries/ = SubResource("AnimationLibrary_hgeoe")
+[node name="FlashTimer" type="Timer" parent="HealthComponent" unique_id=1006819332]
+wait_time = 0.2
+one_shot = true
 
 [node name="ContactHitbox" type="Area2D" parent="." unique_id=1140390453 node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_haro7")
@@ -421,10 +419,13 @@ enemy = NodePath("..")
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_56vhr")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2053604642]
+libraries/ = SubResource("AnimationLibrary_hgeoe")
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
 [connection signal="body_entered" from="AttackActivationArea" to="StateMachine/SwordHeadChase" method="_on_attack_activation_area_body_entered"]
 [connection signal="body_exited" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_exited"]
-[connection signal="timeout" from="HealthComponent/InvulnerabilityTimer" to="HealthComponent" method="_on_invulnerability_timer_timeout"]
+[connection signal="timeout" from="HealthComponent/FlashTimer" to="HealthComponent" method="_on_flash_timer_timeout"]
 [connection signal="area_entered" from="ContactHitbox" to="ContactHitbox" method="_on_area_entered"]

@@ -12,6 +12,7 @@ Vector3(1, 1, 1): "Aerial_Attack_Down", Vector3(1, -1, 1): "Aerial_Attack_Up", V
 Vector3(-1, -1, 1): "Left_Aerial_Attack_Up"}
 var aerial_down_granted: bool = true
 var is_airborne: bool = false
+var attacked_areas: Array = []
 
 
 func enter():
@@ -47,16 +48,18 @@ func exit():
 	player.attack_component.position = Vector2(0, 0)
 	player.attack_component.rotation = 0
 	is_airborne = false
+	attacked_areas.clear()
 
 
 func update(_delta: float):
 	for area in player.attack_component.get_overlapping_areas():
-		if area.has_method("get_enemy_damage"):
+		if area.has_method("get_enemy_damage") and not attacked_areas.has(area):
 			var attack = Attack.new()
 			attack.attack_damage = 1
 			attack.attack_direction = directional_input
 			attack.knockback_force = 30
 			area.get_enemy_damage(attack)
+			attacked_areas.append(area)
 		if area.is_in_group("bouncing_object") and directional_input == Vector2(0, 1) and not player.is_on_floor():
 			_bounce()
 	

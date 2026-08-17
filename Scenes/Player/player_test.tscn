@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://e5si1uhdi5tv"]
 
 [ext_resource type="Script" uid="uid://b0p8xkarp2jqr" path="res://Scripts/Player Scripts/player_test.gd" id="1_mnirw"]
-[ext_resource type="PackedScene" uid="uid://dw0p11nvbd1vu" path="res://Scenes/hook_test.tscn" id="3_psp7o"]
+[ext_resource type="PackedScene" uid="uid://dw0p11nvbd1vu" path="res://Scenes/Level Elements/hook_test.tscn" id="3_psp7o"]
 [ext_resource type="Texture2D" uid="uid://cckv1caebjxmp" path="res://Assets/Main_Char_both_sides-Sheet.png" id="3_qki6r"]
 [ext_resource type="Shader" uid="uid://einyn882iqaa" path="res://Scripts/hurt.gdshader" id="3_tvrp7"]
 [ext_resource type="Script" uid="uid://dw8iif45yptk" path="res://Scripts/Player Scripts/pivot.gd" id="3_wln50"]

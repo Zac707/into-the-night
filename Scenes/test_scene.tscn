@@ -1,16 +1,16 @@
 [gd_scene format=4 uid="uid://dj513j7pjnega"]
 
-[ext_resource type="PackedScene" uid="uid://b12qphkprkc6k" path="res://Scenes/wall-test.tscn" id="2_ia1lp"]
-[ext_resource type="PackedScene" uid="uid://e5si1uhdi5tv" path="res://Scenes/player_test.tscn" id="2_sasra"]
+[ext_resource type="PackedScene" uid="uid://b12qphkprkc6k" path="res://Scenes/Level Elements/wall-test.tscn" id="2_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://e5si1uhdi5tv" path="res://Scenes/Player/player_test.tscn" id="2_sasra"]
 [ext_resource type="Texture2D" uid="uid://h0kulcf6uu6a" path="res://icon.svg" id="3_sasra"]
-[ext_resource type="PackedScene" uid="uid://boqrgbpx4fbi2" path="res://Scenes/bounce_test.tscn" id="4_hb2xm"]
+[ext_resource type="PackedScene" uid="uid://boqrgbpx4fbi2" path="res://Scenes/Level Elements/bounce_test.tscn" id="4_hb2xm"]
 [ext_resource type="Script" uid="uid://couknjkkg81o5" path="res://Scripts/camera_manager.gd" id="5_rdbpf"]
 [ext_resource type="Script" uid="uid://drb20mh2p308q" path="res://Scripts/camera_bounds.gd" id="6_x033f"]
 [ext_resource type="Script" uid="uid://p0cjno0rknc6" path="res://Scripts/camera_box.gd" id="7_oho3u"]
-[ext_resource type="PackedScene" uid="uid://bd4n38raood3" path="res://Scenes/enemy.tscn" id="8_oho3u"]
-[ext_resource type="PackedScene" uid="uid://br6g7nsnagpqo" path="res://Scenes/UI.tscn" id="9_yglu3"]
-[ext_resource type="PackedScene" uid="uid://cn8qusvp0tmi2" path="res://Scenes/parallax_background.tscn" id="11_bwjpn"]
-[ext_resource type="PackedScene" uid="uid://bpywgmqlvm3f0" path="res://Scenes/lican.tscn" id="11_ibmi3"]
+[ext_resource type="PackedScene" uid="uid://bd4n38raood3" path="res://Scenes/Enemies/swordhead.tscn" id="8_oho3u"]
+[ext_resource type="PackedScene" uid="uid://br6g7nsnagpqo" path="res://Scenes/GUI/UI.tscn" id="9_yglu3"]
+[ext_resource type="PackedScene" uid="uid://cn8qusvp0tmi2" path="res://Scenes/Level Elements/parallax_background.tscn" id="11_bwjpn"]
+[ext_resource type="PackedScene" uid="uid://bpywgmqlvm3f0" path="res://Scenes/Level Elements/lican.tscn" id="11_ibmi3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
 texture = ExtResource("3_sasra")

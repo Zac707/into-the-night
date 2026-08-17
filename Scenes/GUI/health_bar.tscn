@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b0pjtht0m6o06"]
 
 [ext_resource type="Script" uid="uid://mgg5fn1gf2ni" path="res://Scripts/Player Scripts/health_bar.gd" id="1_m34ix"]
-[ext_resource type="PackedScene" uid="uid://dljg6tbp8p5f7" path="res://Scenes/health_point.tscn" id="2_qay8w"]
+[ext_resource type="PackedScene" uid="uid://dljg6tbp8p5f7" path="res://Scenes/GUI/health_point.tscn" id="2_qay8w"]
 
 [node name="HealthBar" type="HBoxContainer" unique_id=1036248228]
 custom_minimum_size = Vector2(50, 0)
