@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://p885b4p3mwh2" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_vulnerable.gd" id="9_grslr"]
 [ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="10_832my"]
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="11_glkpo"]
+[ext_resource type="Script" uid="uid://cck5dvq7doje4" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_fall.gd" id="12_g5d33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kerx7"]
 size = Vector2(8, 16)
@@ -40,6 +41,9 @@ height = 18.0
 radius = 5.0
 height = 18.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbifx"]
+size = Vector2(8, 16)
+
 [node name="Shieldhand" type="CharacterBody2D" unique_id=822517851]
 script = ExtResource("1_rwt1x")
 
@@ -52,8 +56,9 @@ texture = ExtResource("1_337mg")
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=667763466]
 
-[node name="ShieldHandApproach" type="Node" parent="StateMachine" unique_id=1804926795 node_paths=PackedStringArray("enemy")]
+[node name="ShieldHandApproach" type="Node" parent="StateMachine" unique_id=1804926795 node_paths=PackedStringArray("shield", "enemy")]
 script = ExtResource("2_jhxj7")
+shield = NodePath("../../ShieldHitbox")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://qh7bvixrromk"
 
@@ -92,6 +97,10 @@ script = ExtResource("9_grslr")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://p885b4p3mwh2"
 
+[node name="ShieldHandFall" type="Node" parent="StateMachine" unique_id=2108042354]
+script = ExtResource("12_g5d33")
+metadata/_custom_type_script = "uid://cck5dvq7doje4"
+
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1056264694]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1656468955]
@@ -122,16 +131,21 @@ shape = SubResource("CapsuleShape2D_822fd")
 wait_time = 0.2
 one_shot = true
 
-[node name="ContactHitbox" type="Area2D" parent="." unique_id=336374448 node_paths=PackedStringArray("enemy")]
+[node name="ContactHitbox" type="Area2D" parent="." unique_id=336374448]
 visible = false
 script = ExtResource("11_glkpo")
-enemy = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox" unique_id=1925828619]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_uhvue")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=97393492]
+
+[node name="ShieldHitbox" type="Area2D" parent="." unique_id=1730290884]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHitbox" unique_id=413356342]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_dbifx")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
