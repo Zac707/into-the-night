@@ -9,7 +9,7 @@ func enter():
 
 
 func exit():
-	pass
+	enemy.defended = false
 
 
 func update(_delta: float):

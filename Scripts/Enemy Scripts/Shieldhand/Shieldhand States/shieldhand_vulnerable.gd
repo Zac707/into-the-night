@@ -1,3 +1,4 @@
+# This and ShieldHandHurt are the only states accessible once the shield has been removed.
 extends StateShieldHand
 
 

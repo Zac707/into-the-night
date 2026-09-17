@@ -1,3 +1,4 @@
+# Script will only be called when shield is still present.
 extends StateShieldHand
 
 
