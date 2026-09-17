@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="10_832my"]
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="11_glkpo"]
 [ext_resource type="Script" uid="uid://cck5dvq7doje4" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_fall.gd" id="12_g5d33"]
+[ext_resource type="Script" uid="uid://cjh6qit754xyk" path="res://Scripts/Enemy Scripts/Shieldhand/shield_hitbox.gd" id="15_dbifx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kerx7"]
 size = Vector2(8, 16)
@@ -111,7 +112,7 @@ shape = SubResource("CircleShape2D_ycan8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackActivationArea" unique_id=1240832679]
 shape = SubResource("CircleShape2D_18p67")
 
-[node name="AttackComponent" type="Area2D" parent="." unique_id=859146720]
+[node name="AttackComponent" type="Area2D" parent="." unique_id=859146720 groups=["attack_area"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=294086883]
 rotation = 1.5707964
@@ -141,7 +142,9 @@ shape = SubResource("CapsuleShape2D_uhvue")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=97393492]
 
-[node name="ShieldHitbox" type="Area2D" parent="." unique_id=1730290884]
+[node name="ShieldHitbox" type="Area2D" parent="." unique_id=1730290884 node_paths=PackedStringArray("enemy")]
+script = ExtResource("15_dbifx")
+enemy = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHitbox" unique_id=413356342]
 position = Vector2(10, 0)
@@ -152,3 +155,4 @@ shape = SubResource("RectangleShape2D_dbifx")
 [connection signal="body_entered" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
 [connection signal="timeout" from="HealthComponent/FlashTimer" to="HealthComponent" method="_on_flash_timer_timeout"]
 [connection signal="area_entered" from="ContactHitbox" to="ContactHitbox" method="_on_area_entered"]
+[connection signal="area_entered" from="ShieldHitbox" to="ShieldHitbox" method="_on_area_entered"]

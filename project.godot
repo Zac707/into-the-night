@@ -36,6 +36,7 @@ window/stretch/mode="viewport"
 hook_area=""
 Player=""
 bouncing_object=""
+attack_area=""
 
 [input]
 

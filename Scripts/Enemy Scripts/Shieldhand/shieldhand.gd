@@ -15,6 +15,7 @@ var player: CharacterBody2D
 var last_horizontal_direction: float = -1.0
 var player_in_range: bool
 var hurt: bool = false
+var defended: bool = false
 
 
 func _physics_process(delta: float) -> void:

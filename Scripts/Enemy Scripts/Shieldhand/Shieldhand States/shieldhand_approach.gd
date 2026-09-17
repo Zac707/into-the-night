@@ -60,6 +60,8 @@ func change_shield_position(shield_direction):
 func evaluate_transitions():
 	if enemy.hurt == true:
 		transitioned_state.emit(self, "ShieldHandHurt")
+	elif enemy.defended == true:
+		transitioned_state.emit(self, "ShieldHandDefend")
 	elif enemy.velocity.x == 0 and enemy.is_on_floor():
 		transitioned_state.emit(self, "ShieldHandIdle")
 	elif not enemy.is_on_floor():
