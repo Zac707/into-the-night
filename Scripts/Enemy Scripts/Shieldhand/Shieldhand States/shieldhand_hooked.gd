@@ -4,9 +4,6 @@ extends StateShieldHand
 class_name ShieldHandHooked
 
 
-@export var shield: Area2D
-
-
 func enter():
 	enemy.defenseless = true
 	shield.queue_free()

@@ -5,7 +5,7 @@ class_name ShieldHandIdle
 
 
 func enter():
-	pass
+	evaluate_transitions()
 
 
 func exit():
@@ -13,7 +13,7 @@ func exit():
 
 
 func update(_delta: float):
-	pass
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):
@@ -21,4 +21,7 @@ func physics_update(_delta: float):
 
 
 func evaluate_transitions():
-	pass
+	if enemy.hurt == true:
+		transitioned_state.emit(self, "DhieldHandHurt")
+	elif enemy.player != null:
+		transitioned_state.emit(self, "ShieldHandDistance")

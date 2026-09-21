@@ -5,8 +5,6 @@ extends StateShieldHand
 class_name ShieldHandApproach
 
 
-@export var shield: Area2D
-
 var original_direction: float
 var direction: float
 var distance_to_player: Vector2
@@ -44,9 +42,9 @@ func physics_update(_delta: float):
 	if enemy.is_on_floor():
 		if enemy.player != null:
 			direction = signf(enemy.player.global_position.x - enemy.global_position.x)
-		enemy.velocity.x += direction * enemy.move_speed * enemy.acceleration * _delta
-		enemy.velocity.x = clamp(enemy.velocity.x, -enemy.move_speed, enemy.move_speed)
-		if enemy.player == null:
+			enemy.velocity.x += direction * enemy.move_speed * enemy.acceleration * _delta
+			enemy.velocity.x = clamp(enemy.velocity.x, -enemy.move_speed, enemy.move_speed)
+		else:
 			enemy.velocity.x = move_toward(enemy.velocity.x, 0.0, enemy.friction * enemy.move_speed * _delta)
 	else:
 		enemy.last_horizontal_direction = direction

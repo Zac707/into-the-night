@@ -9,8 +9,12 @@ class_name ShieldHandDistance
 
 var direction: float
 var original_direction: float
-var direction_switched: bool = false
 var distance: float
+var distance_to_player: Vector2
+var max_distance_reached: bool = false
+var time_until_approach: float = 3.0
+var hover_direction: float = 1.0
+var hover_timer: float = 0.0
 
 
 func enter():
@@ -19,39 +23,71 @@ func enter():
 
 
 func exit():
-	direction_switched = false
+	max_distance_reached = false
+	time_until_approach = 3.0
+	hover_direction = 1.0
+	hover_timer = 0.0
 
 
 func update(_delta: float):
 	distance = enemy.distance_to(enemy.player)
+	var distance_x = enemy.player.global_position.x - enemy.global_position.x
+	var distance_y = enemy.player.global_position.y - enemy.global_position.y
+	if distance_y.abs >= distance_x.abs and distance_y < 0.0:
+		distance_to_player = Vector2(0, signf(distance_y))
+	else:
+		distance_to_player = Vector2(signf(distance_x), 0)
+	change_shield_position(distance_to_player)
+	
+	time_until_approach -= _delta
+	
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):
 	if enemy.is_on_floor():
 		if enemy.player != null:
 			direction = signf(enemy.player.global_position.x - enemy.global_position.x)
-		elif enemy.player == null:
-			enemy.velocity.x = move_toward(enemy.velocity.x, 0.0, enemy.friction * enemy.move_speed * _delta)
-		
-		#check wether shieldhand should move towards or away fromplayer, or stay in place. Still needs to add animation to each separately
-		if distance >= max_distance:
-			enemy.velocity.x += direction * enemy.move_speed * enemy.acceleration * _delta
-			enemy.velocity.x = clamp(enemy.velocity.x, -enemy.move_speed, enemy.move_speed)
-		elif distance <= min_distance:
-			enemy.velocity.x -= direction * enemy.move_speed * enemy.acceleration * _delta
-			enemy.velocity.x = clamp(enemy.velocity.x, -enemy.move_speed, enemy.move_speed)
+			#check wether shieldhand should move towards or away fromplayer, or stay in place. Still needs to add animation to each separately
+			if distance >= max_distance:
+				max_distance_reached = true
+			elif distance <= min_distance:
+				enemy.velocity.x -= direction * enemy.move_speed * enemy.acceleration * _delta
+				enemy.velocity.x = clamp(enemy.velocity.x, -enemy.move_speed, enemy.move_speed)
+			else:
+				hover(_delta)
 		else:
-			hover
-		
-		if original_direction != direction:
-			direction_switched = true
+			enemy.velocity.x = move_toward(enemy.velocity.x, 0.0, enemy.friction * enemy.move_speed * _delta)
 	else:
 		enemy.last_horizontal_direction = direction
 
 
-func hover():
-	pass
+func change_shield_position(shield_direction):
+	shield.position = 16 * shield_direction
+	if shield_direction.y != 0:
+		shield.rotation = Vector2.UP.angle_to(shield_direction)
+
+
+func hover(delta: float):
+	hover_timer -= delta
+	if hover_timer <= 0.0:
+		hover_direction *= -1.0
+		hover_timer = randf_range(0.2, 0.5)
+	
+	enemy.velocity.x += hover_direction * enemy.move_speed * enemy.acceleration * delta
+	enemy.velocity.x = clamp(enemy.velocity.x, -enemy.move_speed, enemy.move_speed)
 
 
 func evaluate_transitions():
-	pass
+	if enemy.hurt == true:
+		transitioned_state.emit(self, "ShieldHandHurt")
+	elif enemy.defended == true:
+		transitioned_state.emit(self, "ShieldHandDefend")
+	elif enemy.velocity.x == 0 and enemy.is_on_floor():
+		transitioned_state.emit(self, "ShieldHandIdle")
+	elif not enemy.is_on_floor():
+		transitioned_state.emit(self, "ShieldHandFall")
+	elif enemy.is_on_floor() and max_distance_reached == true:
+		transitioned_state.emit(self, "ShieldHandApproach")
+	elif enemy.is_on_floor() and time_until_approach <= 0.0:
+		transitioned_state.emit(self, "ShieldHandApproach")

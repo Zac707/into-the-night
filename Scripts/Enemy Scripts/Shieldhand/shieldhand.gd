@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var friction: float = 30.0     
 @export var attack_speed: float = 0.0
 @export var air_speed: float = 30.0
-@export var gravity: float = 500.0
+@export var gravity: float = 600.0
 @export var attack_component: Area2D
 @export var animation_player: AnimationPlayer
 @export var health_component: Area2D
@@ -28,7 +28,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player = body
 
 
-func _on_detection_area_body_exited(body: Node2D) -> void:
+func _on_deactivation_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = null
 

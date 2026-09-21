@@ -65,7 +65,7 @@ func physics_update(_delta: float):
 		if player.velocity.y > 0:
 			player.velocity.y = 0
 	
-	# If the player has nott hooked unto anything, he needs to have gravity applied in case he's in the air, but only when a certain time has passed so as to allow for a slight hover.
+	# If the player has not hooked unto anything, he needs to have gravity applied in case he's in the air, but only when a certain time has passed so as to allow for a slight hover.
 	# Also slow down his horizontal velocity, no matter how much time has passed.
 	else:
 		if hover_duration >= 0.0:

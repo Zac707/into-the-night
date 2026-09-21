@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://qh7bvixrromk" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_approach.gd" id="2_jhxj7"]
 [ext_resource type="Script" uid="uid://botryfuvtacsa" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_attack.gd" id="3_rwt1x"]
 [ext_resource type="Script" uid="uid://ek1mmqrlvugc" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_defend.gd" id="4_g5d33"]
+[ext_resource type="Script" uid="uid://buv4tjews183l" path="res://Scripts/Enemy Scripts/Shieldhand/state_machine_shieldhand.gd" id="4_g5xhq"]
 [ext_resource type="Script" uid="uid://c54qfpjp5x4eo" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhead_distance.gd" id="5_dbifx"]
 [ext_resource type="Script" uid="uid://e5u8uc0w38dq" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_hooked.gd" id="6_g5xhq"]
 [ext_resource type="Script" uid="uid://cr4pndqomo64i" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_hurt.gd" id="7_aflev"]
@@ -25,7 +26,10 @@ shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ycan8"]
-radius = 113.35784
+radius = 78.10249
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aflev"]
+radius = 129.00388
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18p67"]
 radius = 20.0
@@ -45,8 +49,11 @@ height = 18.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbifx"]
 size = Vector2(8, 16)
 
-[node name="Shieldhand" type="CharacterBody2D" unique_id=822517851 groups=["attack_area"]]
+[node name="Shieldhand" type="CharacterBody2D" unique_id=822517851 node_paths=PackedStringArray("attack_component", "animation_player", "health_component") groups=["attack_area"]]
 script = ExtResource("1_rwt1x")
+attack_component = NodePath("ShieldHandComponents/AttackComponent")
+animation_player = NodePath("AnimationPlayer")
+health_component = NodePath("ShieldHandComponents/HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1003191969]
 shape = SubResource("RectangleShape2D_kerx7")
@@ -55,103 +62,122 @@ shape = SubResource("RectangleShape2D_kerx7")
 material = SubResource("ShaderMaterial_rwt1x")
 texture = ExtResource("1_337mg")
 
-[node name="StateMachine" type="Node2D" parent="." unique_id=667763466]
+[node name="StateMachine" type="Node2D" parent="." unique_id=667763466 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_g5xhq")
+initial_state = NodePath("ShieldHandIdle")
 
-[node name="ShieldHandApproach" type="Node" parent="StateMachine" unique_id=1804926795 node_paths=PackedStringArray("shield", "enemy")]
-script = ExtResource("2_jhxj7")
-shield = NodePath("../../ShieldHitbox")
-enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://qh7bvixrromk"
-
-[node name="ShieldHandAttack" type="Node" parent="StateMachine" unique_id=1329285174 node_paths=PackedStringArray("enemy")]
-script = ExtResource("3_rwt1x")
-enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://botryfuvtacsa"
-
-[node name="ShieldHandDefend" type="Node" parent="StateMachine" unique_id=2117824395 node_paths=PackedStringArray("enemy")]
-script = ExtResource("4_g5d33")
-enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://ek1mmqrlvugc"
-
-[node name="ShieldHandDistance" type="Node" parent="StateMachine" unique_id=1454357856 node_paths=PackedStringArray("enemy")]
-script = ExtResource("5_dbifx")
-enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://c54qfpjp5x4eo"
-
-[node name="ShieldHandHooked" type="Node" parent="StateMachine" unique_id=289198608 node_paths=PackedStringArray("enemy")]
-script = ExtResource("6_g5xhq")
-enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://e5u8uc0w38dq"
-
-[node name="ShieldHandHurt" type="Node" parent="StateMachine" unique_id=1938827442 node_paths=PackedStringArray("enemy")]
-script = ExtResource("7_aflev")
-enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://cr4pndqomo64i"
-
-[node name="ShieldHandIdle" type="Node" parent="StateMachine" unique_id=742853963 node_paths=PackedStringArray("enemy")]
+[node name="ShieldHandIdle" type="Node" parent="StateMachine" unique_id=742853963 node_paths=PackedStringArray("enemy", "shield")]
 script = ExtResource("8_8c3p6")
 enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://ovh6s448roeh"
 
-[node name="ShieldHandVulnerable" type="Node" parent="StateMachine" unique_id=901845859 node_paths=PackedStringArray("enemy")]
-script = ExtResource("9_grslr")
+[node name="ShieldHandDistance" type="Node" parent="StateMachine" unique_id=1454357856 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("5_dbifx")
 enemy = NodePath("../..")
-metadata/_custom_type_script = "uid://p885b4p3mwh2"
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://c54qfpjp5x4eo"
 
-[node name="ShieldHandFall" type="Node" parent="StateMachine" unique_id=2108042354]
+[node name="ShieldHandApproach" type="Node" parent="StateMachine" unique_id=1804926795 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("2_jhxj7")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://qh7bvixrromk"
+
+[node name="ShieldHandFall" type="Node" parent="StateMachine" unique_id=2108042354 node_paths=PackedStringArray("enemy", "shield")]
 script = ExtResource("12_g5d33")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://cck5dvq7doje4"
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=1056264694]
+[node name="ShieldHandAttack" type="Node" parent="StateMachine" unique_id=1329285174 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("3_rwt1x")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://botryfuvtacsa"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1656468955]
+[node name="ShieldHandDefend" type="Node" parent="StateMachine" unique_id=2117824395 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("4_g5d33")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://ek1mmqrlvugc"
+
+[node name="ShieldHandHooked" type="Node" parent="StateMachine" unique_id=289198608 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("6_g5xhq")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://e5u8uc0w38dq"
+
+[node name="ShieldHandVulnerable" type="Node" parent="StateMachine" unique_id=901845859 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("9_grslr")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://p885b4p3mwh2"
+
+[node name="ShieldHandHurt" type="Node" parent="StateMachine" unique_id=1938827442 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("7_aflev")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://cr4pndqomo64i"
+
+[node name="PlayerDetection" type="Node2D" parent="." unique_id=1335492953]
+
+[node name="DetectionArea" type="Area2D" parent="PlayerDetection" unique_id=1056264694]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection/DetectionArea" unique_id=1656468955]
 shape = SubResource("CircleShape2D_ycan8")
 
-[node name="AttackActivationArea" type="Area2D" parent="." unique_id=293884497]
+[node name="DeactivationArea" type="Area2D" parent="PlayerDetection" unique_id=1966253969]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackActivationArea" unique_id=1240832679]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection/DeactivationArea" unique_id=407720463]
+shape = SubResource("CircleShape2D_aflev")
+
+[node name="AttackActivationArea" type="Area2D" parent="PlayerDetection" unique_id=293884497]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection/AttackActivationArea" unique_id=1240832679]
 shape = SubResource("CircleShape2D_18p67")
 
-[node name="AttackComponent" type="Area2D" parent="." unique_id=859146720 groups=["attack_area"]]
+[node name="ShieldHandComponents" type="Node2D" parent="." unique_id=589286055]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=294086883]
+[node name="AttackComponent" type="Area2D" parent="ShieldHandComponents" unique_id=859146720 groups=["attack_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/AttackComponent" unique_id=294086883]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_6v66n")
 
-[node name="HealthComponent" type="Area2D" parent="." unique_id=1878912540 groups=["bouncing_object"]]
+[node name="HealthComponent" type="Area2D" parent="ShieldHandComponents" unique_id=1878912540 groups=["bouncing_object"]]
 script = ExtResource("13_dbifx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1517413947]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/HealthComponent" unique_id=1517413947]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_822fd")
 
-[node name="FlashTimer" type="Timer" parent="HealthComponent" unique_id=138142887]
+[node name="FlashTimer" type="Timer" parent="ShieldHandComponents/HealthComponent" unique_id=138142887]
 wait_time = 0.2
 one_shot = true
 
-[node name="ContactHitbox" type="Area2D" parent="." unique_id=336374448 node_paths=PackedStringArray("enemy")]
-visible = false
+[node name="ContactHitbox" type="Area2D" parent="ShieldHandComponents" unique_id=336374448 node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_glkpo")
-enemy = NodePath("..")
+enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactHitbox" unique_id=1925828619]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/ContactHitbox" unique_id=1925828619]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_uhvue")
 
-[node name="ShieldHitbox" type="Area2D" parent="." unique_id=1730290884 node_paths=PackedStringArray("enemy")]
+[node name="ShieldHitbox" type="Area2D" parent="ShieldHandComponents" unique_id=1730290884 node_paths=PackedStringArray("enemy")]
 script = ExtResource("15_dbifx")
-enemy = NodePath("..")
+enemy = NodePath("../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHitbox" unique_id=413356342]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/ShieldHitbox" unique_id=413356342]
 position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_dbifx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=97393492]
 
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
-[connection signal="timeout" from="HealthComponent/FlashTimer" to="HealthComponent" method="_on_flash_timer_timeout"]
-[connection signal="area_entered" from="ContactHitbox" to="ContactHitbox" method="_on_area_entered"]
-[connection signal="area_entered" from="ShieldHitbox" to="ShieldHitbox" method="_on_area_entered"]
-[connection signal="area_exited" from="ShieldHitbox" to="ShieldHitbox" method="_on_area_exited"]
+[connection signal="body_entered" from="PlayerDetection/DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetection/DeactivationArea" to="." method="_on_deactivation_area_body_exited"]
+[connection signal="body_entered" from="PlayerDetection/AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
+[connection signal="timeout" from="ShieldHandComponents/HealthComponent/FlashTimer" to="ShieldHandComponents/HealthComponent" method="_on_flash_timer_timeout"]
+[connection signal="area_entered" from="ShieldHandComponents/ContactHitbox" to="ShieldHandComponents/ContactHitbox" method="_on_area_entered"]
+[connection signal="area_entered" from="ShieldHandComponents/ShieldHitbox" to="ShieldHandComponents/ShieldHitbox" method="_on_area_entered"]
+[connection signal="area_exited" from="ShieldHandComponents/ShieldHitbox" to="ShieldHandComponents/ShieldHitbox" method="_on_area_exited"]

@@ -24,10 +24,7 @@ func update(_delta: float):
 func physics_update(_delta: float):
 	enemy.velocity.y += enemy.gravity * _delta
 	if enemy.velocity.x != 0.0:
-		enemy.velocity.x += enemy.last_horizontal_direction * enemy.air_speed * enemy.acceleration * _delta
-		enemy.velocity.x = clamp(enemy.velocity.x, -enemy.air_speed, enemy.air_speed)
-	else:
-		enemy.velocity.x = 0.0
+		enemy.velocity.x = move_toward(enemy.velocity.x, 0.0, enemy.friction * enemy.move_speed * _delta)
 
 
 func evaluate_transitions():

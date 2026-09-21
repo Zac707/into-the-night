@@ -5,6 +5,7 @@ class_name StateShieldHand
 
 
 @export var enemy: CharacterBody2D
+@export var shield: Area2D
 
 var active: bool
 
