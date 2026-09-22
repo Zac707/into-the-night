@@ -8,7 +8,7 @@ var shield_available: bool = true
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("attack_area") and shield_available == true:
+	if area.is_in_group("attack_area") and shield_available == true and enemy.defenseless == false:
 		blocked = true
 		enemy.defended = true
 

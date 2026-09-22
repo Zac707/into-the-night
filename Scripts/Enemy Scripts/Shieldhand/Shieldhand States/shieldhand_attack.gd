@@ -48,11 +48,11 @@ func physics_update(_delta: float):
 
 func evaluate_transitions():
 	if enemy.hurt == true:
-		transitioned_state.emit(self, "SwordHeadHurt")
+		transitioned_state.emit(self, "ShieldHandHurt")
 	elif attack_complete and enemy.is_on_floor():
-		transitioned_state.emit(self, "SwordHeadConfused")
+		transitioned_state.emit(self, "ShieldHandDistance")
 	elif attack_complete:
-		transitioned_state.emit(self, "SwordHeadFall")
+		transitioned_state.emit(self, "ShieldHandFall")
 
 
 func start_attack() -> void:

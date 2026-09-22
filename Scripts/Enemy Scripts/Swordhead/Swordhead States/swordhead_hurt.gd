@@ -23,13 +23,12 @@ func exit():
 
 
 func update(_delta: float):
-	enemy.velocity.y += enemy.gravity * _delta
-	
 	evaluate_transitions()
 
 
 func physics_update(_delta: float):
-	pass
+	enemy.velocity.y += enemy.gravity * _delta
+	enemy.velocity.x = move_toward(enemy.velocity.x, 0.0, enemy.friction/5 * _delta)
 
 
 func evaluate_transitions():
@@ -41,5 +40,4 @@ func evaluate_transitions():
 
 
 func on_animation_finished():
-	enemy.velocity = Vector2.ZERO
 	actionable = true

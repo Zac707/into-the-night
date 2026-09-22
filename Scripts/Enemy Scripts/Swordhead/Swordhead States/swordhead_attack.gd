@@ -9,6 +9,9 @@ var attack_started: bool = false
 
 
 func enter():
+	var attack_direction = signf(enemy.player.global_position.x - enemy.global_position.x)
+	enemy.last_horizontal_direction = attack_direction
+	
 	if enemy.last_horizontal_direction == 1.0:
 		enemy.animation_player.play("Attack")
 	else:

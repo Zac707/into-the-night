@@ -6,7 +6,9 @@ class_name ShieldHandHooked
 
 func enter():
 	enemy.defenseless = true
-	shield.queue_free()
+	#shield.queue_free()
+	
+	evaluate_transitions()
 
 
 func exit():
@@ -14,7 +16,7 @@ func exit():
 
 
 func update(_delta: float):
-	pass
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):
@@ -22,4 +24,11 @@ func physics_update(_delta: float):
 
 
 func evaluate_transitions():
-	pass
+	if enemy.hurt == true:
+		transitioned_state.emit(self, "ShieldHandHurt")
+	elif enemy.defenseless == true and enemy.is_on_floor():
+		transitioned_state.emit(self, "ShieldHandPanick")
+
+
+func on_animation_finished():
+	enemy.defenseless = true

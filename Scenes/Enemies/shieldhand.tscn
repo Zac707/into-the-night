@@ -102,23 +102,23 @@ enemy = NodePath("../..")
 shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://ek1mmqrlvugc"
 
+[node name="ShieldHandHurt" type="Node" parent="StateMachine" unique_id=1938827442 node_paths=PackedStringArray("enemy", "shield")]
+script = ExtResource("7_aflev")
+enemy = NodePath("../..")
+shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
+metadata/_custom_type_script = "uid://cr4pndqomo64i"
+
 [node name="ShieldHandHooked" type="Node" parent="StateMachine" unique_id=289198608 node_paths=PackedStringArray("enemy", "shield")]
 script = ExtResource("6_g5xhq")
 enemy = NodePath("../..")
 shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://e5u8uc0w38dq"
 
-[node name="ShieldHandVulnerable" type="Node" parent="StateMachine" unique_id=901845859 node_paths=PackedStringArray("enemy", "shield")]
+[node name="ShieldHandPanick" type="Node" parent="StateMachine" unique_id=901845859 node_paths=PackedStringArray("enemy", "shield")]
 script = ExtResource("9_grslr")
 enemy = NodePath("../..")
 shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://p885b4p3mwh2"
-
-[node name="ShieldHandHurt" type="Node" parent="StateMachine" unique_id=1938827442 node_paths=PackedStringArray("enemy", "shield")]
-script = ExtResource("7_aflev")
-enemy = NodePath("../..")
-shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
-metadata/_custom_type_script = "uid://cr4pndqomo64i"
 
 [node name="PlayerDetection" type="Node2D" parent="." unique_id=1335492953]
 
