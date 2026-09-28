@@ -27,7 +27,7 @@ func evaluate_transitions():
 	if enemy.hurt == true:
 		transitioned_state.emit(self, "ShieldHandHurt")
 	elif enemy.defenseless == true and enemy.is_on_floor():
-		transitioned_state.emit(self, "ShieldHandPanick")
+		transitioned_state.emit(self, "ShieldHandPanic")
 
 
 func on_animation_finished():

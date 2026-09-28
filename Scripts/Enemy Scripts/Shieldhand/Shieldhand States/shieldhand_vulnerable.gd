@@ -2,7 +2,7 @@
 extends StateShieldHand
 
 
-class_name ShieldHandPanick
+class_name ShieldHandPanic
 
 
 var hover_direction: float = 1.0

@@ -39,7 +39,7 @@ func evaluate_transitions():
 		if enemy.is_on_floor() and enemy.defenseless == false:
 			transitioned_state.emit(self, "ShieldHandDistance")
 		elif enemy.is_on_floor() and enemy.defenseless == true:
-			transitioned_state.emit(self, "ShieldHandPanick")
+			transitioned_state.emit(self, "ShieldHandPanic")
 		else:
 			transitioned_state.emit(self, "ShielödHandFall")
 

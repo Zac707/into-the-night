@@ -382,22 +382,18 @@ enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://cslkvmx6gbemy"
 
 [node name="PlayerDetection" type="Node2D" parent="." unique_id=396496352]
-visible = false
 
 [node name="DetectionArea" type="Area2D" parent="PlayerDetection" unique_id=1875406738]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection/DetectionArea" unique_id=1834143995]
 shape = SubResource("CircleShape2D_po0sg")
 
 [node name="AttackActivationArea" type="Area2D" parent="PlayerDetection" unique_id=1958429704]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection/AttackActivationArea" unique_id=689433898]
 shape = SubResource("CircleShape2D_haro7")
 
 [node name="SwordHeadComponents" type="Node2D" parent="." unique_id=1945292846]
-visible = false
 
 [node name="AttackComponent" type="Area2D" parent="SwordHeadComponents" unique_id=824397792]
 
