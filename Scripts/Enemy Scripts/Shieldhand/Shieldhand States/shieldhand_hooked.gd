@@ -8,6 +8,11 @@ func enter():
 	enemy.defenseless = true
 	#shield.queue_free()
 	
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Hooked")
+	else:
+		enemy.animation_player.play("Left_Hooked")
+	
 	evaluate_transitions()
 
 

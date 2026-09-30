@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://e5u8uc0w38dq" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_hooked.gd" id="6_g5xhq"]
 [ext_resource type="Script" uid="uid://cr4pndqomo64i" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_hurt.gd" id="7_aflev"]
 [ext_resource type="Script" uid="uid://ovh6s448roeh" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_idle.gd" id="8_8c3p6"]
-[ext_resource type="Script" uid="uid://p885b4p3mwh2" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_vulnerable.gd" id="9_grslr"]
+[ext_resource type="Script" uid="uid://p885b4p3mwh2" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_panic.gd" id="9_grslr"]
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="11_glkpo"]
 [ext_resource type="Script" uid="uid://cck5dvq7doje4" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_fall.gd" id="12_g5d33"]
 [ext_resource type="Script" uid="uid://c5qqvhhtln0oq" path="res://Scripts/Enemy Scripts/Shieldhand/health_component_shieldhand.gd" id="13_dbifx"]
@@ -35,8 +35,8 @@ radius = 129.00388
 radius = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6v66n"]
-radius = 8.0
-height = 18.0
+radius = 7.0
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_822fd"]
 radius = 5.0
@@ -66,26 +66,9 @@ tracks/0/keys = {
 "values": [2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_8c3p6"]
-resource_name = "Approach_left"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [19, 20]
-}
-
 [sub_resource type="Animation" id="Animation_grslr"]
 resource_name = "Attack"
-length = 0.625
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -98,21 +81,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [5, 6]
 }
-
-[sub_resource type="Animation" id="Animation_832my"]
-resource_name = "Attack_left"
-length = 0.625
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [22, 23]
+"values": [{
+"args": [],
+"method": &"start_attack"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_glkpo"]
@@ -130,21 +114,19 @@ tracks/0/keys = {
 "update": 1,
 "values": [7]
 }
-
-[sub_resource type="Animation" id="Animation_kerx7"]
-resource_name = "Defend_left"
-length = 0.375
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandDefend")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [24]
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ycan8"]
@@ -162,21 +144,19 @@ tracks/0/keys = {
 "update": 1,
 "values": [8]
 }
-
-[sub_resource type="Animation" id="Animation_18p67"]
-resource_name = "Defend_up_left"
-length = 0.375
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandDefend")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [25]
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6v66n"]
@@ -194,23 +174,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [2, 4]
-}
-
-[sub_resource type="Animation" id="Animation_822fd"]
-resource_name = "Distance_left"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [19, 21]
 }
 
 [sub_resource type="Animation" id="Animation_raebc"]
@@ -247,40 +210,6 @@ tracks/0/keys = {
 "values": [14]
 }
 
-[sub_resource type="Animation" id="Animation_yopst"]
-resource_name = "Fall_defenseless_left"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [31]
-}
-
-[sub_resource type="Animation" id="Animation_vf4uv"]
-resource_name = "Fall_left"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [30]
-}
-
 [sub_resource type="Animation" id="Animation_g5xhq"]
 resource_name = "Hooked"
 length = 0.5
@@ -295,22 +224,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [9, 10]
-}
-
-[sub_resource type="Animation" id="Animation_hqm8t"]
-resource_name = "Hooked_left"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [26, 27]
 }
 
 [sub_resource type="Animation" id="Animation_f6uug"]
@@ -328,6 +241,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [15]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandHurt")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_y2dgj"]
 resource_name = "Hurt_defenseless"
@@ -343,38 +270,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [16]
-}
-
-[sub_resource type="Animation" id="Animation_b7gbp"]
-resource_name = "Hurt_defenseless_left"
-length = 0.375
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [33]
-}
-
-[sub_resource type="Animation" id="Animation_6tpy1"]
-resource_name = "Hurt_left"
-length = 0.375
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [32]
 }
 
 [sub_resource type="Animation" id="Animation_xjfad"]
@@ -394,6 +289,229 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_8c3p6"]
+resource_name = "Approach_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [19, 20]
+}
+
+[sub_resource type="Animation" id="Animation_832my"]
+resource_name = "Attack_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [22, 23]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandAttack")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"start_attack"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kerx7"]
+resource_name = "Defend_left"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandDefend")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_18p67"]
+resource_name = "Defend_up_left"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandDefend")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_822fd"]
+resource_name = "Distance_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [19, 21]
+}
+
+[sub_resource type="Animation" id="Animation_vf4uv"]
+resource_name = "Fall_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [30]
+}
+
+[sub_resource type="Animation" id="Animation_yopst"]
+resource_name = "Fall_defenseless_left"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [31]
+}
+
+[sub_resource type="Animation" id="Animation_hqm8t"]
+resource_name = "Hooked_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_6tpy1"]
+resource_name = "Hurt_left"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [32]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandHurt")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_b7gbp"]
+resource_name = "Hurt_defenseless_left"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [33]
+}
+
 [sub_resource type="Animation" id="Animation_5nu02"]
 resource_name = "Idle_left"
 length = 0.625
@@ -411,23 +529,6 @@ tracks/0/keys = {
 "values": [17, 18]
 }
 
-[sub_resource type="Animation" id="Animation_oycuv"]
-resource_name = "Panic"
-length = 0.375
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [11, 12]
-}
-
 [sub_resource type="Animation" id="Animation_p2d8o"]
 resource_name = "Panic_left"
 length = 0.375
@@ -443,6 +544,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_oycuv"]
+resource_name = "Panic"
+length = 0.375
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [11, 12]
 }
 
 [sub_resource type="Animation" id="Animation_pwykw"]
@@ -463,35 +581,35 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hqm8t"]
 _data = {
 &"Approach": SubResource("Animation_aflev"),
-&"Approach_left": SubResource("Animation_8c3p6"),
 &"Attack": SubResource("Animation_grslr"),
-&"Attack_left": SubResource("Animation_832my"),
 &"Defend": SubResource("Animation_glkpo"),
-&"Defend_left": SubResource("Animation_kerx7"),
 &"Defend_up": SubResource("Animation_ycan8"),
-&"Defend_up_left": SubResource("Animation_18p67"),
 &"Distance": SubResource("Animation_6v66n"),
-&"Distance_left": SubResource("Animation_822fd"),
 &"Fall": SubResource("Animation_raebc"),
 &"Fall_defenseless": SubResource("Animation_uhvue"),
-&"Fall_defenseless_left": SubResource("Animation_yopst"),
-&"Fall_left": SubResource("Animation_vf4uv"),
 &"Hooked": SubResource("Animation_g5xhq"),
-&"Hooked_left": SubResource("Animation_hqm8t"),
 &"Hurt": SubResource("Animation_f6uug"),
 &"Hurt_defenseless": SubResource("Animation_y2dgj"),
-&"Hurt_defenseless_left": SubResource("Animation_b7gbp"),
-&"Hurt_left": SubResource("Animation_6tpy1"),
 &"Idle": SubResource("Animation_xjfad"),
-&"Idle_left": SubResource("Animation_5nu02"),
+&"Left_Approach": SubResource("Animation_8c3p6"),
+&"Left_Attack": SubResource("Animation_832my"),
+&"Left_Defend": SubResource("Animation_kerx7"),
+&"Left_Defend_up": SubResource("Animation_18p67"),
+&"Left_Distance": SubResource("Animation_822fd"),
+&"Left_Fall": SubResource("Animation_vf4uv"),
+&"Left_Fall_defenseless": SubResource("Animation_yopst"),
+&"Left_Hooked": SubResource("Animation_hqm8t"),
+&"Left_Hurt": SubResource("Animation_6tpy1"),
+&"Left_Hurt_defenseless": SubResource("Animation_b7gbp"),
+&"Left_Idle": SubResource("Animation_5nu02"),
+&"Left_Panic": SubResource("Animation_p2d8o"),
 &"Panic": SubResource("Animation_oycuv"),
-&"Panic_left": SubResource("Animation_p2d8o"),
 &"RESET": SubResource("Animation_pwykw")
 }
 
 [node name="Shieldhand" type="CharacterBody2D" unique_id=822517851 node_paths=PackedStringArray("attack_component", "animation_player", "health_component") groups=["attack_area"]]
 script = ExtResource("1_rwt1x")
-attack_component = NodePath("ShieldHandComponents/AttackComponent")
+attack_component = NodePath("ShieldHandComponents/AttackComponentShieldHand")
 animation_player = NodePath("AnimationPlayer")
 health_component = NodePath("ShieldHandComponents/HealthComponent")
 
@@ -516,6 +634,7 @@ metadata/_custom_type_script = "uid://ovh6s448roeh"
 
 [node name="ShieldHandDistance" type="Node" parent="StateMachine" unique_id=1454357856 node_paths=PackedStringArray("enemy", "shield")]
 script = ExtResource("5_dbifx")
+max_distance = 80.0
 enemy = NodePath("../..")
 shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://c54qfpjp5x4eo"
@@ -563,7 +682,6 @@ shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://p885b4p3mwh2"
 
 [node name="PlayerDetection" type="Node2D" parent="." unique_id=1335492953]
-visible = false
 
 [node name="DetectionArea" type="Area2D" parent="PlayerDetection" unique_id=1056264694]
 
@@ -581,16 +699,19 @@ shape = SubResource("CircleShape2D_aflev")
 shape = SubResource("CircleShape2D_18p67")
 
 [node name="ShieldHandComponents" type="Node2D" parent="." unique_id=589286055]
-visible = false
 
-[node name="AttackComponent" type="Area2D" parent="ShieldHandComponents" unique_id=859146720 groups=["attack_area"]]
+[node name="AttackComponentShieldHand" type="Area2D" parent="ShieldHandComponents" unique_id=859146720 groups=["attack_area"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/AttackComponent" unique_id=294086883]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/AttackComponentShieldHand" unique_id=294086883]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_6v66n")
 
-[node name="HealthComponent" type="Area2D" parent="ShieldHandComponents" unique_id=1878912540 groups=["bouncing_object"]]
+[node name="HealthComponent" type="Area2D" parent="ShieldHandComponents" unique_id=1878912540 node_paths=PackedStringArray("enemy", "sprite", "flash_timer", "shield") groups=["bouncing_object"]]
 script = ExtResource("13_dbifx")
+enemy = NodePath("../..")
+sprite = NodePath("../../Sprite2D")
+flash_timer = NodePath("FlashTimer")
+shield = NodePath("../ShieldHitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/HealthComponent" unique_id=1517413947]
 position = Vector2(0, -1)
@@ -609,6 +730,8 @@ position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_uhvue")
 
 [node name="ShieldHitbox" type="Area2D" parent="ShieldHandComponents" unique_id=1730290884 node_paths=PackedStringArray("enemy")]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("15_dbifx")
 enemy = NodePath("../..")
 
@@ -622,6 +745,7 @@ libraries/ = SubResource("AnimationLibrary_hqm8t")
 [connection signal="body_entered" from="PlayerDetection/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetection/DeactivationArea" to="." method="_on_deactivation_area_body_exited"]
 [connection signal="body_entered" from="PlayerDetection/AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetection/AttackActivationArea" to="." method="_on_attack_activation_area_body_exited"]
 [connection signal="timeout" from="ShieldHandComponents/HealthComponent/FlashTimer" to="ShieldHandComponents/HealthComponent" method="_on_flash_timer_timeout"]
 [connection signal="area_entered" from="ShieldHandComponents/ContactHitbox" to="ShieldHandComponents/ContactHitbox" method="_on_area_entered"]
 [connection signal="area_entered" from="ShieldHandComponents/ShieldHitbox" to="ShieldHandComponents/ShieldHitbox" method="_on_area_entered"]

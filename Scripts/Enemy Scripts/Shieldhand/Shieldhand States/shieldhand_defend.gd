@@ -10,15 +10,28 @@ var actionable: bool = false
 func enter():
 	enemy.velocity = enemy.health_component.knockback
 	shield.shield_available = false
+	actionable = false
+	
+	if enemy.last_shield_position.y == 0.0:
+		if enemy.last_shield_position.x == 1.0:
+			enemy.animation_player.play("Defend")
+		else:
+			enemy.animation_player.play("Left_Defend")
+	else:
+		if enemy.last_horizontal_direction == 1.0:
+			enemy.animation_player.play("Defend_up")
+		else:
+			enemy.animation_player.play("Left_Defend_up")
 
 
 func exit():
 	enemy.defended = false
 	shield.shield_available = true
+	actionable = false
 
 
 func update(_delta: float):
-	actionable = false
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):

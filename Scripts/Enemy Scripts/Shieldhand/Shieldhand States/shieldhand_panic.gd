@@ -10,7 +10,10 @@ var hover_timer: float = 0.0
 
 
 func enter():
-	pass
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Panic")
+	else:
+		enemy.animation_player.play("Left_Panic")
 
 
 func exit():

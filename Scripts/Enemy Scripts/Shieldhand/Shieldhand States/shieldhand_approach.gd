@@ -14,10 +14,10 @@ func enter():
 	original_direction = signf(enemy.player.global_position.x - enemy.global_position.x)
 	enemy.last_horizontal_direction = original_direction
 	
-	"""if enemy.last_horizontal_direction == 1.0:
-		enemy.animation_player.play("Chase")
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Approach")
 	else:
-		enemy.animation_player.play("Left_Chase")"""
+		enemy.animation_player.play("Left_Approach")
 	
 	evaluate_transitions()
 
@@ -27,9 +27,13 @@ func exit():
 
 
 func update(_delta: float):
+	if enemy.player == null:
+		evaluate_transitions()
+		return
+	
 	var distance_x = enemy.player.global_position.x - enemy.global_position.x
 	var distance_y = enemy.player.global_position.y - enemy.global_position.y
-	if distance_y.abs >= distance_x.abs and distance_y < 0.0:
+	if abs(distance_y) >= abs(distance_x) and distance_y < 0.0:
 		distance_to_player = Vector2(0, signf(distance_y))
 	else:
 		distance_to_player = Vector2(signf(distance_x), 0)
@@ -54,6 +58,8 @@ func change_shield_position(shield_direction):
 	shield.position = 16 * shield_direction
 	if shield_direction.y != 0:
 		shield.rotation = Vector2.UP.angle_to(shield_direction)
+	
+	enemy.last_shield_position = shield_direction
 
 
 func evaluate_transitions():

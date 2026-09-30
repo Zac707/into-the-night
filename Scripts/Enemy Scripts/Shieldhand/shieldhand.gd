@@ -14,6 +14,7 @@ extends CharacterBody2D
 
 var player: CharacterBody2D
 var last_horizontal_direction: float = -1.0
+var last_shield_position: Vector2 = Vector2(0, 0)
 var player_in_range: bool
 var hurt: bool = false
 var defended: bool = false

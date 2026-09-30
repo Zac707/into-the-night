@@ -20,6 +20,13 @@ var hover_timer: float = 0.0
 func enter():
 	original_direction = signf(enemy.player.global_position.x - enemy.global_position.x)
 	enemy.last_horizontal_direction = original_direction
+	
+	if enemy.last_horizontal_direction == 1.0:
+		enemy.animation_player.play("Distance")
+	else:
+		enemy.animation_player.play("Left_Distance")
+	
+	evaluate_transitions()
 
 
 func exit():
@@ -30,10 +37,10 @@ func exit():
 
 
 func update(_delta: float):
-	distance = enemy.distance_to(enemy.player)
+	distance = enemy.global_position.distance_to(enemy.player.global_position)
 	var distance_x = enemy.player.global_position.x - enemy.global_position.x
 	var distance_y = enemy.player.global_position.y - enemy.global_position.y
-	if distance_y.abs >= distance_x.abs and distance_y < 0.0:
+	if abs(distance_y) >= abs(distance_x) and distance_y < 0.0:
 		distance_to_player = Vector2(0, signf(distance_y))
 	else:
 		distance_to_player = Vector2(signf(distance_x), 0)
@@ -66,6 +73,8 @@ func change_shield_position(shield_direction):
 	shield.position = 16 * shield_direction
 	if shield_direction.y != 0:
 		shield.rotation = Vector2.UP.angle_to(shield_direction)
+	
+	enemy.last_shield_position = shield_direction
 
 
 func hover(delta: float):
@@ -83,7 +92,7 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "ShieldHandHurt")
 	elif enemy.defended == true:
 		transitioned_state.emit(self, "ShieldHandDefend")
-	elif enemy.velocity.x == 0 and enemy.is_on_floor():
+	elif enemy.velocity.x == 0 and enemy.is_on_floor() and enemy.player == null:
 		transitioned_state.emit(self, "ShieldHandIdle")
 	elif not enemy.is_on_floor():
 		transitioned_state.emit(self, "ShieldHandFall")

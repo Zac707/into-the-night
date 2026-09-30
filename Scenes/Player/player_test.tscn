@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://daqn3macfc6cg" path="res://Scripts/Player Scripts/camera.gd" id="15_67lvd"]
 [ext_resource type="Script" uid="uid://qadhtqk2ty8k" path="res://Scripts/Player Scripts/Player States/player_hurt.gd" id="15_sduab"]
 [ext_resource type="Script" uid="uid://c10i25wc10dfo" path="res://Scripts/Player Scripts/Player States/player_land.gd" id="17_1klfb"]
+[ext_resource type="Script" uid="uid://b28a0ol87dl2x" path="res://Scripts/Player Scripts/attack_component_player.gd" id="17_b64vw"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
 _data = [Vector2(0, 0), 0.0, 0.2987119, 0, 0, Vector2(0.4495413, 0.23595512), 0.6531833, 0.6531833, 0, 0, Vector2(0.7385322, 0.42696637), 0.8164792, 0.8164792, 0, 0, Vector2(0.8990826, 0.6966293), 2.8754272, 2.8754272, 0, 0, Vector2(1, 1), 3.0061288, 0.0, 0, 0]
@@ -110,6 +111,23 @@ tracks/1/keys = {
 "method": &"attack_finished"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_67lvd"]
 resource_name = "Aerial_Attack_Side"
@@ -140,6 +158,23 @@ tracks/1/keys = {
 "method": &"attack_finished"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_sduab"]
 resource_name = "Aerial_Attack_Up"
@@ -168,6 +203,23 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"attack_finished"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
 }]
 }
 
@@ -232,6 +284,23 @@ tracks/1/keys = {
 "method": &"attack_finished"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_1klfb"]
 resource_name = "Attack_Up"
@@ -260,6 +329,23 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"attack_finished"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
 }]
 }
 
@@ -466,6 +552,23 @@ tracks/1/keys = {
 "method": &"attack_finished"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rpqj3"]
 resource_name = "Left_Aerial_Attack_Side"
@@ -496,6 +599,23 @@ tracks/1/keys = {
 "method": &"attack_finished"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rtq0u"]
 resource_name = "Left_Aerial_Attack_Up"
@@ -524,6 +644,23 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"attack_finished"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
 }]
 }
 
@@ -588,6 +725,23 @@ tracks/1/keys = {
 "method": &"attack_finished"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_tj2xt"]
 resource_name = "Left_Attack_Up"
@@ -616,6 +770,23 @@ tracks/1/keys = {
 "values": [{
 "args": [],
 "method": &"attack_finished"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponentPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
+}, {
+"args": [],
+"method": &"on_attack_finished"
 }]
 }
 
@@ -920,8 +1091,8 @@ script = ExtResource("1_mnirw")
 jump_height = 35.0
 fling_decay_curve = SubResource("Curve_0asfq")
 gravity_on_wall = 100.0
-attack_component = NodePath("AttackComponent")
-health_component = NodePath("HealthComponent")
+attack_component = NodePath("AttackComponentPlayer")
+health_component = NodePath("HealthComponentPlayer")
 animation_player = NodePath("AnimationPlayer")
 wall_check_right = NodePath("WallcheckRight")
 wall_check_left = NodePath("WallcheckLeft")
@@ -989,21 +1160,26 @@ script = ExtResource("17_1klfb")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://c10i25wc10dfo"
 
-[node name="AttackComponent" type="Area2D" parent="." unique_id=1144845523]
+[node name="AttackComponentPlayer" type="Area2D" parent="." unique_id=1144845523 node_paths=PackedStringArray("hitbox") groups=["attack_area"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("17_b64vw")
+hitbox = NodePath("CollisionShape2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent" unique_id=1799505131]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponentPlayer" unique_id=1799505131]
 shape = SubResource("CapsuleShape2D_8dx66")
+disabled = true
 
-[node name="HealthComponent" type="Area2D" parent="." unique_id=388612483 node_paths=PackedStringArray("player", "sprite", "invulnerability_timer")]
+[node name="HealthComponentPlayer" type="Area2D" parent="." unique_id=388612483 node_paths=PackedStringArray("player", "sprite", "invulnerability_timer")]
 script = ExtResource("14_qki6r")
 player = NodePath("..")
 sprite = NodePath("../PlayerSprite")
 invulnerability_timer = NodePath("InvulnerabilityTimer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponent" unique_id=1197943029]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthComponentPlayer" unique_id=1197943029]
 shape = SubResource("CapsuleShape2D_qki6r")
 
-[node name="InvulnerabilityTimer" type="Timer" parent="HealthComponent" unique_id=1463742143]
+[node name="InvulnerabilityTimer" type="Timer" parent="HealthComponentPlayer" unique_id=1463742143]
 wait_time = 2.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1326958441]
@@ -1031,4 +1207,4 @@ metadata/_custom_type_script = "uid://daqn3macfc6cg"
 [connection signal="hook_sent" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hook_sent"]
 [connection signal="hooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_hooked"]
 [connection signal="unhooked" from="Pivot/Hook" to="StateMachine/PlayerHook" method="_on_hook_unhooked"]
-[connection signal="timeout" from="HealthComponent/InvulnerabilityTimer" to="HealthComponent" method="_on_invulnerability_timer_timeout"]
+[connection signal="timeout" from="HealthComponentPlayer/InvulnerabilityTimer" to="HealthComponentPlayer" method="_on_invulnerability_timer_timeout"]

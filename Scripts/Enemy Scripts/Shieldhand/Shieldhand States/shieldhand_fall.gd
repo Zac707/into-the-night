@@ -7,6 +7,17 @@ class_name ShieldHandFall
 func enter():
 	shield.shield_available = false
 	
+	if enemy.defenseless == false:
+		if enemy.last_horizontal_direction == 1.0:
+			enemy.animation_player.play("Fall")
+		else:
+			enemy.animation_player.play("Left_Fall")
+	else:
+		if enemy.last_horizontal_direction == 1.0:
+			enemy.animation_player.play("Fall_defenseless")
+		else:
+			enemy.animation_player.play("Left_Fall_defenseless")
+	
 	evaluate_transitions()
 
 
