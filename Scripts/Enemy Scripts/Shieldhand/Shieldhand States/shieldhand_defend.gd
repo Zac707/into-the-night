@@ -41,6 +41,8 @@ func physics_update(_delta: float):
 func evaluate_transitions():
 	if enemy.hurt == true:
 		transitioned_state.emit(self, "ShieldHandHurt")
+	elif enemy.hooked == true:
+		transitioned_state.emit(self, "ShieldHandHooked")
 	elif actionable == true and not enemy.is_on_floor():
 		transitioned_state.emit(self, "ShieldHandFall")
 	elif actionable == true and enemy.is_on_floor():

@@ -8,10 +8,16 @@ var actionable: bool = false
 
 
 func enter():
-	if enemy.last_horizontal_direction == 1.0:
-		enemy.animation_player.play("Hurt")
+	if enemy.defenseless == false:
+		if enemy.last_horizontal_direction == 1.0:
+			enemy.animation_player.play("Hurt")
+		else:
+			enemy.animation_player.play("Left_Hurt")
 	else:
-		enemy.animation_player.play("Left_Hurt")
+		if enemy.last_horizontal_direction == 1.0:
+			enemy.animation_player.play("Hurt_defenseless")
+		else:
+			enemy.animation_player.play("Left_Hurt_defenseless")
 	
 	enemy.velocity = enemy.health_component.knockback
 	enemy.velocity.y = -80

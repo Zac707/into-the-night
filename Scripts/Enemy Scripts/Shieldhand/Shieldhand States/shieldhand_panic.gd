@@ -14,6 +14,8 @@ func enter():
 		enemy.animation_player.play("Panic")
 	else:
 		enemy.animation_player.play("Left_Panic")
+	
+	evaluate_transitions()
 
 
 func exit():
@@ -21,7 +23,7 @@ func exit():
 
 
 func update(_delta: float):
-	pass
+	evaluate_transitions()
 
 
 func physics_update(_delta: float):

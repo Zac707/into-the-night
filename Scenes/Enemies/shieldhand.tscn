@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://cjh6qit754xyk" path="res://Scripts/Enemy Scripts/Shieldhand/shield_hitbox.gd" id="15_dbifx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kerx7"]
-size = Vector2(8, 16)
+size = Vector2(8, 15)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rwt1x"]
 shader = ExtResource("1_jhxj7")
@@ -32,7 +32,7 @@ radius = 78.10249
 radius = 129.00388
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18p67"]
-radius = 20.0
+radius = 12.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6v66n"]
 radius = 7.0
@@ -212,7 +212,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_g5xhq"]
 resource_name = "Hooked"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -224,6 +224,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [9, 10]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandHooked")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_f6uug"]
@@ -452,7 +466,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hqm8t"]
 resource_name = "Hooked_left"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -464,6 +478,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [26, 27]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandHooked")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6tpy1"]
@@ -614,6 +642,7 @@ animation_player = NodePath("AnimationPlayer")
 health_component = NodePath("ShieldHandComponents/HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1003191969]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_kerx7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926548217]
@@ -729,14 +758,13 @@ enemy = NodePath("../..")
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_uhvue")
 
-[node name="ShieldHitbox" type="Area2D" parent="ShieldHandComponents" unique_id=1730290884 node_paths=PackedStringArray("enemy")]
+[node name="ShieldHitbox" type="Area2D" parent="ShieldHandComponents" unique_id=1730290884 node_paths=PackedStringArray("enemy") groups=["bouncing_object", "hook_object"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("15_dbifx")
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/ShieldHitbox" unique_id=413356342]
-position = Vector2(6, -1)
 shape = SubResource("RectangleShape2D_dbifx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=97393492]

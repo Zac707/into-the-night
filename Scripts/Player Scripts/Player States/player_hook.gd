@@ -4,7 +4,7 @@ extends State
 class_name PlayerHook
 
 
-@export var hookshot: Hookshot
+@export var hookshot: PlayerHookshot
 
 var _is_hooked: bool = false
 var _hook_point: Vector2 = Vector2.ZERO

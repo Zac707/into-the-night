@@ -19,6 +19,7 @@ var player_in_range: bool
 var hurt: bool = false
 var defended: bool = false
 var defenseless: bool = false
+var hooked: bool = false
 
 
 func _physics_process(delta: float) -> void:

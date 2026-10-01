@@ -48,6 +48,7 @@ func update(_delta: float):
 	
 	time_until_approach -= _delta
 	
+	
 	evaluate_transitions()
 
 
@@ -70,9 +71,18 @@ func physics_update(_delta: float):
 
 
 func change_shield_position(shield_direction):
-	shield.position = 16 * shield_direction
-	if shield_direction.y != 0:
-		shield.rotation = Vector2.UP.angle_to(shield_direction)
+	shield.position = 6 * shield_direction
+	if shield_direction.y != 0.0:
+		shield.rotation = deg_to_rad(90)
+	else:
+		shield.rotation = deg_to_rad(0)
+	
+	if shield_direction.x == 1.0:
+		enemy.animation_player.play("Distance")
+		enemy.last_horizontal_direction = 1.0
+	elif shield_direction.x == -1.0:
+		enemy.animation_player.play("Left_Distance")
+		enemy.last_horizontal_direction = -1.0
 	
 	enemy.last_shield_position = shield_direction
 
@@ -92,6 +102,8 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "ShieldHandHurt")
 	elif enemy.defended == true:
 		transitioned_state.emit(self, "ShieldHandDefend")
+	elif enemy.hooked == true:
+		transitioned_state.emit(self, "ShieldHandHooked")
 	elif enemy.velocity.x == 0 and enemy.is_on_floor() and enemy.player == null:
 		transitioned_state.emit(self, "ShieldHandIdle")
 	elif not enemy.is_on_floor():

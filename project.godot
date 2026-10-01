@@ -37,6 +37,7 @@ hook_area=""
 Player=""
 bouncing_object=""
 attack_area=""
+hook_object=""
 
 [input]
 

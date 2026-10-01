@@ -1,4 +1,4 @@
-class_name Hookshot extends Sprite2D
+class_name PlayerHookshot extends Sprite2D
 
 @export var raycast: RayCast2D
 @export var pivot: Node2D
@@ -62,6 +62,8 @@ func check_collision():
 	if raycast.is_colliding() and _collision_found == false:
 		var collider = raycast.get_collider()
 		_collision_found = true
+		
+		# Colliding with a valiable area, the player pulls himself towards it
 		if collider.is_in_group("hook_area"):
 			var collision_point = raycast.get_collision_point()
 			distance = global_position.distance_to(collision_point)
@@ -69,7 +71,14 @@ func check_collision():
 				hooked.emit(collision_point)
 				print("hook-point found")
 				return distance
-		# Colliding, but not a valid hook target — treat as a miss.
+		elif collider.is_in_group("hook_object"):
+			var collision_point = raycast.get_collision_point()
+			distance = global_position.distance_to(collision_point)
+			if collider.has_method("on_hooked") and region_rect.size.y >= distance:
+				collider.on_hooked()
+				return distance
+		
+	# Colliding, but not a valid hook target — treat as a miss.
 	_collision_found = false
 	distance = max_distance
 	return distance

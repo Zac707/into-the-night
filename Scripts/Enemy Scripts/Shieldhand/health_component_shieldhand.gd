@@ -18,13 +18,9 @@ func _ready():
 
 
 func get_enemy_damage(attack : Attack):
-	print("DAMAGE called   frame=", Engine.get_physics_frames())
-	await get_tree().process_frame
-	print("DAMAGE resumed  frame=", Engine.get_physics_frames())
-	return
+	#await get_tree().process_frame
 	
-	var defended = shield.get_defense()
-	if defended == false:
+	if enemy.defended == false:
 		health -= attack.attack_damage
 		knockback = attack.knockback_force * attack.attack_direction
 		

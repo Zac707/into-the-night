@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://betmwkhlk23vr" path="res://Scenes/Enemies/shieldhand.tscn" id="11_4blnk"]
 [ext_resource type="PackedScene" uid="uid://cn8qusvp0tmi2" path="res://Scenes/Level Elements/parallax_background.tscn" id="11_bwjpn"]
 [ext_resource type="PackedScene" uid="uid://bpywgmqlvm3f0" path="res://Scenes/Level Elements/lican.tscn" id="11_ibmi3"]
+[ext_resource type="PackedScene" uid="uid://dyhcp7iky6fp3" path="res://Scenes/Level Elements/grapple_point.tscn" id="12_ibmi3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
 texture = ExtResource("3_sasra")
@@ -626,6 +627,9 @@ position = Vector2(-101, -38)
 
 [node name="Shieldhand" parent="." unique_id=822517851 instance=ExtResource("11_4blnk")]
 position = Vector2(-245, 16)
+
+[node name="GrapplePoint" parent="." unique_id=72392717 instance=ExtResource("12_ibmi3")]
+position = Vector2(-95, -12)
 
 [connection signal="body_entered" from="CameraManager/CameraBox1" to="CameraManager/CameraBox1" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox2" to="CameraManager/CameraBox2" method="_on_body_entered"]

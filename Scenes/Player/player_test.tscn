@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dw8iif45yptk" path="res://Scripts/Player Scripts/pivot.gd" id="3_wln50"]
 [ext_resource type="Script" uid="uid://ccirysva1gbnx" path="res://Scripts/Player Scripts/state_machine.gd" id="5_wln50"]
 [ext_resource type="Script" uid="uid://bqe1mfvswyh1g" path="res://Scripts/Player Scripts/Player States/player_idle.gd" id="6_lbtjm"]
+[ext_resource type="Script" uid="uid://k2f3htyy5mjv" path="res://Scripts/Player Scripts/hookshot.gd" id="6_vcnm1"]
 [ext_resource type="Script" uid="uid://b8k4gn6isjjby" path="res://Scripts/Player Scripts/Player States/player_attack.gd" id="7_0asfq"]
 [ext_resource type="Script" uid="uid://byobpe4i76onj" path="res://Scripts/Player Scripts/Player States/player_hook.gd" id="8_ve6vs"]
 [ext_resource type="Script" uid="uid://bqmaxubyurvv8" path="res://Scripts/Player Scripts/Player States/player_fall.gd" id="9_0asfq"]
@@ -92,7 +93,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [14, 15]
@@ -118,7 +119,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -139,7 +140,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [12, 13]
@@ -165,7 +166,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -186,7 +187,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [10, 11]
@@ -212,7 +213,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -265,7 +266,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [6, 7]
@@ -291,7 +292,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -312,7 +313,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [8, 9]
@@ -338,7 +339,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -533,7 +534,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [40, 41]
@@ -559,7 +560,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -580,7 +581,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [38, 39]
@@ -606,7 +607,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -627,7 +628,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [36, 37]
@@ -653,7 +654,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -706,7 +707,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [32, 33]
@@ -732,7 +733,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -753,7 +754,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0, 0.06666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [34, 35]
@@ -779,7 +780,7 @@ tracks/2/path = NodePath("AttackComponentPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.3),
+"times": PackedFloat32Array(0.06666667, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -1111,6 +1112,7 @@ shape = SubResource("RectangleShape2D_e0b2u")
 script = ExtResource("3_wln50")
 
 [node name="Hook" parent="Pivot" unique_id=1247980810 node_paths=PackedStringArray("pivot") instance=ExtResource("3_psp7o")]
+script = ExtResource("6_vcnm1")
 pivot = NodePath("..")
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=1686728303 node_paths=PackedStringArray("initial_state")]

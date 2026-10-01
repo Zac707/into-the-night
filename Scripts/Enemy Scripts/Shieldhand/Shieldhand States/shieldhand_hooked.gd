@@ -5,13 +5,13 @@ class_name ShieldHandHooked
 
 
 func enter():
-	enemy.defenseless = true
-	#shield.queue_free()
-	
 	if enemy.last_horizontal_direction == 1.0:
 		enemy.animation_player.play("Hooked")
 	else:
 		enemy.animation_player.play("Left_Hooked")
+	
+	#shield.queue_free()
+	enemy.velocity.x == enemy.last_horizontal_direction * -500
 	
 	evaluate_transitions()
 
@@ -33,6 +33,8 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "ShieldHandHurt")
 	elif enemy.defenseless == true and enemy.is_on_floor():
 		transitioned_state.emit(self, "ShieldHandPanic")
+	elif enemy.defenseless == true:
+		transitioned_state.emit(self, "ShieldHandFall")
 
 
 func on_animation_finished():
