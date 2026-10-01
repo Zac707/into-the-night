@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dljg6tbp8p5f7"]
 
-[ext_resource type="Texture2D" uid="uid://dkd73lkuueca8" path="res://Assets/health_point-Sheet.png" id="1_hmjl1"]
+[ext_resource type="Texture2D" uid="uid://dkd73lkuueca8" path="res://Assets/Enemies/Player/health_point-Sheet.png" id="1_hmjl1"]
 [ext_resource type="Script" uid="uid://b8dvp1hpuxr55" path="res://Scripts/Player Scripts/health_point.gd" id="1_vv1ah"]
 
 [sub_resource type="Animation" id="Animation_vv1ah"]

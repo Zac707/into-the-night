@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dsqi36gxomcbu"]
 
 [ext_resource type="Script" uid="uid://c255upj1u78vm" path="res://Scripts/lican_score.gd" id="1_pwfgg"]
-[ext_resource type="Texture2D" uid="uid://bjg78j5dldshg" path="res://Assets/collectable.png" id="2_ihspk"]
-[ext_resource type="FontFile" uid="uid://bqwuooijs7kkr" path="res://Assets/alagard.ttf" id="3_ihspk"]
+[ext_resource type="Texture2D" uid="uid://bjg78j5dldshg" path="res://Assets/Outdated/collectable.png" id="2_ihspk"]
+[ext_resource type="FontFile" uid="uid://bqwuooijs7kkr" path="res://Assets/Fonts/alagard.ttf" id="3_ihspk"]
 
 [node name="LicanScore" type="Control" unique_id=665192234 node_paths=PackedStringArray("score_label")]
 custom_minimum_size = Vector2(45, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfldlm40dpxij"
-path="res://.godot/imported/Question_mark-Sheet.png-2b24a8f86e25f2266e4faf7baa82dd9f.ctex"
+uid="uid://dma5pb3b6x1oj"
+path="res://.godot/imported/sweat-Sheet.png-c5a6296be8f4db62a41d88a56440dba0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Question_mark-Sheet.png"
-dest_files=["res://.godot/imported/Question_mark-Sheet.png-2b24a8f86e25f2266e4faf7baa82dd9f.ctex"]
+source_file="res://Assets/Enemies/sweat-Sheet.png"
+dest_files=["res://.godot/imported/sweat-Sheet.png-c5a6296be8f4db62a41d88a56440dba0.ctex"]
 
 [params]
 

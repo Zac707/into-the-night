@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjg78j5dldshg"
-path="res://.godot/imported/collectable.png-c679ff5075fb4179eb11fc95033101ef.ctex"
+uid="uid://d0dmf5ngl82ed"
+path="res://.godot/imported/Grapple_point.png-88613343d1fa4ffbae2cdf46710ffbbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/collectable.png"
-dest_files=["res://.godot/imported/collectable.png-c679ff5075fb4179eb11fc95033101ef.ctex"]
+source_file="res://Assets/Outdated/Grapple_point.png"
+dest_files=["res://.godot/imported/Grapple_point.png-88613343d1fa4ffbae2cdf46710ffbbe.ctex"]
 
 [params]
 

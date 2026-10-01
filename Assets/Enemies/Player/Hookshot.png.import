@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xkaskc1rqmau"
-path="res://.godot/imported/Swordhead-Sheet.png-f5baf0211f17e6208bb1182240fc085d.ctex"
+uid="uid://8b010d4pia50"
+path="res://.godot/imported/Hookshot.png-2558d5920e86e14ac349b18fe02d692c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Swordhead-Sheet.png"
-dest_files=["res://.godot/imported/Swordhead-Sheet.png-f5baf0211f17e6208bb1182240fc085d.ctex"]
+source_file="res://Assets/Enemies/Player/Hookshot.png"
+dest_files=["res://.godot/imported/Hookshot.png-2558d5920e86e14ac349b18fe02d692c.ctex"]
 
 [params]
 

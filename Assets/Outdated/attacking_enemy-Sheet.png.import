@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0dmf5ngl82ed"
-path="res://.godot/imported/Grapple_point.png-bca23938de7c375a878ecbe4efb7b0e6.ctex"
+uid="uid://ckalbj81hia0o"
+path="res://.godot/imported/attacking_enemy-Sheet.png-ffa50f625d4e0fafe8ff60325cec14e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level Elements/Grapple_point.png"
-dest_files=["res://.godot/imported/Grapple_point.png-bca23938de7c375a878ecbe4efb7b0e6.ctex"]
+source_file="res://Assets/Outdated/attacking_enemy-Sheet.png"
+dest_files=["res://.godot/imported/attacking_enemy-Sheet.png-ffa50f625d4e0fafe8ff60325cec14e5.ctex"]
 
 [params]
 

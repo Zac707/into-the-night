@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://sc6b4p6w7hh8"
-path="res://.godot/imported/CoralPixels-Regular.ttf-bde552f89dc3bf439b198149dfb7eb17.fontdata"
+path="res://.godot/imported/CoralPixels-Regular.ttf-df1df1460d8c3121c4d3f6a10fb8721f.fontdata"
 
 [deps]
 
-source_file="res://Assets/CoralPixels-Regular.ttf"
-dest_files=["res://.godot/imported/CoralPixels-Regular.ttf-bde552f89dc3bf439b198149dfb7eb17.fontdata"]
+source_file="res://Assets/Fonts/CoralPixels-Regular.ttf"
+dest_files=["res://.godot/imported/CoralPixels-Regular.ttf-df1df1460d8c3121c4d3f6a10fb8721f.fontdata"]
 
 [params]
 

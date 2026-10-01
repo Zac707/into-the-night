@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkd73lkuueca8"
-path="res://.godot/imported/health_point-Sheet.png-e374b3eac122598ae93a4445fc847637.ctex"
+uid="uid://cyc421a266er"
+path="res://.godot/imported/attacking_enemy_new-Sheet.png-7ed42cbb18bf5463b736ab2780d9b24f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/health_point-Sheet.png"
-dest_files=["res://.godot/imported/health_point-Sheet.png-e374b3eac122598ae93a4445fc847637.ctex"]
+source_file="res://Assets/Enemies/attacking_enemy_new-Sheet.png"
+dest_files=["res://.godot/imported/attacking_enemy_new-Sheet.png-7ed42cbb18bf5463b736ab2780d9b24f.ctex"]
 
 [params]
 

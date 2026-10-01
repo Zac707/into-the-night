@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sbtyh76jebh4"
-path="res://.godot/imported/defending_enemy_2-Sheet.png-f3b0dbd750956048565aaa62549ba500.ctex"
+uid="uid://e7mjwon4by0j"
+path="res://.godot/imported/Main_Char-Sheet.png-581b6472e4435594b8861e8127d6e4e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/defending_enemy_2-Sheet.png"
-dest_files=["res://.godot/imported/defending_enemy_2-Sheet.png-f3b0dbd750956048565aaa62549ba500.ctex"]
+source_file="res://Assets/Outdated/Main_Char-Sheet.png"
+dest_files=["res://.godot/imported/Main_Char-Sheet.png-581b6472e4435594b8861e8127d6e4e5.ctex"]
 
 [params]
 

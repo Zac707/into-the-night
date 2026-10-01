@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8b010d4pia50"
-path="res://.godot/imported/Hookshot.png-fa06ddba461150a4aa4b615b8735053a.ctex"
+uid="uid://camq16ifbcen7"
+path="res://.godot/imported/char_idle.png-9e2789a454b7daeea75b9918055c7cbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Hookshot.png"
-dest_files=["res://.godot/imported/Hookshot.png-fa06ddba461150a4aa4b615b8735053a.ctex"]
+source_file="res://Assets/Outdated/char_idle.png"
+dest_files=["res://.godot/imported/char_idle.png-9e2789a454b7daeea75b9918055c7cbd.ctex"]
 
 [params]
 

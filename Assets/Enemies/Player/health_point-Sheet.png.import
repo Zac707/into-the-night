@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://camq16ifbcen7"
-path="res://.godot/imported/char_idle.png-e715101eb0fc293dc51f5fa88e79ab75.ctex"
+uid="uid://dkd73lkuueca8"
+path="res://.godot/imported/health_point-Sheet.png-073fb73b3f5ad791bd2765aae0bf28c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/char_idle.png"
-dest_files=["res://.godot/imported/char_idle.png-e715101eb0fc293dc51f5fa88e79ab75.ctex"]
+source_file="res://Assets/Enemies/Player/health_point-Sheet.png"
+dest_files=["res://.godot/imported/health_point-Sheet.png-073fb73b3f5ad791bd2765aae0bf28c3.ctex"]
 
 [params]
 

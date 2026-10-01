@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://uj5pru8gaaa1" path="res://Scripts/no_invincibility_hurt.gdshader" id="1_jhxj7"]
 [ext_resource type="Script" uid="uid://boipiepi0a2cx" path="res://Scripts/Enemy Scripts/Shieldhand/shieldhand.gd" id="1_rwt1x"]
 [ext_resource type="Script" uid="uid://qh7bvixrromk" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_approach.gd" id="2_jhxj7"]
-[ext_resource type="Texture2D" uid="uid://sbtyh76jebh4" path="res://Assets/defending_enemy_2-Sheet.png" id="3_g5xhq"]
+[ext_resource type="Texture2D" uid="uid://sbtyh76jebh4" path="res://Assets/Enemies/defending_enemy_2-Sheet.png" id="3_g5xhq"]
 [ext_resource type="Script" uid="uid://botryfuvtacsa" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_attack.gd" id="3_rwt1x"]
 [ext_resource type="Script" uid="uid://ek1mmqrlvugc" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_defend.gd" id="4_g5d33"]
 [ext_resource type="Script" uid="uid://buv4tjews183l" path="res://Scripts/Enemy Scripts/Shieldhand/state_machine_shieldhand.gd" id="4_g5xhq"]
