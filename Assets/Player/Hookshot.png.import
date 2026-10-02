@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cckv1caebjxmp"
-path="res://.godot/imported/Main_Char_both_sides-Sheet.png-48e1a2835bea7ce7553770ef129e83bb.ctex"
+uid="uid://8b010d4pia50"
+path="res://.godot/imported/Hookshot.png-a5b4016d6fdb921adad3bdd8a69579c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Enemies/Player/Main_Char_both_sides-Sheet.png"
-dest_files=["res://.godot/imported/Main_Char_both_sides-Sheet.png-48e1a2835bea7ce7553770ef129e83bb.ctex"]
+source_file="res://Assets/Player/Hookshot.png"
+dest_files=["res://.godot/imported/Hookshot.png-a5b4016d6fdb921adad3bdd8a69579c5.ctex"]
 
 [params]
 

@@ -9,6 +9,7 @@ func _enter_tree() -> void:
 	if camera_manager.camera_setting == boundary_order:
 		GlobalEventManager.change_tilemaps_bounds(get_tile_bounds())
 
+
 func get_tile_bounds() -> Array[Vector2]:
 	var children = get_children() 
 	if children.is_empty():

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dw0p11nvbd1vu"]
 
-[ext_resource type="Texture2D" uid="uid://8b010d4pia50" path="res://Assets/Enemies/Player/Hookshot.png" id="1_hvcca"]
+[ext_resource type="Texture2D" uid="uid://8b010d4pia50" path="res://Assets/Player/Hookshot.png" id="1_hvcca"]
 [ext_resource type="Script" uid="uid://dth7omvynp36l" path="res://Scripts/Player Scripts/hookshot_old.gd" id="2_aowe4"]
 
 [node name="Hook" type="Sprite2D" unique_id=1247980810 node_paths=PackedStringArray("raycast")]

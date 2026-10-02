@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="11_glkpo"]
 [ext_resource type="Script" uid="uid://cck5dvq7doje4" path="res://Scripts/Enemy Scripts/Shieldhand/Shieldhand States/shieldhand_fall.gd" id="12_g5d33"]
 [ext_resource type="Script" uid="uid://c5qqvhhtln0oq" path="res://Scripts/Enemy Scripts/Shieldhand/health_component_shieldhand.gd" id="13_dbifx"]
+[ext_resource type="Script" uid="uid://b28a0ol87dl2x" path="res://Scripts/attack_component_activation.gd" id="14_aflev"]
 [ext_resource type="Script" uid="uid://cjh6qit754xyk" path="res://Scripts/Enemy Scripts/Shieldhand/shield_hitbox.gd" id="15_dbifx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kerx7"]
@@ -68,7 +69,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_grslr"]
 resource_name = "Attack"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,11 +89,28 @@ tracks/1/path = NodePath("StateMachine/ShieldHandAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.25, 0.5),
+"times": PackedFloat32Array(0.25, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"start_attack"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldHandComponents/AttackComponentShieldHand")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
 }, {
 "args": [],
 "method": &"on_attack_finished"
@@ -322,7 +340,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_832my"]
 resource_name = "Attack_left"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -342,11 +360,28 @@ tracks/1/path = NodePath("StateMachine/ShieldHandAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.25, 0.5),
+"times": PackedFloat32Array(0.25, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"start_attack"
+}, {
+"args": [],
+"method": &"on_attack_finished"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldHandComponents/AttackComponentShieldHand")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"on_attack_started"
 }, {
 "args": [],
 "method": &"on_attack_finished"
@@ -730,6 +765,7 @@ shape = SubResource("CircleShape2D_18p67")
 [node name="ShieldHandComponents" type="Node2D" parent="." unique_id=589286055]
 
 [node name="AttackComponentShieldHand" type="Area2D" parent="ShieldHandComponents" unique_id=859146720 groups=["attack_area"]]
+script = ExtResource("14_aflev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/AttackComponentShieldHand" unique_id=294086883]
 rotation = 1.5707964
@@ -769,6 +805,9 @@ shape = SubResource("RectangleShape2D_dbifx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=97393492]
 libraries/ = SubResource("AnimationLibrary_hqm8t")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1619265871]
+scale = Vector2(5, 5)
 
 [connection signal="body_entered" from="PlayerDetection/DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetection/DeactivationArea" to="." method="_on_deactivation_area_body_exited"]

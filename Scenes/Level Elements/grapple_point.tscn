@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dyhcp7iky6fp3"]
 
-[ext_resource type="Texture2D" uid="uid://0m3yeirdah6l" path="res://Assets/Level Elements/Grapple_point.png" id="1_45ero"]
+[ext_resource type="Texture2D" uid="uid://da20ga1jhfy4c" path="res://Assets/Level Elements/grapple_point_unloaded.png" id="1_l16t8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1i3s"]
-size = Vector2(12, 16)
+size = Vector2(14, 14)
 
 [node name="GrapplePoint" type="Node2D" unique_id=72392717]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=536127428]
-texture = ExtResource("1_45ero")
+texture = ExtResource("1_l16t8")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1029179555 groups=["bouncing_object", "hook_area"]]
 collision_layer = 3
