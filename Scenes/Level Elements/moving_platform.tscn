@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://40reoxnv1b7e"]
+
+[ext_resource type="Script" uid="uid://40h48uw03lv3" path="res://Scripts/moving_platform.gd" id="1_c52qt"]
+[ext_resource type="Script" uid="uid://d3nbgs34utw0a" path="res://Scripts/moving_platform_path.gd" id="1_haj8b"]
+[ext_resource type="Texture2D" uid="uid://c2mhhpc8uiicf" path="res://Assets/Level Elements/moving_platform_corner2.png" id="2_haj8b"]
+[ext_resource type="Texture2D" uid="uid://bnxwumu65yu50" path="res://Assets/Level Elements/moving_platform_center.png" id="3_lejg3"]
+[ext_resource type="Texture2D" uid="uid://d3xsxh0qgra6g" path="res://Assets/Level Elements/moving_platform_corner.png" id="4_j6rmo"]
+
+[sub_resource type="Curve2D" id="Curve2D_2g3sq"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eubb2"]
+resource_local_to_scene = true
+size = Vector2(48, 16)
+
+[node name="Path2D" type="Path2D" unique_id=1585895216 node_paths=PackedStringArray("follow")]
+curve = SubResource("Curve2D_2g3sq")
+script = ExtResource("1_haj8b")
+follow = NodePath("PathFollow2D")
+
+[node name="MovingPlatform" type="AnimatableBody2D" parent="." unique_id=87624033 node_paths=PackedStringArray("col")]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_c52qt")
+left_tex = ExtResource("2_haj8b")
+mid_tex = ExtResource("3_lejg3")
+right_tex = ExtResource("4_j6rmo")
+col = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatform" unique_id=1765432523]
+shape = SubResource("RectangleShape2D_eubb2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=22599057]
+rotates = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D" unique_id=703021425]
+remote_path = NodePath("../../MovingPlatform")
