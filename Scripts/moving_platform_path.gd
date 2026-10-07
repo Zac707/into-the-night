@@ -2,7 +2,7 @@
 extends Path2D
 
 
-@export var speed := 50.0  # px/s, equals 8 px per 0.1 s
+@export var speed := 50.0  
 @export var follow: PathFollow2D 
 
 var _dist := 0.0

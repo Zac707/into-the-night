@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://c6nl1miln2rti"]
+
+[ext_resource type="Script" uid="uid://bgd0euao4xg8l" path="res://Scripts/Enemy Scripts/Imp/imp.gd" id="1_2ausw"]
+[ext_resource type="Texture2D" uid="uid://v7cdx2epxfol" path="res://Assets/Enemies/gargoyle_walking-Sheet.png" id="1_4ovcb"]
+[ext_resource type="Shader" uid="uid://uj5pru8gaaa1" path="res://Scripts/no_invincibility_hurt.gdshader" id="2_g2m3t"]
+[ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="2_wsvxx"]
+[ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="3_ob1e4"]
+[ext_resource type="Script" uid="uid://b21n56p3tafjr" path="res://Scripts/Enemy Scripts/Imp/state_machine_imp.gd" id="4_g2m3t"]
+[ext_resource type="Script" uid="uid://bhallyd2ooaul" path="res://Scripts/Enemy Scripts/Imp/Imp States/imp_walk.gd" id="4_tvflk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ausw"]
+size = Vector2(20, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ra5dd"]
+shader = ExtResource("2_g2m3t")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2m3t"]
+radius = 5.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvflk"]
+radius = 5.0
+height = 24.727278
+
+[sub_resource type="Animation" id="Animation_2ausw"]
+resource_name = "Left_Walk"
+length = 0.66667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_g2m3t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tvflk"]
+resource_name = "Walk"
+length = 0.66667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ra5dd"]
+_data = {
+&"Left_Walk": SubResource("Animation_2ausw"),
+&"RESET": SubResource("Animation_g2m3t"),
+&"Walk": SubResource("Animation_tvflk")
+}
+
+[node name="Imp" type="CharacterBody2D" unique_id=1331458036 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_2ausw")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1265308741]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_2ausw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1297776093]
+material = SubResource("ShaderMaterial_ra5dd")
+texture = ExtResource("1_4ovcb")
+hframes = 4
+vframes = 2
+
+[node name="StateMachine" type="Node2D" parent="." unique_id=196471949 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_g2m3t")
+initial_state = NodePath("ImpWalk")
+
+[node name="ImpWalk" type="Node" parent="StateMachine" unique_id=1018867565 node_paths=PackedStringArray("raycast_ground_left", "raycast_ground_right", "raycast_wall_left", "raycast_wall_right", "enemy")]
+script = ExtResource("4_tvflk")
+raycast_ground_left = NodePath("../../ImpComponents/RayCastGroundLeft")
+raycast_ground_right = NodePath("../../ImpComponents/RayCastGroundRight")
+raycast_wall_left = NodePath("../../ImpComponents/RayCastWallRight")
+raycast_wall_right = NodePath("../../ImpComponents/RayCastWallLeft")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://bhallyd2ooaul"
+
+[node name="ImpComponents" type="Node2D" parent="." unique_id=2106829386]
+
+[node name="HealthComponent" type="Area2D" parent="ImpComponents" unique_id=1387330881 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
+script = ExtResource("2_wsvxx")
+enemy = NodePath("../..")
+sprite = NodePath("../../Sprite2D")
+flash_timer = NodePath("FlashTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ImpComponents/HealthComponent" unique_id=177619057]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_g2m3t")
+
+[node name="FlashTimer" type="Timer" parent="ImpComponents/HealthComponent" unique_id=290416610]
+wait_time = 0.2
+one_shot = true
+
+[node name="ContactHitbox" type="Area2D" parent="ImpComponents" unique_id=657059817 node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_ob1e4")
+enemy = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ImpComponents/ContactHitbox" unique_id=1290657883]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tvflk")
+
+[node name="RayCastGroundLeft" type="RayCast2D" parent="ImpComponents" unique_id=2009576548]
+position = Vector2(-13, 0)
+target_position = Vector2(0, 9)
+
+[node name="RayCastGroundRight" type="RayCast2D" parent="ImpComponents" unique_id=232972378]
+position = Vector2(13, 0)
+target_position = Vector2(0, 9)
+
+[node name="RayCastWallRight" type="RayCast2D" parent="ImpComponents" unique_id=1487417848]
+position = Vector2(5, 0)
+rotation = -1.5707964
+target_position = Vector2(0, 9)
+
+[node name="RayCastWallLeft" type="RayCast2D" parent="ImpComponents" unique_id=1882109967]
+position = Vector2(-5, 0)
+rotation = 1.5707964
+target_position = Vector2(0, 9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1377837900]
+libraries/ = SubResource("AnimationLibrary_ra5dd")
+
+[connection signal="timeout" from="ImpComponents/HealthComponent/FlashTimer" to="ImpComponents/HealthComponent" method="_on_flash_timer_timeout"]
+[connection signal="area_entered" from="ImpComponents/ContactHitbox" to="ImpComponents/ContactHitbox" method="_on_area_entered"]

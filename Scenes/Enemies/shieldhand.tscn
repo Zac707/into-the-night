@@ -764,12 +764,14 @@ shape = SubResource("CircleShape2D_18p67")
 
 [node name="ShieldHandComponents" type="Node2D" parent="." unique_id=589286055]
 
-[node name="AttackComponentShieldHand" type="Area2D" parent="ShieldHandComponents" unique_id=859146720 groups=["attack_area"]]
+[node name="AttackComponentShieldHand" type="Area2D" parent="ShieldHandComponents" unique_id=859146720 node_paths=PackedStringArray("hitbox") groups=["attack_area"]]
 script = ExtResource("14_aflev")
+hitbox = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/AttackComponentShieldHand" unique_id=294086883]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_6v66n")
+disabled = true
 
 [node name="HealthComponent" type="Area2D" parent="ShieldHandComponents" unique_id=1878912540 node_paths=PackedStringArray("enemy", "sprite", "flash_timer", "shield") groups=["bouncing_object"]]
 script = ExtResource("13_dbifx")

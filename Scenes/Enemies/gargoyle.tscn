@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://d2kdd8hejxmjd"]
+
+[ext_resource type="Shader" uid="uid://uj5pru8gaaa1" path="res://Scripts/no_invincibility_hurt.gdshader" id="1_4icga"]
+[ext_resource type="Texture2D" uid="uid://bjennvcwyd6ix" path="res://Assets/Enemies/gargoyle_flying-Sheet.png" id="2_056dp"]
+[ext_resource type="Script" uid="uid://xkg4oi1a4yxt" path="res://Scripts/Enemy Scripts/Gargoyle/state_machine_gargoyle.gd" id="3_dpoyj"]
+[ext_resource type="Script" uid="uid://d0mupy73nblgr" path="res://Scripts/Enemy Scripts/Gargoyle/Gargoyle States/gargoyle_fly.gd" id="4_hwibw"]
+[ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="5_gjdg8"]
+[ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="6_nqf2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmy3a"]
+size = Vector2(23, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r282k"]
+shader = ExtResource("1_4icga")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0qmf"]
+radius = 4.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8qy5e"]
+radius = 4.0
+height = 24.727278
+
+[node name="Gargoyle" type="CharacterBody2D" unique_id=443049143]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2092623650]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_vmy3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1517386055]
+material = SubResource("ShaderMaterial_r282k")
+texture = ExtResource("2_056dp")
+hframes = 3
+vframes = 2
+
+[node name="StateMachine" type="Node2D" parent="." unique_id=2053814006]
+script = ExtResource("3_dpoyj")
+
+[node name="GargoyleFly" type="Node" parent="StateMachine" unique_id=1341998863]
+script = ExtResource("4_hwibw")
+metadata/_custom_type_script = "uid://d0mupy73nblgr"
+
+[node name="GargoyleComponents" type="Node2D" parent="." unique_id=1361002416]
+
+[node name="HealthComponent" type="Area2D" parent="GargoyleComponents" unique_id=237154818 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
+script = ExtResource("5_gjdg8")
+enemy = NodePath("../..")
+sprite = NodePath("../../Sprite2D")
+flash_timer = NodePath("FlashTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GargoyleComponents/HealthComponent" unique_id=506265675]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_o0qmf")
+
+[node name="FlashTimer" type="Timer" parent="GargoyleComponents/HealthComponent" unique_id=1226338631]
+wait_time = 0.2
+one_shot = true
+
+[node name="ContactHitbox" type="Area2D" parent="GargoyleComponents" unique_id=1264306887 node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_nqf2s")
+enemy = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GargoyleComponents/ContactHitbox" unique_id=1657859565]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8qy5e")
+
+[connection signal="timeout" from="GargoyleComponents/HealthComponent/FlashTimer" to="GargoyleComponents/HealthComponent" method="_on_flash_timer_timeout"]
+[connection signal="area_entered" from="GargoyleComponents/ContactHitbox" to="GargoyleComponents/ContactHitbox" method="_on_area_entered"]
