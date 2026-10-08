@@ -102,8 +102,8 @@ initial_state = NodePath("ImpWalk")
 script = ExtResource("4_tvflk")
 raycast_ground_left = NodePath("../../ImpComponents/RayCastGroundLeft")
 raycast_ground_right = NodePath("../../ImpComponents/RayCastGroundRight")
-raycast_wall_left = NodePath("../../ImpComponents/RayCastWallRight")
-raycast_wall_right = NodePath("../../ImpComponents/RayCastWallLeft")
+raycast_wall_left = NodePath("../../ImpComponents/RayCastWallLeft")
+raycast_wall_right = NodePath("../../ImpComponents/RayCastWallRight")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://bhallyd2ooaul"
 
@@ -124,9 +124,8 @@ shape = SubResource("CapsuleShape2D_g2m3t")
 wait_time = 0.2
 one_shot = true
 
-[node name="ContactHitbox" type="Area2D" parent="ImpComponents" unique_id=657059817 node_paths=PackedStringArray("enemy")]
+[node name="ContactHitbox" type="Area2D" parent="ImpComponents" unique_id=657059817]
 script = ExtResource("3_ob1e4")
-enemy = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ImpComponents/ContactHitbox" unique_id=1290657883]
 position = Vector2(0, 3)

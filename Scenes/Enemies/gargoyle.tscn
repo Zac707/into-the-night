@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://d2kdd8hejxmjd"]
 
 [ext_resource type="Shader" uid="uid://uj5pru8gaaa1" path="res://Scripts/no_invincibility_hurt.gdshader" id="1_4icga"]
+[ext_resource type="Script" uid="uid://bde1r6u1o5s67" path="res://Scripts/Enemy Scripts/Gargoyle/gargoyle_path.gd" id="1_056dp"]
 [ext_resource type="Texture2D" uid="uid://bjennvcwyd6ix" path="res://Assets/Enemies/gargoyle_flying-Sheet.png" id="2_056dp"]
+[ext_resource type="Script" uid="uid://djdnqyd4ogog1" path="res://Scripts/Enemy Scripts/Gargoyle/gargoyle.gd" id="2_dpoyj"]
 [ext_resource type="Script" uid="uid://xkg4oi1a4yxt" path="res://Scripts/Enemy Scripts/Gargoyle/state_machine_gargoyle.gd" id="3_dpoyj"]
 [ext_resource type="Script" uid="uid://d0mupy73nblgr" path="res://Scripts/Enemy Scripts/Gargoyle/Gargoyle States/gargoyle_fly.gd" id="4_hwibw"]
 [ext_resource type="Script" uid="uid://d018e1b2h6cc" path="res://Scripts/Enemy Scripts/health_component_enemy.gd" id="5_gjdg8"]
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="6_nqf2s"]
+
+[sub_resource type="Curve2D" id="Curve2D_dpoyj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmy3a"]
 size = Vector2(23, 4)
@@ -23,50 +31,126 @@ height = 24.0
 radius = 4.0
 height = 24.727278
 
-[node name="Gargoyle" type="CharacterBody2D" unique_id=443049143]
+[sub_resource type="Animation" id="Animation_hwibw"]
+resource_name = "Fly"
+length = 0.46666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2092623650]
+[sub_resource type="Animation" id="Animation_dpoyj"]
+resource_name = "Left_Fly"
+length = 0.46666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_gjdg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqf2s"]
+_data = {
+&"Fly": SubResource("Animation_hwibw"),
+&"Left_Fly": SubResource("Animation_dpoyj"),
+&"RESET": SubResource("Animation_gjdg8")
+}
+
+[node name="Path2D" type="Path2D" unique_id=1846214029 node_paths=PackedStringArray("follow")]
+curve = SubResource("Curve2D_dpoyj")
+script = ExtResource("1_056dp")
+follow = NodePath("PathFollow2D")
+
+[node name="Gargoyle" type="CharacterBody2D" parent="." unique_id=443049143 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("2_dpoyj")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gargoyle" unique_id=2092623650]
 position = Vector2(0.5, -2)
 shape = SubResource("RectangleShape2D_vmy3a")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1517386055]
+[node name="Sprite2D" type="Sprite2D" parent="Gargoyle" unique_id=1517386055]
 material = SubResource("ShaderMaterial_r282k")
 texture = ExtResource("2_056dp")
 hframes = 3
 vframes = 2
 
-[node name="StateMachine" type="Node2D" parent="." unique_id=2053814006]
+[node name="StateMachine" type="Node2D" parent="Gargoyle" unique_id=2053814006 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_dpoyj")
+initial_state = NodePath("GargoyleFly")
 
-[node name="GargoyleFly" type="Node" parent="StateMachine" unique_id=1341998863]
+[node name="GargoyleFly" type="Node" parent="Gargoyle/StateMachine" unique_id=1341998863 node_paths=PackedStringArray("path", "enemy")]
 script = ExtResource("4_hwibw")
+path = NodePath("../../..")
+enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://d0mupy73nblgr"
 
-[node name="GargoyleComponents" type="Node2D" parent="." unique_id=1361002416]
+[node name="GargoyleComponents" type="Node2D" parent="Gargoyle" unique_id=1361002416]
 
-[node name="HealthComponent" type="Area2D" parent="GargoyleComponents" unique_id=237154818 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
+[node name="HealthComponent" type="Area2D" parent="Gargoyle/GargoyleComponents" unique_id=237154818 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
 script = ExtResource("5_gjdg8")
 enemy = NodePath("../..")
 sprite = NodePath("../../Sprite2D")
 flash_timer = NodePath("FlashTimer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GargoyleComponents/HealthComponent" unique_id=506265675]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gargoyle/GargoyleComponents/HealthComponent" unique_id=506265675]
 position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_o0qmf")
 
-[node name="FlashTimer" type="Timer" parent="GargoyleComponents/HealthComponent" unique_id=1226338631]
+[node name="FlashTimer" type="Timer" parent="Gargoyle/GargoyleComponents/HealthComponent" unique_id=1226338631]
 wait_time = 0.2
 one_shot = true
 
-[node name="ContactHitbox" type="Area2D" parent="GargoyleComponents" unique_id=1264306887 node_paths=PackedStringArray("enemy")]
+[node name="ContactHitbox" type="Area2D" parent="Gargoyle/GargoyleComponents" unique_id=1264306887]
 script = ExtResource("6_nqf2s")
-enemy = NodePath("")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GargoyleComponents/ContactHitbox" unique_id=1657859565]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gargoyle/GargoyleComponents/ContactHitbox" unique_id=1657859565]
 position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8qy5e")
 
-[connection signal="timeout" from="GargoyleComponents/HealthComponent/FlashTimer" to="GargoyleComponents/HealthComponent" method="_on_flash_timer_timeout"]
-[connection signal="area_entered" from="GargoyleComponents/ContactHitbox" to="GargoyleComponents/ContactHitbox" method="_on_area_entered"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gargoyle" unique_id=1905790164]
+libraries/ = SubResource("AnimationLibrary_nqf2s")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=22834405]
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D" unique_id=1179533072]
+remote_path = NodePath("../../Gargoyle")
+
+[connection signal="timeout" from="Gargoyle/GargoyleComponents/HealthComponent/FlashTimer" to="Gargoyle/GargoyleComponents/HealthComponent" method="_on_flash_timer_timeout"]
+[connection signal="area_entered" from="Gargoyle/GargoyleComponents/ContactHitbox" to="Gargoyle/GargoyleComponents/ContactHitbox" method="_on_area_entered"]

@@ -35,11 +35,11 @@ func update(_delta: float):
 		current_direction = -1.0
 		enemy.animation_player.play("Walk")
 	elif raycast_wall_right.is_colliding():
-		current_direction = 1.0
-		enemy.animation_player.play("Left_Walk")
-	elif raycast_wall_left.is_colliding():
 		current_direction = -1.0
 		enemy.animation_player.play("Walk")
+	elif raycast_wall_left.is_colliding():
+		current_direction = 1.0
+		enemy.animation_player.play("Left_Walk")
 	
 	enemy.last_horizontal_direction = current_direction
 	
