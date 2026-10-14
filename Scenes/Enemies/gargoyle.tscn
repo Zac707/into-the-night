@@ -133,8 +133,9 @@ shape = SubResource("CapsuleShape2D_o0qmf")
 wait_time = 0.2
 one_shot = true
 
-[node name="ContactHitbox" type="Area2D" parent="Gargoyle/GargoyleComponents" unique_id=1264306887]
+[node name="ContactHitbox" type="Area2D" parent="Gargoyle/GargoyleComponents" unique_id=1264306887 node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_nqf2s")
+enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gargoyle/GargoyleComponents/ContactHitbox" unique_id=1657859565]
 position = Vector2(0, -1)

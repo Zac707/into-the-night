@@ -13,7 +13,7 @@ var current_direction: float
 
 
 func enter():
-	if enemy.last_horizontal_direction == 1.0:
+	if enemy.last_horizontal_direction == -1.0:
 		enemy.animation_player.play("Left_Walk")
 	else:
 		enemy.animation_player.play("Walk")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://p4ql0qbapufk" path="res://Scripts/Enemy Scripts/Swordhead/swordhead.gd" id="1_ghaa6"]
 [ext_resource type="Script" uid="uid://do6c7nnosa6hf" path="res://Scripts/Enemy Scripts/Swordhead/state_machine_swordhead.gd" id="2_afpow"]
 [ext_resource type="Shader" uid="uid://uj5pru8gaaa1" path="res://Scripts/no_invincibility_hurt.gdshader" id="2_qk5qr"]
-[ext_resource type="Texture2D" uid="uid://cyc421a266er" path="res://Assets/Enemies/attacking_enemy_new-Sheet.png" id="3_qk5qr"]
+[ext_resource type="Texture2D" uid="uid://c5wjajn8ymefo" path="res://Assets/Enemies/attacking_enemy_2_size_adjusted-Sheet.png" id="3_6d4w0"]
 [ext_resource type="Script" uid="uid://ce0a6dwpwrb2l" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_idle.gd" id="4_1dp5w"]
 [ext_resource type="Script" uid="uid://dg1adjvfgqlf2" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_confused.gd" id="4_8uf12"]
 [ext_resource type="Script" uid="uid://4d2e3otwpsww" path="res://Scripts/Enemy Scripts/Swordhead/Swordhead States/swordhead_chase.gd" id="5_auwsv"]
@@ -374,7 +374,7 @@ health_component = NodePath("SwordHeadComponents/HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=352463735]
 material = SubResource("ShaderMaterial_ta2yt")
-texture = ExtResource("3_qk5qr")
+texture = ExtResource("3_6d4w0")
 hframes = 14
 vframes = 2
 

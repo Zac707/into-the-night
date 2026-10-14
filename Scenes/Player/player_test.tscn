@@ -218,6 +218,18 @@ tracks/2/keys = {
 "method": &"on_attack_finished"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -15), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_e0rbb"]
 resource_name = "Aerial_Hook_Throw"
@@ -297,6 +309,30 @@ tracks/2/keys = {
 "method": &"on_attack_finished"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(15, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 0.6), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_1klfb"]
 resource_name = "Attack_Up"
@@ -343,6 +379,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"on_attack_finished"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -15), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oy2dr"]
@@ -565,6 +613,18 @@ tracks/2/keys = {
 "method": &"on_attack_finished"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 15), Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_rpqj3"]
 resource_name = "Left_Aerial_Attack_Side"
@@ -612,6 +672,30 @@ tracks/2/keys = {
 "method": &"on_attack_finished"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-15, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 0.6), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_rtq0u"]
 resource_name = "Left_Aerial_Attack_Up"
@@ -658,6 +742,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"on_attack_finished"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -15), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_xq865"]
@@ -738,6 +834,30 @@ tracks/2/keys = {
 "method": &"on_attack_finished"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(-15, 0), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 0.6), Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_tj2xt"]
 resource_name = "Left_Attack_Up"
@@ -784,6 +904,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"on_attack_finished"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -15), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ffx63"]

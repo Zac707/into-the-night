@@ -12,7 +12,7 @@ var dir: Vector2
 
 
 func enter():
-	if enemy.last_horizontal_direction == 1.0:
+	if enemy.last_horizontal_direction == -1.0:
 		enemy.animation_player.play("Left_Fly")
 	else:
 		enemy.animation_player.play("Fly")
@@ -29,8 +29,12 @@ func exit():
 func update(_delta: float):
 	if dir.x > 0.0:
 		enemy.animation_player.play("Fly")
+		current_direction = 1.0
 	elif dir.x < 0.0:
 		enemy.animation_player.play("Left_Fly")
+		current_direction = -1.0
+	
+	enemy.last_horizontal_direction = current_direction
 	
 	evaluate_transitions()
 

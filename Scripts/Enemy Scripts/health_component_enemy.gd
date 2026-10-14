@@ -1,7 +1,7 @@
 extends Area2D
 
 
-@export var max_health:= 2.0
+@export var max_health:= 1.0
 @export var enemy: CharacterBody2D
 @export var sprite: Sprite2D
 @export var flash_timer: Timer
