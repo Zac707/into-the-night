@@ -71,7 +71,7 @@ func physics_update(_delta: float):
 
 
 func change_shield_position(shield_direction):
-	shield.position = 6 * shield_direction
+	shield.position = 10 * shield_direction
 	if shield_direction.y != 0.0:
 		shield.rotation = deg_to_rad(90)
 	else:

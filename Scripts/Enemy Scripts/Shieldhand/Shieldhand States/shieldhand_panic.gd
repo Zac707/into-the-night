@@ -15,11 +15,13 @@ func enter():
 	else:
 		enemy.animation_player.play("Left_Panic")
 	
+	enemy.animation_player.play("sweat")
+	
 	evaluate_transitions()
 
 
 func exit():
-	pass
+	enemy.animation_player.play("emoticons_disabled")
 
 
 func update(_delta: float):

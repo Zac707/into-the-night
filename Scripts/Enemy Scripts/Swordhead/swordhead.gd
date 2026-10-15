@@ -17,6 +17,10 @@ var player_in_range: bool
 var hurt: bool = false
 
 
+func _ready() -> void:
+	animation_player.play("emoticons_disabled")
+
+
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 
@@ -24,6 +28,7 @@ func _physics_process(delta: float) -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = body
+		animation_player.play("exclamation_point")
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
