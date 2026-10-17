@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://4gqc6533bnxl" path="res://Scripts/Enemy Scripts/contact_hitbox.gd" id="6_nqf2s"]
 
 [sub_resource type="Curve2D" id="Curve2D_dpoyj"]
+resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0)
 }
@@ -19,6 +20,7 @@ point_count = 1
 size = Vector2(23, 4)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r282k"]
+resource_local_to_scene = true
 shader = ExtResource("1_4icga")
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -87,7 +89,7 @@ _data = {
 &"RESET": SubResource("Animation_gjdg8")
 }
 
-[node name="Path2D" type="Path2D" unique_id=1846214029 node_paths=PackedStringArray("follow")]
+[node name="GargoylePath" type="Path2D" unique_id=1846214029 node_paths=PackedStringArray("follow")]
 curve = SubResource("Curve2D_dpoyj")
 script = ExtResource("1_056dp")
 follow = NodePath("PathFollow2D")
