@@ -26,6 +26,8 @@ extends CharacterBody2D
 @export var animation_player: AnimationPlayer
 @export var wall_check_right: RayCast2D
 @export var wall_check_left: RayCast2D
+@export var hurtbox: CollisionShape2D
+@export var sprite: Sprite2D
 
 var _horizontal: float = 0.0
 var last_direction_angle: int
@@ -39,5 +41,14 @@ var hurt: bool = false
 
 signal new_direction
 
+
+func _ready() -> void:
+	print("READY ", self.position, " ", hurtbox.position, " ", sprite.position)
+
+
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+
+
+func respawn():
+	self.global_position = RespawnManager.respawn_position

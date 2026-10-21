@@ -15,10 +15,11 @@ func enter():
 	_jump()
 	
 	evaluate_transitions()
+	print(player.position, " ", player.hurtbox.position, " ", player.sprite.position)
 
 
 func exit():
-	pass
+	print(player.position, " ", player.hurtbox.position, " ", player.sprite.position)
 
 
 func update(_delta: float):

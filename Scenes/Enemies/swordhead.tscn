@@ -588,7 +588,6 @@ enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://cslkvmx6gbemy"
 
 [node name="PlayerDetection" type="Node2D" parent="." unique_id=396496352]
-visible = false
 
 [node name="DetectionArea" type="Area2D" parent="PlayerDetection" unique_id=1875406738]
 
@@ -603,7 +602,6 @@ shape = SubResource("CircleShape2D_haro7")
 [node name="SwordHeadComponents" type="Node2D" parent="." unique_id=1945292846]
 
 [node name="AttackComponent" type="Area2D" parent="SwordHeadComponents" unique_id=824397792 groups=["attack_area"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHeadComponents/AttackComponent" unique_id=1683346055]
 shape = SubResource("CapsuleShape2D_m4x7e")
@@ -624,7 +622,6 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ContactHitbox" type="Area2D" parent="SwordHeadComponents" unique_id=1140390453 node_paths=PackedStringArray("enemy")]
-visible = false
 script = ExtResource("11_haro7")
 enemy = NodePath("../..")
 
@@ -649,7 +646,6 @@ hframes = 5
 libraries/ = SubResource("AnimationLibrary_hgeoe")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1284337801]
-visible = false
 scale = Vector2(5, 5)
 
 [connection signal="body_entered" from="PlayerDetection/DetectionArea" to="." method="_on_detection_area_body_entered"]
