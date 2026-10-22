@@ -5,6 +5,8 @@ extends Node
 var maximum_health: int = 3
 var current_health: int
 var collected_licans: int
+var collected_stars: int
 
 signal health_changed
 signal lican_collected
+signal star_collected

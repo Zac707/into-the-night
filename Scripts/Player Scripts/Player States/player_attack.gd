@@ -4,7 +4,7 @@ extends State
 class_name PlayerAttack
 
 
-@export var effect_duration: float = 0.0667
+@export var effect_duration: float = 0.2
 
 var attack_sprite: = preload("res://Assets/Player/swordslash_small.png")
 var attack_sprite_big: = preload("res://Assets/Player/swordslash_big.png")
@@ -13,6 +13,7 @@ var attack_effect_dict: Dictionary = {"Attack_Side": [attack_sprite, Vector2(15,
 "Left_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(-1.0, 1.0)], "Aerial_Attack_Side": [attack_sprite, Vector2(15, 0), Vector2(1.0, 1.0)], "Left_Aerial_Attack_Side": [attack_sprite, Vector2(-15, 0), Vector2(-1.0, 1.0)], 
 "Aerial_Attack_Down": [attack_sprite_big, Vector2(0, 15), Vector2(1.0, -1.0)], "Aerial_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(1.0, 1.0)],"Left_Aerial_Attack_Down": [attack_sprite_big, Vector2(0, 15), Vector2(-1.0, -1.0)], 
 "Left_Aerial_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(-1.0, 1.0)]}
+var effect_allowed: bool = false
 
 var directional_input: Vector2
 var bounce_executed: bool = false
@@ -63,19 +64,24 @@ func exit():
 	is_airborne = false
 	attacked_areas.clear()
 	chosen_effect = []
+	effect_allowed = false
 
 
 func update(_delta: float):
 	for area in player.attack_component.get_overlapping_areas():
 		if area.has_method("get_enemy_damage") and not attacked_areas.has(area):
+			effect_allowed = true
 			var attack = Attack.new()
 			attack.attack_damage = 1
 			attack.attack_direction = directional_input
 			attack.knockback_force = 30
 			area.get_enemy_damage(attack)
 			attacked_areas.append(area)
+			
 		if area.is_in_group("bouncing_object") and directional_input == Vector2(0, 1) and not player.is_on_floor():
+			effect_allowed = true
 			_bounce()
+			
 	
 	evaluate_transitions()
 
@@ -102,8 +108,10 @@ func _bounce():
 
 
 func spawn_effect():
-	var pos: Vector2 = chosen_effect[1] + player.global_position
-	AnimationManager.place_effects(chosen_effect[0], pos, chosen_effect[2], effect_duration)
+	if effect_allowed:
+		print ("spawning effect")
+		var pos: Vector2 = chosen_effect[1] + player.global_position
+		AnimationManager.place_effects(chosen_effect[0], pos, chosen_effect[2], effect_duration)
 
 
 func evaluate_transitions():

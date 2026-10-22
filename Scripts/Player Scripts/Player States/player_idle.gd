@@ -11,7 +11,6 @@ func enter():
 		player.animation_player.play("Left_Idle")
 	
 	evaluate_transitions()
-	print("state READY ", player.position, " ", player.hurtbox.position, " ", player.sprite.position)
 
 
 func exit():
