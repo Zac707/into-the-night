@@ -31,7 +31,7 @@ shader_parameter/flash_frequency = 0.6
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0b2u"]
-size = Vector2(5, 14)
+size = Vector2(5, 16)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8dx66"]
 radius = 9.0
@@ -1306,7 +1306,6 @@ vframes = 4
 frame = 6
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=23757872]
-position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_e0b2u")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1664435445]
