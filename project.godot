@@ -26,8 +26,8 @@ PlayerGlobals="*uid://c3rkl8d1rbya"
 
 [display]
 
-window/size/viewport_width=400
-window/size/viewport_height=225
+window/size/viewport_width=480
+window/size/viewport_height=270
 window/size/mode=3
 window/stretch/mode="viewport"
 

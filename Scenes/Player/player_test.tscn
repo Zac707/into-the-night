@@ -1201,7 +1201,11 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component", "animation_player", "wall_check_right", "wall_check_left") groups=["Player"]]
 script = ExtResource("1_mnirw")
+jump_height = 35.0
+jump_time_to_peak = 0.35
+jump_time_to_descent = 0.25
 fling_decay_curve = SubResource("Curve_0asfq")
+gravity_on_wall = 100.0
 attack_component = NodePath("PlayerComponents/AttackComponentPlayer")
 health_component = NodePath("PlayerComponents/HealthComponentPlayer")
 animation_player = NodePath("AnimationPlayer")
@@ -1299,7 +1303,6 @@ sprite = NodePath("../../PlayerSprite")
 invulnerability_timer = NodePath("InvulnerabilityTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerComponents/HealthComponentPlayer" unique_id=1197943029]
-position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_qki6r")
 
 [node name="InvulnerabilityTimer" type="Timer" parent="PlayerComponents/HealthComponentPlayer" unique_id=1463742143]

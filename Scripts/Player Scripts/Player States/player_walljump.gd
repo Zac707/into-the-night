@@ -54,6 +54,6 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "PlayerIdle")
 	elif player.is_on_wall_only() and time_until_transition >= 0.15:
 		transitioned_state.emit(self, "PlayerWallcling")
-	elif time_until_transition >= 0.15:
+	elif time_until_transition >= 0.2:
 		# Apex reached — hand off to PlayerFall which uses normal fall_gravity
 		transitioned_state.emit(self, "PlayerFall")
