@@ -23,7 +23,6 @@ config/icon="res://icon.svg"
 PlayerMovement="*uid://iwldiwnu4cmt"
 GlobalEventManager="*uid://duhorp4vs2qs3"
 PlayerGlobals="*uid://c3rkl8d1rbya"
-AnimationManager="*uid://1beowqpq5xom"
 
 [display]
 

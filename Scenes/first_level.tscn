@@ -862,7 +862,7 @@ tile_set = SubResource("TileSet_dloay")
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=1712444491 instance=ExtResource("6_ffwbm")]
-position = Vector2(968, 136)
+position = Vector2(976, 64)
 
 [node name="CanvasLayerBackground" type="CanvasLayer" parent="." unique_id=530308445]
 layer = -1
