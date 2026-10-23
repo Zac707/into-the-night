@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cn8qusvp0tmi2" path="res://Scenes/Level Elements/parallax_background.tscn" id="11_bwjpn"]
 [ext_resource type="PackedScene" uid="uid://bpywgmqlvm3f0" path="res://Scenes/Level Elements/lican.tscn" id="11_ibmi3"]
 [ext_resource type="PackedScene" uid="uid://c6nl1miln2rti" path="res://Scenes/Enemies/imp.tscn" id="11_tnimv"]
-[ext_resource type="Script" uid="uid://hsvc43sf0ked" path="res://Scripts/killbox.gd" id="12_4blnk"]
+[ext_resource type="Script" path="res://Scripts/killbox.gd" id="12_4blnk"]
 [ext_resource type="PackedScene" uid="uid://dyhcp7iky6fp3" path="res://Scenes/Level Elements/grapple_point.tscn" id="12_ibmi3"]
-[ext_resource type="Script" uid="uid://dh0ss2478cckn" path="res://Scripts/respawn_point.gd" id="13_tnimv"]
+[ext_resource type="Script" path="res://Scripts/respawn_point.gd" id="13_tnimv"]
 [ext_resource type="PackedScene" uid="uid://ch6kx6u3wylj2" path="res://Scenes/Level Elements/vase.tscn" id="14_tnimv"]
 [ext_resource type="PackedScene" uid="uid://by03lv4rsdh0p" path="res://Scenes/Level Elements/star.tscn" id="15_4qg1e"]
 [ext_resource type="PackedScene" uid="uid://bd4n38raood3" path="res://Scenes/Enemies/swordhead.tscn" id="16_040rt"]
@@ -647,15 +647,13 @@ position = Vector2(-172, 67)
 script = ExtResource("12_4blnk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnManager/Killbox" unique_id=1526432388]
-position = Vector2(47, -1)
 shape = SubResource("RectangleShape2D_4qg1e")
 
 [node name="Killbox2" type="Area2D" parent="RespawnManager" unique_id=2019255223]
-position = Vector2(-171, 90)
+position = Vector2(-248, 67)
 script = ExtResource("12_4blnk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnManager/Killbox2" unique_id=2056336127]
-position = Vector2(-34, -2)
 shape = SubResource("RectangleShape2D_4qg1e")
 
 [node name="RespawnPoint" type="Area2D" parent="RespawnManager" unique_id=800904672]
@@ -663,7 +661,6 @@ position = Vector2(-145, 14)
 script = ExtResource("13_tnimv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnManager/RespawnPoint" unique_id=1869887783]
-position = Vector2(68, 74)
 shape = SubResource("RectangleShape2D_dhrl2")
 
 [node name="RespawnPoint2" type="Area2D" parent="RespawnManager" unique_id=586925745]
@@ -671,7 +668,6 @@ position = Vector2(-195, 14)
 script = ExtResource("13_tnimv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnManager/RespawnPoint2" unique_id=1472703342]
-position = Vector2(-50, 71)
 shape = SubResource("RectangleShape2D_dhrl2")
 
 [node name="Vase" parent="." unique_id=1750708654 instance=ExtResource("14_tnimv")]
