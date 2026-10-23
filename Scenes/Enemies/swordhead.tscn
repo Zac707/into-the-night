@@ -21,7 +21,7 @@ shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_287tu"]
-size = Vector2(10, 23)
+size = Vector2(10, 22.25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_po0sg"]
 radius = 113.35784
@@ -36,7 +36,7 @@ radius = 13.0
 size = Vector2(12, 25)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56vhr"]
-radius = 7.0523496
+radius = 4.9890075
 height = 33.395763
 
 [sub_resource type="Animation" id="Animation_vt4ob"]
@@ -511,10 +511,10 @@ tracks/1/path = NodePath("SwordHeadEmoticons/QuestionMark:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hgeoe"]
@@ -538,6 +538,7 @@ _data = {
 }
 
 [node name="Swordhead" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component", "animation_player", "health_component")]
+position = Vector2(0, -8)
 script = ExtResource("1_ghaa6")
 attack_component = NodePath("SwordHeadComponents/AttackComponent")
 animation_player = NodePath("AnimationPlayer")
@@ -550,7 +551,7 @@ hframes = 14
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=470450003]
-position = Vector2(-1, 4.5)
+position = Vector2(-1, 4.875)
 shape = SubResource("RectangleShape2D_287tu")
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=1252143428 node_paths=PackedStringArray("initial_state")]

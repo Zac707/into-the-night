@@ -842,6 +842,7 @@ _data = {
 }
 
 [node name="Shieldhand" type="CharacterBody2D" unique_id=822517851 node_paths=PackedStringArray("attack_component", "animation_player", "health_component") groups=["attack_area"]]
+position = Vector2(0, -8)
 script = ExtResource("1_rwt1x")
 attack_component = NodePath("ShieldHandComponents/AttackComponentShieldHand")
 animation_player = NodePath("AnimationPlayer")
@@ -978,7 +979,6 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_dbifx")
 
 [node name="ShieldHandEmoticons" type="Node2D" parent="." unique_id=9210290]
-visible = false
 position = Vector2(0, -16)
 
 [node name="ExclamationPoint" type="Sprite2D" parent="ShieldHandEmoticons" unique_id=78308330]

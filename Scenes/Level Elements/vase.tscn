@@ -12,6 +12,7 @@ radius = 5.0
 height = 16.0
 
 [node name="Vase" type="RigidBody2D" unique_id=1750708654]
+position = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2040335030]
 shape = SubResource("RectangleShape2D_dkl8g")
