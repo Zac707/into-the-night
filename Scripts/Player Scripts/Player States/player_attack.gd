@@ -4,7 +4,7 @@ extends State
 class_name PlayerAttack
 
 
-@export var effect_duration: float = 0.2333
+@export var effect_duration: float = 0.0667
 
 var attack_sprite: = preload("res://Assets/Player/swordslash_small.png")
 var attack_sprite_big: = preload("res://Assets/Player/swordslash_big.png")
