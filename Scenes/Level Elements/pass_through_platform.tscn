@@ -6,7 +6,6 @@
 size = Vector2(8, 3)
 
 [node name="PassThroughPlatform" type="StaticBody2D" unique_id=994019278]
-position = Vector2(0, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1876799296]
 position = Vector2(0, 0.5)

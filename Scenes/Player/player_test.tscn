@@ -1303,7 +1303,7 @@ material = SubResource("ShaderMaterial_1klfb")
 texture = ExtResource("3_qki6r")
 hframes = 26
 vframes = 4
-frame = 6
+frame = 34
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=23757872]
 position = Vector2(0, 1)

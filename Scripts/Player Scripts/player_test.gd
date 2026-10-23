@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var walljump_gravity: float = ((-2.0 * walljump_height) / (walljump_time_to_peak * walljump_time_to_peak)) * -1.0
 
 @export var move_speed: float = 120
-@export var max_move_speed: float = 300
+@export var max_move_speed: float = 280
 @export var jump_height: float = 35
 @export var jump_time_to_peak: float = 0.3
 @export var jump_time_to_descent: float = 0.18
@@ -15,7 +15,7 @@ extends CharacterBody2D
 @export var friction: float = 30.0     
 @export var hook_spring_strength: float = 50.0
 @export var hook_damping: float = 0.05
-@export var fling_decay_duration: float = 1.5
+@export var fling_decay_duration: float = 1.0
 @export var fling_decay_curve: Curve
 @export var fling_friction: float = 5.0
 @export var gravity_on_wall: float = 100

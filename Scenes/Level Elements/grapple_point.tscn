@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://da20ga1jhfy4c" path="res://Assets/Level Elements/grapple_point_unloaded.png" id="1_l16t8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1i3s"]
-size = Vector2(13, 14)
+size = Vector2(14, 14)
 
 [node name="GrapplePoint" type="Node2D" unique_id=72392717]
 
