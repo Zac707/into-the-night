@@ -17,7 +17,7 @@ point_count = 1
 resource_local_to_scene = true
 size = Vector2(48, 16)
 
-[node name="Path2D" type="Path2D" unique_id=1585895216 node_paths=PackedStringArray("follow")]
+[node name="PlatformPath" type="Path2D" unique_id=1585895216 node_paths=PackedStringArray("follow")]
 curve = SubResource("Curve2D_2g3sq")
 script = ExtResource("1_haj8b")
 follow = NodePath("PathFollow2D")
