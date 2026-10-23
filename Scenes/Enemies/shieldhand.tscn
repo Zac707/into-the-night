@@ -917,6 +917,7 @@ shield = NodePath("../../ShieldHandComponents/ShieldHitbox")
 metadata/_custom_type_script = "uid://p885b4p3mwh2"
 
 [node name="PlayerDetection" type="Node2D" parent="." unique_id=1335492953]
+visible = false
 
 [node name="DetectionArea" type="Area2D" parent="PlayerDetection" unique_id=1056264694]
 
@@ -993,6 +994,7 @@ hframes = 3
 libraries/ = SubResource("AnimationLibrary_hqm8t")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1619265871]
+visible = false
 scale = Vector2(5, 5)
 
 [connection signal="body_entered" from="PlayerDetection/DetectionArea" to="." method="_on_detection_area_body_entered"]

@@ -24,7 +24,6 @@ PlayerMovement="*uid://iwldiwnu4cmt"
 GlobalEventManager="*uid://duhorp4vs2qs3"
 PlayerGlobals="*uid://c3rkl8d1rbya"
 AnimationManager="*uid://1beowqpq5xom"
-RespawnManager="*uid://d18jxfdtmipvn"
 
 [display]
 
@@ -95,4 +94,3 @@ attack={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-2d/snap/snap_2d_transforms_to_pixel=true

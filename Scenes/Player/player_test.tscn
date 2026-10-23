@@ -1200,6 +1200,57 @@ tracks/0/keys = {
 "values": [45]
 }
 
+[sub_resource type="Animation" id="Animation_aeet5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_d8csw"]
 resource_name = "Run"
 length = 0.6
@@ -1269,11 +1320,12 @@ _data = {
 &"Left_Land": SubResource("Animation_ax1f4"),
 &"Left_Run": SubResource("Animation_4f5ph"),
 &"Left_Wall_Cling": SubResource("Animation_sfs3u"),
+&"RESET": SubResource("Animation_aeet5"),
 &"Run": SubResource("Animation_d8csw"),
 &"Wall_Cling": SubResource("Animation_sdx7n")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component", "animation_player", "wall_check_right", "wall_check_left", "hurtbox", "sprite") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=399473781 node_paths=PackedStringArray("attack_component", "health_component", "animation_player", "wall_check_right", "wall_check_left") groups=["Player"]]
 script = ExtResource("1_mnirw")
 fling_decay_curve = SubResource("Curve_0asfq")
 attack_component = NodePath("PlayerComponents/AttackComponentPlayer")
@@ -1281,15 +1333,12 @@ health_component = NodePath("PlayerComponents/HealthComponentPlayer")
 animation_player = NodePath("AnimationPlayer")
 wall_check_right = NodePath("WallcheckRight")
 wall_check_left = NodePath("WallcheckLeft")
-hurtbox = NodePath("PlayerCollision")
-sprite = NodePath("PlayerSprite")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=152419327]
 material = SubResource("ShaderMaterial_1klfb")
 texture = ExtResource("3_qki6r")
 hframes = 26
 vframes = 4
-frame = 14
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=23757872]
 position = Vector2(0, 1)

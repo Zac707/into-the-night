@@ -11,7 +11,6 @@ func enter():
 		player.animation_player.play("Left_Idle")
 	
 	evaluate_transitions()
-	print("state READY ", player.position, " ", player.hurtbox.position, " ", player.sprite.position)
 
 
 func exit():
@@ -25,7 +24,7 @@ func update(_delta: float):
 
 
 func physics_update(_delta: float):
-	PlayerMovement.apply_gravity(player, _delta)
+	pass
 
 
 func evaluate_transitions():
