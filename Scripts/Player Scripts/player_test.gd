@@ -42,6 +42,10 @@ var hurt: bool = false
 signal new_direction
 
 
+func _ready() -> void:
+	print("READY ", self.position, " ", hurtbox.position, " ", sprite.position)
+
+
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 

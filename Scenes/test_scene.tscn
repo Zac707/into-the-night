@@ -13,8 +13,6 @@
 [ext_resource type="Script" uid="uid://hsvc43sf0ked" path="res://Scripts/killbox.gd" id="12_4blnk"]
 [ext_resource type="PackedScene" uid="uid://dyhcp7iky6fp3" path="res://Scenes/Level Elements/grapple_point.tscn" id="12_ibmi3"]
 [ext_resource type="Script" uid="uid://dh0ss2478cckn" path="res://Scripts/respawn_point.gd" id="13_tnimv"]
-[ext_resource type="PackedScene" uid="uid://ch6kx6u3wylj2" path="res://Scenes/Level Elements/vase.tscn" id="14_tnimv"]
-[ext_resource type="PackedScene" uid="uid://by03lv4rsdh0p" path="res://Scenes/Level Elements/star.tscn" id="15_4qg1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
 texture = ExtResource("3_sasra")
@@ -669,12 +667,6 @@ script = ExtResource("13_tnimv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RespawnManager/RespawnPoint2" unique_id=1472703342]
 shape = SubResource("RectangleShape2D_dhrl2")
-
-[node name="Vase" parent="." unique_id=1750708654 instance=ExtResource("14_tnimv")]
-position = Vector2(-44, 12)
-
-[node name="Star" parent="." unique_id=1122452316 instance=ExtResource("15_4qg1e")]
-position = Vector2(-73, -4)
 
 [connection signal="body_entered" from="CameraManager/CameraBox1" to="CameraManager/CameraBox1" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox2" to="CameraManager/CameraBox2" method="_on_body_entered"]

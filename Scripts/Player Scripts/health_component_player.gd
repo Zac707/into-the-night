@@ -30,12 +30,6 @@ func get_player_damage(attack : Attack):
 			player.queue_free()
 
 
-func heal_player(heal_amount):
-	if PlayerGlobals.current_health < PlayerGlobals.maximum_health:
-		PlayerGlobals.current_health += heal_amount
-		PlayerGlobals.health_changed.emit(PlayerGlobals.current_health)
-
-
 func _on_invulnerability_timer_timeout() -> void:
 	invulnerable = false
 	mat.set_shader_parameter("flash_active", false)
