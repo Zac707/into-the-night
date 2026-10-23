@@ -4,6 +4,16 @@ extends State
 class_name PlayerAttack
 
 
+@export var effect_duration: float = 0.2333
+
+var attack_sprite: = preload("res://Assets/Player/swordslash_small.png")
+var attack_sprite_big: = preload("res://Assets/Player/swordslash_big.png")
+var chosen_effect: Array
+var attack_effect_dict: Dictionary = {"Attack_Side": [attack_sprite, Vector2(15, 0), Vector2(1.0, 1.0)], "Left_Attack_Side": [attack_sprite, Vector2(-15, 0), Vector2(-1.0, 1.0)], "Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(1.0, 1.0)], 
+"Left_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(-1.0, 1.0)], "Aerial_Attack_Side": [attack_sprite, Vector2(15, 0), Vector2(1.0, 1.0)], "Left_Aerial_Attack_Side": [attack_sprite, Vector2(-15, 0), Vector2(-1.0, 1.0)], 
+"Aerial_Attack_Down": [attack_sprite_big, Vector2(0, 15), Vector2(1.0, -1.0)], "Aerial_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(1.0, 1.0)],"Left_Aerial_Attack_Down": [attack_sprite_big, Vector2(0, 15), Vector2(-1.0, -1.0)], 
+"Left_Aerial_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(-1.0, 1.0)]}
+
 var directional_input: Vector2
 var bounce_executed: bool = false
 var animation_dict: Dictionary = {Vector3(1, 0, 0): "Attack_Side", Vector3(-1, 0, 0): "Left_Attack_Side", Vector3(1, -1, 0): "Attack_Up", 
@@ -36,6 +46,9 @@ func enter():
 	for anim in animation_dict:
 		if anim == direction_data:
 			player.animation_player.play(animation_dict[anim])
+			for effect in attack_effect_dict:
+				if effect == animation_dict[anim]:
+					chosen_effect = attack_effect_dict[effect]
 	
 	if player.is_on_floor() == false:
 		is_airborne = true
@@ -49,6 +62,7 @@ func exit():
 	player.attack_component.rotation = 0
 	is_airborne = false
 	attacked_areas.clear()
+	chosen_effect = []
 
 
 func update(_delta: float):
@@ -85,6 +99,11 @@ func _bounce():
 	if bounce_executed == false:
 		player.velocity.y = player.jump_velocity
 		bounce_executed = true
+
+
+func spawn_effect():
+	var pos: Vector2 = chosen_effect[1] + player.global_position
+	AnimationManager.place_effects(chosen_effect[0], pos, chosen_effect[2], effect_duration)
 
 
 func evaluate_transitions():
