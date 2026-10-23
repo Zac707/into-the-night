@@ -2,6 +2,7 @@ extends Node
 
 
 var current_tilemap_bounds: Array[Vector2]
+
 signal bounds_changed(bounds: Array[Vector2])
 
 

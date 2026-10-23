@@ -19,13 +19,11 @@ func enter():
 	jump_buffer_timer = 0.0
 	
 	evaluate_transitions()
-	print(player.position, " ", player.hurtbox.position, " ", player.sprite.position)
 
 
 func exit():
 	transition_time = 0.00
 	jump_buffer_timer = 0.0
-	print(player.position, " ", player.hurtbox.position, " ", player.sprite.position)
 
 
 func update(_delta: float):

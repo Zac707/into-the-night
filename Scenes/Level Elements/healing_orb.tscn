@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dw2ee6rywbdm4"]
+
+[ext_resource type="Script" uid="uid://blr8c8v6ofb7o" path="res://Scripts/healing_orb.gd" id="1_2xgpw"]
+[ext_resource type="Texture2D" uid="uid://emdrkjvo68a2" path="res://Assets/Level Elements/healing_orb.png" id="2_oit4k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6n1y"]
+radius = 3.0
+
+[node name="HealingOrb" type="Area2D" unique_id=795334603]
+script = ExtResource("1_2xgpw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1418031356]
+shape = SubResource("CircleShape2D_f6n1y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=688185496]
+texture = ExtResource("2_oit4k")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
