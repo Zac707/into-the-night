@@ -111,7 +111,7 @@ func spawn_effect():
 	if effect_allowed:
 		print ("spawning effect")
 		var pos: Vector2 = chosen_effect[1] + player.global_position
-		AnimationManager.place_effects(chosen_effect[0], pos, chosen_effect[2], effect_duration)
+		SpawnManager.place_effects(chosen_effect[0], pos, chosen_effect[2], effect_duration)
 
 
 func evaluate_transitions():

@@ -23,8 +23,8 @@ config/icon="res://icon.svg"
 PlayerMovement="*uid://iwldiwnu4cmt"
 GlobalEventManager="*uid://duhorp4vs2qs3"
 PlayerGlobals="*uid://c3rkl8d1rbya"
-AnimationManager="*uid://1beowqpq5xom"
-RespawnManager="*uid://d18jxfdtmipvn"
+SpawnManager="*uid://1qc2vy2vjvyh"
+PlayerRespawn="*uid://c2jn8qus68dna"
 
 [display]
 

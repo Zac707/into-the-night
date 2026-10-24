@@ -610,6 +610,7 @@ disabled = true
 
 [node name="HealthComponent" type="Area2D" parent="SwordHeadComponents" unique_id=1528575296 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
 script = ExtResource("9_haro7")
+max_health = 2.0
 enemy = NodePath("../..")
 sprite = NodePath("../../Sprite2D")
 flash_timer = NodePath("FlashTimer")

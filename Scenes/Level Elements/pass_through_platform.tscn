@@ -3,15 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://dixrg1cwx1a7u" path="res://Assets/Level Elements/base_platform.png" id="1_mspo4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipgdq"]
-size = Vector2(8, 3)
+size = Vector2(8, 2)
 
 [node name="PassThroughPlatform" type="StaticBody2D" unique_id=994019278]
 position = Vector2(0, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1876799296]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1)
+scale = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_ipgdq")
 one_way_collision = true
+one_way_collision_margin = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1378542149]
 texture = ExtResource("1_mspo4")

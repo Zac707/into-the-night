@@ -47,4 +47,4 @@ func _physics_process(delta: float) -> void:
 
 
 func respawn():
-	self.global_position = RespawnManager.respawn_position
+	self.global_position = PlayerRespawn.respawn_position
