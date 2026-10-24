@@ -28,6 +28,8 @@ func enter():
 	else:
 		enemy.animation_player.play("Left_Distance")
 	
+	enemy.effect_player.play("exclamation_point")
+	
 	evaluate_transitions()
 
 

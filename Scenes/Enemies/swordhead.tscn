@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dfldlm40dpxij" path="res://Assets/Enemies/Question_mark-Sheet.png" id="14_dnp8s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ta2yt"]
+resource_local_to_scene = true
 shader = ExtResource("2_qk5qr")
 shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -33,7 +34,7 @@ radius = 20.0
 radius = 13.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qk5qr"]
-size = Vector2(12, 25)
+size = Vector2(12, 24)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56vhr"]
 radius = 4.9890075
@@ -434,8 +435,76 @@ tracks/6/keys = {
 "values": [true]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgeoe"]
+_data = {
+&"Attack": SubResource("Animation_vt4ob"),
+&"Chase": SubResource("Animation_56vhr"),
+&"Confused": SubResource("Animation_ta2yt"),
+&"Fall": SubResource("Animation_hgeoe"),
+&"Hurt": SubResource("Animation_haro7"),
+&"Idle": SubResource("Animation_tk7xo"),
+&"Left_Attack": SubResource("Animation_qk5qr"),
+&"Left_Chase": SubResource("Animation_dhkrs"),
+&"Left_Confused": SubResource("Animation_5xdhn"),
+&"Left_Fall": SubResource("Animation_4jyny"),
+&"Left_Hurt": SubResource("Animation_qjcj6"),
+&"Left_Idle": SubResource("Animation_vh8xy"),
+&"RESET": SubResource("Animation_m4x7e")
+}
+
+[sub_resource type="Animation" id="Animation_dnp8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwordHeadEmoticons/ExclamationPoint:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwordHeadEmoticons/QuestionMark:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwordHeadEmoticons/ExclamationPoint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordHeadEmoticons/QuestionMark:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_2bvuj"]
-resource_name = "emoticons_disabled"
+resource_name = "effects_disabled"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -486,12 +555,12 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_noq7b"]
-resource_name = "question_mark"
-length = 0.50000334
+resource_name = "question-mark"
+length = 0.56667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -511,47 +580,36 @@ tracks/1/path = NodePath("SwordHeadEmoticons/QuestionMark:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgeoe"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6rryd"]
 _data = {
-&"Attack": SubResource("Animation_vt4ob"),
-&"Chase": SubResource("Animation_56vhr"),
-&"Confused": SubResource("Animation_ta2yt"),
-&"Fall": SubResource("Animation_hgeoe"),
-&"Hurt": SubResource("Animation_haro7"),
-&"Idle": SubResource("Animation_tk7xo"),
-&"Left_Attack": SubResource("Animation_qk5qr"),
-&"Left_Chase": SubResource("Animation_dhkrs"),
-&"Left_Confused": SubResource("Animation_5xdhn"),
-&"Left_Fall": SubResource("Animation_4jyny"),
-&"Left_Hurt": SubResource("Animation_qjcj6"),
-&"Left_Idle": SubResource("Animation_vh8xy"),
-&"RESET": SubResource("Animation_m4x7e"),
-&"emoticons_disabled": SubResource("Animation_2bvuj"),
+&"RESET": SubResource("Animation_dnp8s"),
+&"effects_disabled": SubResource("Animation_2bvuj"),
 &"exclamation_point": SubResource("Animation_a1d2o"),
 &"question_mark": SubResource("Animation_noq7b")
 }
 
-[node name="Swordhead" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component", "animation_player", "health_component")]
-position = Vector2(0, -8)
+[node name="Swordhead" type="CharacterBody2D" unique_id=598764581 node_paths=PackedStringArray("attack_component", "animation_player", "effect_player", "health_component")]
 script = ExtResource("1_ghaa6")
 attack_component = NodePath("SwordHeadComponents/AttackComponent")
 animation_player = NodePath("AnimationPlayer")
+effect_player = NodePath("EffectPlayer")
 health_component = NodePath("SwordHeadComponents/HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=352463735]
 material = SubResource("ShaderMaterial_ta2yt")
+position = Vector2(0, -4)
 texture = ExtResource("3_6d4w0")
 hframes = 14
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=470450003]
-position = Vector2(-1, 4.875)
+position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_287tu")
 
 [node name="StateMachine" type="Node2D" parent="." unique_id=1252143428 node_paths=PackedStringArray("initial_state")]
@@ -603,12 +661,14 @@ shape = SubResource("CircleShape2D_haro7")
 [node name="SwordHeadComponents" type="Node2D" parent="." unique_id=1945292846]
 
 [node name="AttackComponent" type="Area2D" parent="SwordHeadComponents" unique_id=824397792 groups=["attack_area"]]
+position = Vector2(0, -3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHeadComponents/AttackComponent" unique_id=1683346055]
 shape = SubResource("CapsuleShape2D_m4x7e")
 disabled = true
 
 [node name="HealthComponent" type="Area2D" parent="SwordHeadComponents" unique_id=1528575296 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
+position = Vector2(0, -4)
 script = ExtResource("9_haro7")
 max_health = 2.0
 enemy = NodePath("../..")
@@ -616,7 +676,7 @@ sprite = NodePath("../../Sprite2D")
 flash_timer = NodePath("FlashTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHeadComponents/HealthComponent" unique_id=441078037]
-position = Vector2(-1, 3.5)
+position = Vector2(-1, 4)
 shape = SubResource("RectangleShape2D_qk5qr")
 
 [node name="FlashTimer" type="Timer" parent="SwordHeadComponents/HealthComponent" unique_id=1006819332]
@@ -624,16 +684,17 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ContactHitbox" type="Area2D" parent="SwordHeadComponents" unique_id=1140390453 node_paths=PackedStringArray("enemy")]
+position = Vector2(0, 4)
 script = ExtResource("11_haro7")
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHeadComponents/ContactHitbox" unique_id=1235973508]
-position = Vector2(-2, 0)
+position = Vector2(-2, -7)
 rotation = -0.06632251
 shape = SubResource("CapsuleShape2D_56vhr")
 
 [node name="SwordHeadEmoticons" type="Node2D" parent="." unique_id=456853128]
-position = Vector2(0, -24)
+position = Vector2(0, -30)
 
 [node name="ExclamationPoint" type="Sprite2D" parent="SwordHeadEmoticons" unique_id=352414093]
 texture = ExtResource("13_dnp8s")
@@ -646,6 +707,9 @@ hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2053604642]
 libraries/ = SubResource("AnimationLibrary_hgeoe")
+
+[node name="EffectPlayer" type="AnimationPlayer" parent="." unique_id=1921087681]
+libraries/ = SubResource("AnimationLibrary_6rryd")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1284337801]
 scale = Vector2(5, 5)

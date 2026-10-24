@@ -18,11 +18,14 @@ func enter():
 	else:
 		enemy.animation_player.play("Left_Chase")
 	
+	enemy.effect_player.play("exclamation_point")
+	
 	evaluate_transitions()
 
 
 func exit():
 	direction_switched = false
+	enemy.effect_player.play("effects_disabled")
 
 
 func update(_delta: float):

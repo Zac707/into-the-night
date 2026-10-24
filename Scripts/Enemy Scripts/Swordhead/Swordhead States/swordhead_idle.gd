@@ -13,14 +13,14 @@ func enter():
 	else:
 		enemy.animation_player.play("Left_Confused")
 	
-	enemy.animation_player.play("question_mark")
+	enemy.effect_player.play("question_mark")
 	
 	evaluate_transitions()
 
 
 func exit():
 	confused_time = 1.2
-	enemy.animation_player.play("emoticons_disabled")
+	enemy.effect_player.play("effects_disabled")
 
 
 func update(_delta: float):

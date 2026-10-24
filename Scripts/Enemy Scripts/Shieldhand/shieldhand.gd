@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var gravity: float = 600.0
 @export var attack_component: Area2D
 @export var animation_player: AnimationPlayer
+@export var effect_player: AnimationPlayer
 @export var health_component: Area2D
 
 var player: CharacterBody2D
@@ -23,7 +24,7 @@ var hooked: bool = false
 
 
 func _ready() -> void:
-	animation_player.play("emoticons_disabled")
+	effect_player.play("effects_disabled")
 
 
 func _physics_process(delta: float) -> void:
@@ -33,10 +34,9 @@ func _physics_process(delta: float) -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = body
-		animation_player.play("exclamation_point")
 
 
-func _on_detection_area_body_exited(body: Node2D) -> void:
+func _on_deactivation_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player = null
 

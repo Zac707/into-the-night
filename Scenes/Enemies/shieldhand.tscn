@@ -29,7 +29,7 @@ shader_parameter/flash_amount = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ycan8"]
-radius = 129.062
+radius = 106.11786
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aflev"]
 radius = 129.00388
@@ -42,9 +42,11 @@ radius = 8.0
 height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_822fd"]
-height = 20.0
+radius = 8.0
+height = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glkpo"]
+size = Vector2(18, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbifx"]
 size = Vector2(10, 23)
@@ -308,6 +310,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandHurt")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xjfad"]
@@ -587,6 +603,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [33]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/ShieldHandHurt")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.375),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_animation_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_5nu02"]
 resource_name = "Idle_left"
@@ -726,12 +756,41 @@ tracks/6/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_tfkud"]
-resource_name = "emoticons_disbled"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqm8t"]
+_data = {
+&"Approach": SubResource("Animation_aflev"),
+&"Attack": SubResource("Animation_grslr"),
+&"Defend": SubResource("Animation_glkpo"),
+&"Defend_up": SubResource("Animation_ycan8"),
+&"Distance": SubResource("Animation_6v66n"),
+&"Fall": SubResource("Animation_raebc"),
+&"Fall_defenseless": SubResource("Animation_uhvue"),
+&"Hooked": SubResource("Animation_g5xhq"),
+&"Hurt": SubResource("Animation_f6uug"),
+&"Hurt_defenseless": SubResource("Animation_y2dgj"),
+&"Idle": SubResource("Animation_xjfad"),
+&"Left_Approach": SubResource("Animation_8c3p6"),
+&"Left_Attack": SubResource("Animation_uqj1s"),
+&"Left_Defend": SubResource("Animation_kerx7"),
+&"Left_Defend_up": SubResource("Animation_18p67"),
+&"Left_Distance": SubResource("Animation_822fd"),
+&"Left_Fall": SubResource("Animation_vf4uv"),
+&"Left_Fall_defenseless": SubResource("Animation_yopst"),
+&"Left_Hooked": SubResource("Animation_hqm8t"),
+&"Left_Hurt": SubResource("Animation_6tpy1"),
+&"Left_Hurt_defenseless": SubResource("Animation_b7gbp"),
+&"Left_Idle": SubResource("Animation_5nu02"),
+&"Left_Panic": SubResource("Animation_p2d8o"),
+&"Panic": SubResource("Animation_oycuv"),
+&"RESET": SubResource("Animation_pwykw")
+}
+
+[sub_resource type="Animation" id="Animation_832my"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ShieldHandEmoticons/Sweat:visible")
+tracks/0/path = NodePath("ShieldHandEmoticons/ExclamationPoint:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -743,7 +802,58 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ShieldHandEmoticons/ExclamationPoint:visible")
+tracks/1/path = NodePath("ShieldHandEmoticons/Sweat:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShieldHandEmoticons/ExclamationPoint:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShieldHandEmoticons/Sweat:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kgmnl"]
+resource_name = "effects_disabled"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShieldHandEmoticons/ExclamationPoint:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShieldHandEmoticons/Sweat:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -753,7 +863,7 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_kgmnl"]
+[sub_resource type="Animation" id="Animation_1mgfg"]
 resource_name = "exclamation_point"
 length = 0.50000334
 tracks/0/type = "value"
@@ -781,7 +891,7 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_1mgfg"]
+[sub_resource type="Animation" id="Animation_tfkud"]
 resource_name = "sweat"
 length = 0.50000334
 loop_mode = 1
@@ -810,51 +920,28 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqm8t"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_irdgl"]
 _data = {
-&"Approach": SubResource("Animation_aflev"),
-&"Attack": SubResource("Animation_grslr"),
-&"Defend": SubResource("Animation_glkpo"),
-&"Defend_up": SubResource("Animation_ycan8"),
-&"Distance": SubResource("Animation_6v66n"),
-&"Fall": SubResource("Animation_raebc"),
-&"Fall_defenseless": SubResource("Animation_uhvue"),
-&"Hooked": SubResource("Animation_g5xhq"),
-&"Hurt": SubResource("Animation_f6uug"),
-&"Hurt_defenseless": SubResource("Animation_y2dgj"),
-&"Idle": SubResource("Animation_xjfad"),
-&"Left_Approach": SubResource("Animation_8c3p6"),
-&"Left_Attack": SubResource("Animation_uqj1s"),
-&"Left_Defend": SubResource("Animation_kerx7"),
-&"Left_Defend_up": SubResource("Animation_18p67"),
-&"Left_Distance": SubResource("Animation_822fd"),
-&"Left_Fall": SubResource("Animation_vf4uv"),
-&"Left_Fall_defenseless": SubResource("Animation_yopst"),
-&"Left_Hooked": SubResource("Animation_hqm8t"),
-&"Left_Hurt": SubResource("Animation_6tpy1"),
-&"Left_Hurt_defenseless": SubResource("Animation_b7gbp"),
-&"Left_Idle": SubResource("Animation_5nu02"),
-&"Left_Panic": SubResource("Animation_p2d8o"),
-&"Panic": SubResource("Animation_oycuv"),
-&"RESET": SubResource("Animation_pwykw"),
-&"emoticons_disbled": SubResource("Animation_tfkud"),
-&"exclamation_point": SubResource("Animation_kgmnl"),
-&"sweat": SubResource("Animation_1mgfg")
+&"RESET": SubResource("Animation_832my"),
+&"effects_disabled": SubResource("Animation_kgmnl"),
+&"exclamation_point": SubResource("Animation_1mgfg"),
+&"sweat": SubResource("Animation_tfkud")
 }
 
-[node name="Shieldhand" type="CharacterBody2D" unique_id=822517851 node_paths=PackedStringArray("attack_component", "animation_player", "health_component") groups=["attack_area"]]
-position = Vector2(0, -8)
+[node name="Shieldhand" type="CharacterBody2D" unique_id=822517851 node_paths=PackedStringArray("attack_component", "animation_player", "effect_player", "health_component") groups=["attack_area"]]
 script = ExtResource("1_rwt1x")
 attack_component = NodePath("ShieldHandComponents/AttackComponentShieldHand")
 animation_player = NodePath("AnimationPlayer")
+effect_player = NodePath("EffectPlayer")
 health_component = NodePath("ShieldHandComponents/HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1003191969]
-position = Vector2(0, 6.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_kerx7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926548217]
 material = SubResource("ShaderMaterial_rwt1x")
+position = Vector2(0, -4)
 texture = ExtResource("3_aflev")
 hframes = 17
 vframes = 2
@@ -952,7 +1039,6 @@ flash_timer = NodePath("FlashTimer")
 shield = NodePath("../ShieldHitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/HealthComponent" unique_id=1517413947]
-position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_822fd")
 
 [node name="FlashTimer" type="Timer" parent="ShieldHandComponents/HealthComponent" unique_id=138142887]
@@ -960,12 +1046,11 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ContactHitbox" type="Area2D" parent="ShieldHandComponents" unique_id=336374448 node_paths=PackedStringArray("enemy")]
-visible = false
 script = ExtResource("11_glkpo")
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/ContactHitbox" unique_id=1925828619]
-position = Vector2(0, 6)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_glkpo")
 
 [node name="ShieldHitbox" type="Area2D" parent="ShieldHandComponents" unique_id=1730290884 node_paths=PackedStringArray("enemy") groups=["bouncing_object", "hook_object"]]
@@ -975,28 +1060,32 @@ script = ExtResource("15_dbifx")
 enemy = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHandComponents/ShieldHitbox" unique_id=413356342]
-position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_dbifx")
 
 [node name="ShieldHandEmoticons" type="Node2D" parent="." unique_id=9210290]
-position = Vector2(0, -16)
+position = Vector2(0, -24)
 
 [node name="ExclamationPoint" type="Sprite2D" parent="ShieldHandEmoticons" unique_id=78308330]
+visible = false
 texture = ExtResource("17_8c3p6")
 hframes = 4
 
 [node name="Sweat" type="Sprite2D" parent="ShieldHandEmoticons" unique_id=33593760]
+visible = false
 texture = ExtResource("18_grslr")
 hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=97393492]
 libraries/ = SubResource("AnimationLibrary_hqm8t")
 
+[node name="EffectPlayer" type="AnimationPlayer" parent="." unique_id=1430540766]
+libraries/ = SubResource("AnimationLibrary_irdgl")
+
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1619265871]
 scale = Vector2(5, 5)
 
 [connection signal="body_entered" from="PlayerDetection/DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="PlayerDetection/DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_exited" from="PlayerDetection/DeactivationArea" to="." method="_on_deactivation_area_body_exited"]
 [connection signal="body_entered" from="PlayerDetection/AttackActivationArea" to="." method="_on_attack_activation_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetection/AttackActivationArea" to="." method="_on_attack_activation_area_body_exited"]
 [connection signal="timeout" from="ShieldHandComponents/HealthComponent/FlashTimer" to="ShieldHandComponents/HealthComponent" method="_on_flash_timer_timeout"]
