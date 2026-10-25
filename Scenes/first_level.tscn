@@ -961,7 +961,7 @@ tile_set = SubResource("TileSet_dloay")
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=1712444491 instance=ExtResource("6_ffwbm")]
-position = Vector2(3248, -232)
+position = Vector2(48, 216)
 
 [node name="CanvasLayerBackground" type="CanvasLayer" parent="." unique_id=530308445]
 layer = -1
@@ -1254,8 +1254,8 @@ position = Vector2(3216, -248)
 position = Vector2(3544, -424)
 
 [connection signal="body_entered" from="TileMapLayerInteractables/Star" to="TileMapLayerInteractables/Star" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayerInteractables/@Area2D@51511" to="TileMapLayerInteractables/@Area2D@51511" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayerInteractables/@Area2D@51547" to="TileMapLayerInteractables/@Area2D@51547" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayerInteractables/@Area2D@18861" to="TileMapLayerInteractables/@Area2D@18861" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMapLayerInteractables/@Area2D@18897" to="TileMapLayerInteractables/@Area2D@18897" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox1" to="CameraManager/CameraBox1" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox2" to="CameraManager/CameraBox2" method="_on_body_entered"]
 [connection signal="body_entered" from="CameraManager/CameraBox3" to="CameraManager/CameraBox3" method="_on_body_entered"]
