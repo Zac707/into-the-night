@@ -86,11 +86,11 @@ script = ExtResource("1_2ausw")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1265308741]
-position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_2ausw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1297776093]
 material = SubResource("ShaderMaterial_ra5dd")
+position = Vector2(0, -4)
 texture = ExtResource("1_4ovcb")
 hframes = 4
 vframes = 2
@@ -111,6 +111,7 @@ metadata/_custom_type_script = "uid://bhallyd2ooaul"
 [node name="ImpComponents" type="Node2D" parent="." unique_id=2106829386]
 
 [node name="HealthComponent" type="Area2D" parent="ImpComponents" unique_id=1387330881 node_paths=PackedStringArray("enemy", "sprite", "flash_timer") groups=["bouncing_object"]]
+position = Vector2(0, -4)
 script = ExtResource("2_wsvxx")
 enemy = NodePath("../..")
 sprite = NodePath("../../Sprite2D")
@@ -126,6 +127,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="ContactHitbox" type="Area2D" parent="ImpComponents" unique_id=657059817 node_paths=PackedStringArray("enemy")]
+position = Vector2(0, -4)
 script = ExtResource("3_ob1e4")
 enemy = NodePath("../..")
 

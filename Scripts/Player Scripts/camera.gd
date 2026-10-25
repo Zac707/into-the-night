@@ -6,6 +6,7 @@ class_name PlayerCamera extends Camera2D
 @export var trans_type: Tween.TransitionType = Tween.TRANS_CUBIC
 @export var ease_type: Tween.EaseType = Tween.EASE_OUT
 
+var offset_tween: Tween
 var limit_tween: Tween
 
 func _ready() -> void:
@@ -27,15 +28,15 @@ func update_limits(bounds: Array[Vector2]) -> void:
 	if bounds.is_empty():
 		return
 	
-	# If a previous transition is running, kill it to prevent conflicts
-	if limit_tween and limit_tween.is_valid():
-		limit_tween.kill()
+	var old_center := get_screen_center_position()
+	update_limits_instant(bounds)
+	force_update_scroll()
+	var new_center := get_screen_center_position()
 	
-	# Create a new parallel tween so all limits animate at the exact same time
-	limit_tween = create_tween().set_parallel(true).set_trans(trans_type).set_ease(ease_type)
+	if offset_tween and offset_tween.is_valid():
+		offset_tween.kill()
 	
-	# Animate each limit property from its current value to the new target value
-	limit_tween.tween_property(self, "limit_left", bounds[0].x, transition_time)
-	limit_tween.tween_property(self, "limit_right", bounds[1].x, transition_time)
-	limit_tween.tween_property(self, "limit_bottom", bounds[2].y, transition_time)
-	limit_tween.tween_property(self, "limit_top", bounds[3].y, transition_time)
+	# Cancel out the jump caused by the new limits, then ease back to zero
+	offset += old_center - new_center
+	offset_tween = create_tween().set_trans(trans_type).set_ease(ease_type)
+	offset_tween.tween_property(self, "offset", Vector2.ZERO, transition_time)

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c6nl1miln2rti" path="res://Scenes/Enemies/imp.tscn" id="11_tnimv"]
 [ext_resource type="Script" path="res://Scripts/killbox.gd" id="12_4blnk"]
 [ext_resource type="PackedScene" uid="uid://dyhcp7iky6fp3" path="res://Scenes/Level Elements/grapple_point.tscn" id="12_ibmi3"]
-[ext_resource type="Script" path="res://Scripts/respawn_point.gd" id="13_tnimv"]
+[ext_resource type="Script" uid="uid://dh0ss2478cckn" path="res://Scripts/respawn_point.gd" id="13_tnimv"]
 [ext_resource type="PackedScene" uid="uid://ch6kx6u3wylj2" path="res://Scenes/Level Elements/vase.tscn" id="14_tnimv"]
 [ext_resource type="PackedScene" uid="uid://by03lv4rsdh0p" path="res://Scenes/Level Elements/star.tscn" id="15_4qg1e"]
 [ext_resource type="PackedScene" uid="uid://bd4n38raood3" path="res://Scenes/Enemies/swordhead.tscn" id="16_040rt"]
@@ -567,7 +567,7 @@ script = ExtResource("7_oho3u")
 camera_bounds = NodePath("CameraBounds1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraBox1" unique_id=901111431]
-position = Vector2(319, 299)
+position = Vector2(-251, -2)
 shape = SubResource("RectangleShape2D_rdbpf")
 
 [node name="CameraBounds1" type="Node2D" parent="CameraManager/CameraBox1" unique_id=1625460627 node_paths=PackedStringArray("camera_manager")]

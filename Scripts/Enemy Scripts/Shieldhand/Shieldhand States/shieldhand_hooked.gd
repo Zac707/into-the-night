@@ -11,7 +11,7 @@ func enter():
 		enemy.animation_player.play("Left_Hooked")
 	
 	#shield.queue_free()
-	enemy.velocity.x == enemy.last_horizontal_direction * -500
+	enemy.velocity.x = enemy.last_horizontal_direction * 50
 	
 	evaluate_transitions()
 

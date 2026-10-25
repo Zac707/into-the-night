@@ -19,7 +19,7 @@ var hurt: bool = false
 
 
 func _ready() -> void:
-	effect_player.play("emoticons_disabled")
+	effect_player.play("effects_disabled")
 
 
 func _physics_process(delta: float) -> void:
