@@ -74,7 +74,7 @@ func apply_flung_movement(player: CharacterBody2D, delta: float) -> void:
 	# Once actual speed has dropped to (or below) normal move speed — whether
 	# from natural decay or from something external like a wall collision —
 	# there's nothing left to decay from. Hand back to normal movement.
-	if absf(player.velocity.x) <= player.move_speed:
+	if absf(player.velocity.x) <= player.move_speed and absf(player.velocity.y) <= player.move_speed:
 		player.fling_velocity = Vector2.ZERO
 		apply_horizontal_movement(player, delta)
 		return
@@ -93,13 +93,13 @@ func apply_flung_movement(player: CharacterBody2D, delta: float) -> void:
 	# This is what actually produces the slowdown.
 	player.velocity.x = clamp(player.velocity.x, -speed_ceiling, speed_ceiling)
 	
-	if input != 0.0: 
+	"""if input != 0.0: 
 		player.velocity.x = move_toward(player.velocity.x, player.move_speed if input == 1.0 else -player.move_speed, curve_t * player.move_speed * delta)
 		#print(player.velocity.x," ", player.fling_timer)
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.fling_friction * player.move_speed * delta)
 	# Then clamp to the decaying ceiling so velocity can never climb back up
-	player.velocity.x = clamp(player.velocity.x, -speed_ceiling, speed_ceiling)
+	player.velocity.x = clamp(player.velocity.x, -speed_ceiling, speed_ceiling)"""
 	
 	if t >= 1.0:
 		player.fling_velocity = Vector2.ZERO
