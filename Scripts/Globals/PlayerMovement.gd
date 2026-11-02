@@ -2,7 +2,10 @@ extends Node
 
 
 func get_gravity(player: CharacterBody2D) -> float:
-	return player.jump_gravity if player.velocity.y < 0.0 else player.fall_gravity
+	if player.bouncing == false:
+		return player.jump_gravity if player.velocity.y < 0.0 else player.fall_gravity
+	else:
+		return player.bounce_gravity
 
 
 func apply_gravity(player: CharacterBody2D, delta: float) -> void:

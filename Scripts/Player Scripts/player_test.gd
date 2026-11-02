@@ -5,23 +5,29 @@ extends CharacterBody2D
 @onready var fall_gravity: float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 @onready var walljump_velocity: float = ((2.0 * walljump_height) / walljump_time_to_peak) * -1.0
 @onready var walljump_gravity: float = ((-2.0 * walljump_height) / (walljump_time_to_peak * walljump_time_to_peak)) * -1.0
+@onready var bounce_velocity: float = ((2.0 * bounce_height) / bounce_time_to_peak) * -1.0
+@onready var bounce_gravity: float = ((-2.0 * bounce_height) / (bounce_time_to_peak * bounce_time_to_peak)) * -1.0
 
 @export var move_speed: float = 120
 @export var max_move_speed: float = 300
-@export var jump_height: float = 35
-@export var jump_time_to_peak: float = 0.3
-@export var jump_time_to_descent: float = 0.18
-@export var acceleration: float = 15.0  
 @export var friction: float = 30.0     
+@export var acceleration: float = 15.0  
+
+@export var jump_height: float = 64
+@export var jump_time_to_peak: float = 0.5
+@export var jump_time_to_descent: float = 0.35
+@export var walljump_height: float = 15
+@export var walljump_time_to_peak: float = 0.15
+@export var gravity_on_wall: float = 100
+@export var bounce_height: float = 32
+@export var bounce_time_to_peak: float = 0.25
+
 @export var hook_spring_strength: float = 15.0
-@export var hook_min_speed: float = 150.0
 @export var hook_damping: float = 0.05
 @export var fling_decay_duration: float = 1.0
 @export var fling_decay_curve: Curve
 @export var fling_friction: float = 5.0
-@export var gravity_on_wall: float = 100
-@export var walljump_height: float = 15
-@export var walljump_time_to_peak: float = 0.15
+
 @export var attack_component: Area2D
 @export var health_component: Area2D
 @export var animation_player: AnimationPlayer
@@ -39,6 +45,7 @@ var fling_timer: float = 0.0
 var last_horizontal_direction_pressed: String = "left"
 var wall_direction: String
 var hurt: bool = false
+var bouncing: bool = false
 
 signal new_direction
 

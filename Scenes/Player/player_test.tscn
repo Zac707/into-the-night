@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://c10i25wc10dfo" path="res://Scripts/Player Scripts/Player States/player_land.gd" id="17_1klfb"]
 
 [sub_resource type="Curve" id="Curve_0asfq"]
-_data = [Vector2(0, 0), 0.0, 0.2987119, 0, 0, Vector2(0.38990828, 0.6629214), 0.97977537, 0.97977537, 0, 0, Vector2(0.6926606, 0.8876405), 0.48988748, 0.48988748, 0, 0, Vector2(0.8623854, 0.9662922), 0.847882, 0.847882, 0, 0, Vector2(1, 1), 1.0592166, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 1.7071844, 0, 0, Vector2(0.38990828, 0.6629214), 0.97977537, 0.97977537, 0, 0, Vector2(0.6926606, 0.8876405), 0.48988748, 0.48988748, 0, 0, Vector2(0.8623854, 0.9662922), 0.847882, 0.847882, 0, 0, Vector2(1, 1), 1.0592166, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1klfb"]

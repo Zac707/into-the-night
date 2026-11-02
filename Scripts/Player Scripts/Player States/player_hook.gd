@@ -21,7 +21,7 @@ var hover_duration: float = 0.0
 #here to not have unhooked called twice. It can happen when locking onto an object, as hook.gd and this script both call it.
 var already_unhooked: bool = false
 var _target_velocity_obtained: bool = false
-var movement_direction: String
+var movement_direction: Vector2
 
 
 func enter():
@@ -30,6 +30,7 @@ func enter():
 		if anim == direction_data:
 			player.animation_player.play(animation_dict_throw[anim])
 	
+	movement_direction = PlayerMovement.get_last_direction_pressed(player)
 	hookshot.fire()
 	already_unhooked = false
 	
@@ -55,7 +56,6 @@ func physics_update(_delta: float):
 		var to_hook: Vector2 = _hook_point - player.global_position
 		var dist: float = to_hook.length()
 		var current_dir: Vector2 = to_hook.normalized()
-		movement_direction = "horizontal" if absf(current_dir.x) > absf(current_dir.y) else "vertical"
 		# Arrived if: close enough, OR player has passed through the hook point
 		# (dot product negative means direction has flipped — player overshot)
 		var overshot: bool = _approach_dir != Vector2.ZERO and current_dir.dot(_approach_dir) < 0.0
@@ -75,7 +75,7 @@ func physics_update(_delta: float):
 	# If the player has not hooked unto anything, he needs to have gravity applied in case he's in the air, but only when a certain time has passed so as to allow for a slight hover.
 	# Also slow down his horizontal velocity, no matter how much time has passed.
 	else:
-		if hover_duration >= 0.0 and movement_direction == "horizontal":
+		if hover_duration >= 0.0 and movement_direction.y == 0:
 			player.velocity.y = move_toward(player.velocity.y, 0.0, 50)
 		else:
 			PlayerMovement.apply_gravity(player, _delta)
@@ -139,3 +139,4 @@ func evaluate_transitions():
 
 func _on_hook_hook_sent(start_duration: Variant, return_duration: Variant) -> void:
 	hover_duration = start_duration + return_duration
+	print(hover_duration)

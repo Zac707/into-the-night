@@ -50,7 +50,6 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "PlayerIdle")
 	elif not jump_executed:
 		if not still_on_wall:
-			print("transitioning to fall")
 			transitioned_state.emit(self, "PlayerFall")
 		elif Input.is_action_pressed("left") and player.wall_direction == "left":
 			transitioned_state.emit(self, "PlayerFall")

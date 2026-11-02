@@ -49,7 +49,7 @@ func evaluate_transitions():
 		transitioned_state.emit(self, "PlayerFall")
 	elif Input.is_action_just_pressed("hook_test"):
 		transitioned_state.emit(self, "PlayerHook")
-	elif player.is_on_wall_only() and player.velocity.y > -10:
+	elif player.is_on_wall_only() and player.velocity.y > -50:
 		transitioned_state.emit(self, "PlayerWallcling")
 	elif Input.is_action_just_pressed("attack"):
 		transitioned_state.emit(self, "PlayerAttack")

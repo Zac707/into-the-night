@@ -65,6 +65,7 @@ func exit():
 	attacked_areas.clear()
 	chosen_effect = []
 	effect_allowed = false
+	player.bouncing = false
 
 
 func update(_delta: float):
@@ -103,13 +104,13 @@ func attack_finished():
 
 func _bounce():
 	if bounce_executed == false:
-		player.velocity.y = player.jump_velocity
+		player.velocity.y = player.bounce_velocity
 		bounce_executed = true
+		player.bouncing = true
 
 
 func spawn_effect():
 	if effect_allowed:
-		print ("spawning effect")
 		var pos: Vector2 = chosen_effect[1] + player.global_position
 		SpawnManager.place_effects(chosen_effect[0], pos, chosen_effect[2], effect_duration)
 
