@@ -16,8 +16,8 @@ extends CharacterBody2D
 @export var jump_height: float = 64
 @export var jump_time_to_peak: float = 0.5
 @export var jump_time_to_descent: float = 0.35
-@export var walljump_height: float = 15
-@export var walljump_time_to_peak: float = 0.15
+@export var walljump_height: float = 20
+@export var walljump_time_to_peak: float = 0.18
 @export var gravity_on_wall: float = 100
 @export var bounce_height: float = 32
 @export var bounce_time_to_peak: float = 0.25
@@ -46,6 +46,7 @@ var last_horizontal_direction_pressed: String = "left"
 var wall_direction: String
 var hurt: bool = false
 var bouncing: bool = false
+var wallcling_active: bool = false
 
 signal new_direction
 

@@ -14,12 +14,15 @@ func enter():
 	else:
 		player.animation_player.play("Left_Fall")
 	
+	player.wallcling_active = true
+	
 	_jump()
 	evaluate_transitions()
 
 
 func exit():
 	time_until_transition = 0.0
+	player.wallcling_active = false
 
 
 func update(_delta: float):

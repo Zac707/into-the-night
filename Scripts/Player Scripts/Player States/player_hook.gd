@@ -77,6 +77,8 @@ func physics_update(_delta: float):
 	else:
 		if hover_duration >= 0.0 and movement_direction.y == 0:
 			player.velocity.y = move_toward(player.velocity.y, 0.0, 50)
+		elif hover_duration >= 0.0 and movement_direction.y != 0 and already_unhooked == false:
+			player.velocity.y = move_toward(player.velocity.y, 0.0, 50)
 		else:
 			PlayerMovement.apply_gravity(player, _delta)
 		if player.is_on_floor():
@@ -139,4 +141,3 @@ func evaluate_transitions():
 
 func _on_hook_hook_sent(start_duration: Variant, return_duration: Variant) -> void:
 	hover_duration = start_duration + return_duration
-	print(hover_duration)
