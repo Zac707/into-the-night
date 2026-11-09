@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ja4we4tt0wp1" path="res://Scripts/Player Scripts/Player States/player_jump.gd" id="9_8dx66"]
 [ext_resource type="Script" uid="uid://btganiwqggbic" path="res://Scripts/Player Scripts/Player States/player_run.gd" id="10_qki6r"]
 [ext_resource type="Script" uid="uid://b5jwjd6i3qpcn" path="res://Scripts/Player Scripts/Player States/player_walljump.gd" id="12_ve6vs"]
+[ext_resource type="PackedScene" uid="uid://cjhdmw7bpt7jj" path="res://Scenes/Player/attack_effect.tscn" id="13_vcnm1"]
 [ext_resource type="Script" uid="uid://jivtbd0w0txt" path="res://Scripts/Player Scripts/Player States/player_wallcling.gd" id="14_prfrf"]
 [ext_resource type="Script" uid="uid://c03ehs887slg6" path="res://Scripts/Player Scripts/health_component_player.gd" id="14_qki6r"]
 [ext_resource type="Script" uid="uid://daqn3macfc6cg" path="res://Scripts/Player Scripts/camera.gd" id="15_67lvd"]
@@ -43,7 +44,7 @@ height = 14.0
 
 [sub_resource type="Animation" id="Animation_prfrf"]
 resource_name = "Aerial_Attack_Down"
-length = 0.3
+length = 0.23333667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,7 +52,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [72, 73, 74, 75]
@@ -63,7 +64,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -77,7 +78,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, 15), Vector2(0, 0)]
@@ -89,29 +90,15 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/PlayerAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_67lvd"]
 resource_name = "Aerial_Attack_Side"
-length = 0.3
+length = 0.23333667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -119,7 +106,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [60, 61, 62, 63]
@@ -131,7 +118,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -145,7 +132,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(16, 0), Vector2(0, 0)]
@@ -157,7 +144,7 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(1, 0.6), Vector2(1, 1)]
@@ -169,29 +156,15 @@ tracks/4/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("StateMachine/PlayerAttack")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_sduab"]
 resource_name = "Aerial_Attack_Up"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -199,7 +172,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [48, 49, 50, 51]
@@ -211,7 +184,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -225,7 +198,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, -15), Vector2(0, 0)]
@@ -237,24 +210,10 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/PlayerAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.06666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_e0rbb"]
@@ -291,7 +250,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_tvrp7"]
 resource_name = "Attack_Side"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -299,7 +258,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [24, 25, 26, 27]
@@ -311,7 +270,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -325,7 +284,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(15, 0), Vector2(0, 0)]
@@ -337,7 +296,7 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(1, 0.6), Vector2(1, 1)]
@@ -349,29 +308,15 @@ tracks/4/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("StateMachine/PlayerAttack")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_1klfb"]
 resource_name = "Attack_Up"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -379,7 +324,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [36, 37, 38, 39]
@@ -391,7 +336,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -405,7 +350,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, -15), Vector2(0, 0)]
@@ -417,24 +362,10 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/PlayerAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_oy2dr"]
@@ -613,7 +544,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_bumkv"]
 resource_name = "Left_Aerial_Attack_Down"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -621,7 +552,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [78, 79, 80, 81]
@@ -633,7 +564,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -647,7 +578,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, 15), Vector2(0, 0)]
@@ -659,29 +590,15 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/PlayerAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_rpqj3"]
 resource_name = "Left_Aerial_Attack_Side"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -689,7 +606,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [66, 67, 68, 69]
@@ -701,7 +618,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -715,7 +632,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(-15, 0), Vector2(0, 0)]
@@ -727,7 +644,7 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(1, 0.6), Vector2(1, 1)]
@@ -739,29 +656,15 @@ tracks/4/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("StateMachine/PlayerAttack")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_rtq0u"]
 resource_name = "Left_Aerial_Attack_Up"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -769,7 +672,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [54, 55, 56, 57]
@@ -781,7 +684,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -795,7 +698,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, -15), Vector2(0, 0)]
@@ -807,24 +710,10 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/PlayerAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_xq865"]
@@ -861,7 +750,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5ko5q"]
 resource_name = "Left_Attack_Side"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -869,7 +758,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [30, 31, 32, 33]
@@ -881,7 +770,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -895,7 +784,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(-15, 0), Vector2(0, 0)]
@@ -907,7 +796,7 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(1, 0.6), Vector2(1, 1)]
@@ -919,29 +808,15 @@ tracks/4/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("StateMachine/PlayerAttack")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_tj2xt"]
 resource_name = "Left_Attack_Up"
-length = 0.3
+length = 0.23333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -949,7 +824,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.26666668),
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [42, 43, 44, 45]
@@ -961,7 +836,7 @@ tracks/1/path = NodePath("StateMachine/PlayerAttack")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.23333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -975,7 +850,7 @@ tracks/2/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, -15), Vector2(0, 0)]
@@ -987,24 +862,10 @@ tracks/3/path = NodePath("PlayerComponents/AttackComponentPlayer/CollisionShape2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.06666667, 0.3),
+"times": PackedFloat32Array(0.033333335, 0.23333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/PlayerAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn_effect"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_ffx63"]
@@ -1353,6 +1214,7 @@ player = NodePath("../..")
 
 [node name="PlayerAttack" type="Node" parent="StateMachine" unique_id=984369387 node_paths=PackedStringArray("player")]
 script = ExtResource("7_0asfq")
+attack_effect = ExtResource("13_vcnm1")
 player = NodePath("../..")
 
 [node name="PlayerHook" type="Node" parent="StateMachine" unique_id=1327739009 node_paths=PackedStringArray("hookshot", "player")]
@@ -1395,6 +1257,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerComponents/AttackComponentPlayer" unique_id=1799505131]
+scale = Vector2(1, 0.6)
 shape = SubResource("CapsuleShape2D_8dx66")
 disabled = true
 

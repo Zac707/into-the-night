@@ -4,15 +4,11 @@ extends State
 class_name PlayerAttack
 
 
-@export var effect_duration: float = 0.2
+@export var effect_duration: float = 0.3
+@export var attack_effect: PackedScene
 
-var attack_sprite: = preload("res://Assets/Player/swordslash_small.png")
-var attack_sprite_big: = preload("res://Assets/Player/swordslash_big.png")
 var chosen_effect: Array
-var attack_effect_dict: Dictionary = {"Attack_Side": [attack_sprite, Vector2(15, 0), Vector2(1.0, 1.0)], "Left_Attack_Side": [attack_sprite, Vector2(-15, 0), Vector2(-1.0, 1.0)], "Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(1.0, 1.0)], 
-"Left_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(-1.0, 1.0)], "Aerial_Attack_Side": [attack_sprite, Vector2(15, 0), Vector2(1.0, 1.0)], "Left_Aerial_Attack_Side": [attack_sprite, Vector2(-15, 0), Vector2(-1.0, 1.0)], 
-"Aerial_Attack_Down": [attack_sprite_big, Vector2(0, 15), Vector2(1.0, -1.0)], "Aerial_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(1.0, 1.0)],"Left_Aerial_Attack_Down": [attack_sprite_big, Vector2(0, 15), Vector2(-1.0, -1.0)], 
-"Left_Aerial_Attack_Up": [attack_sprite_big, Vector2(0, -15), Vector2(-1.0, 1.0)]}
+var attack_effect_dict: Dictionary 
 var effect_allowed: bool = false
 
 var directional_input: Vector2
@@ -28,20 +24,11 @@ var attacked_areas: Array = []
 
 func enter():
 	directional_input = PlayerMovement.get_last_direction_pressed(player)
-	# if player is grounded, a downwards attack should not be possible. Default instead to the last direction pressed horizontally
-	"""if not player.is_on_floor() or directional_input != Vector2(0, 1):
-		player.attack_component.position = directional_input * Vector2(10, 10)
-		player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
-	else:
-		if player.last_horizontal_direction_pressed == "left":
-			directional_input = Vector2(-1, 0)
-			player.attack_component.position = directional_input * Vector2(10, 10)
-			player.attack_component.rotation = Vector2.UP.angle_to(directional_input)
-		else:
-			directional_input = Vector2(1, 0)
-			player.attack_component.position = directional_input * Vector2(10, 10)
-			player.attack_component.rotation = Vector2.UP.angle_to(directional_input)"""
-		
+	
+	attack_effect_dict = {"Attack_Side": [attack_effect, Vector2(15, 0), Vector2(1.0, 1.0)], "Left_Attack_Side": [attack_effect, Vector2(-15, 0), Vector2(-1.0, 1.0)], "Attack_Up": [attack_effect, Vector2(0, -15), Vector2(1.0, 1.0)], 
+"Left_Attack_Up": [attack_effect, Vector2(0, -15), Vector2(-1.0, 1.0)], "Aerial_Attack_Side": [attack_effect, Vector2(15, 0), Vector2(1.0, 1.0)], "Left_Aerial_Attack_Side": [attack_effect, Vector2(-15, 0), Vector2(-1.0, 1.0)], 
+"Aerial_Attack_Down": [attack_effect, Vector2(0, 15), Vector2(1.0, -1.0)], "Aerial_Attack_Up": [attack_effect, Vector2(0, -15), Vector2(1.0, 1.0)],"Left_Aerial_Attack_Down": [attack_effect, Vector2(0, 15), Vector2(-1.0, -1.0)], 
+"Left_Aerial_Attack_Up": [attack_effect, Vector2(0, -15), Vector2(-1.0, 1.0)]}
 	
 	var direction_data = PlayerMovement.get_animation_direction(player, aerial_down_granted)
 	for anim in animation_dict:
@@ -80,10 +67,13 @@ func update(_delta: float):
 			attacked_areas.append(area)
 			
 		if area.is_in_group("bouncing_object") and directional_input == Vector2(0, 1) and not player.is_on_floor():
-			effect_allowed = true
+			if not attacked_areas.has(area):
+				effect_allowed = true
+				attacked_areas.append(area)
 			_bounce()
 			
 	
+	spawn_effect()
 	evaluate_transitions()
 
 
@@ -113,6 +103,7 @@ func spawn_effect():
 	if effect_allowed:
 		var pos: Vector2 = chosen_effect[1] + player.global_position
 		SpawnManager.place_effects(chosen_effect[0], pos, chosen_effect[2], effect_duration)
+		effect_allowed = false
 
 
 func evaluate_transitions():

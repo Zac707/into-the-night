@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cjhdmw7bpt7jj"]
+
+[ext_resource type="Texture2D" uid="uid://dx0h87ovmivth" path="res://Assets/Player/Attack_effect-Sheet.png" id="1_uhke8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1kpe"]
+atlas = ExtResource("1_uhke8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxoeu"]
+atlas = ExtResource("1_uhke8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf08k"]
+atlas = ExtResource("1_uhke8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vep4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1kpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxoeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf08k")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"attack_effect_animation",
+"speed": 15.0
+}]
+
+[node name="AttackEffect" type="AnimatedSprite2D" unique_id=914278698]
+sprite_frames = SubResource("SpriteFrames_vep4s")
+animation = &"attack_effect_animation"
+autoplay = "attack_effect_animation"

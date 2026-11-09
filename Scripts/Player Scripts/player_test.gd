@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 @export var jump_height: float = 64
 @export var jump_time_to_peak: float = 0.5
-@export var jump_time_to_descent: float = 0.35
+@export var jump_time_to_descent: float = 0.4
 @export var walljump_height: float = 20
 @export var walljump_time_to_peak: float = 0.18
 @export var gravity_on_wall: float = 100
